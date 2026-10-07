@@ -5,7 +5,7 @@ import type { KakaoPlace } from './match';
 const API = 'https://dapi.kakao.com/v2/local/search';
 const MIN_INTERVAL_MS = 200;
 
-type Json = { documents: unknown[] };
+type Json = { documents: unknown[]; meta?: { total_count: number; pageable_count: number; is_end: boolean } };
 
 // 같은 요청은 캐시 파일에서 돌려주므로 재실행 시 API를 다시 호출하지 않는다.
 export class KakaoLocalClient {
@@ -40,6 +40,12 @@ export class KakaoLocalClient {
     const params: Record<string, string> = { query, size: '15' };
     if (near) Object.assign(params, { x: String(near.lng), y: String(near.lat), radius: '20000' });
     return (await this.get('keyword', params)).documents as KakaoPlace[];
+  }
+
+  // 사각형 영역(경도1,위도1,경도2,위도2) 안의 키워드 검색. 카카오는 페이지당 15건, 최대 3페이지(45건)까지만 준다.
+  async searchRect(query: string, rect: [number, number, number, number], page: number): Promise<{ places: KakaoPlace[]; total: number; isEnd: boolean }> {
+    const json = await this.get('keyword', { query, rect: rect.map((value) => value.toFixed(5)).join(','), page: String(page), size: '15' });
+    return { places: json.documents as KakaoPlace[], total: json.meta?.total_count ?? 0, isEnd: json.meta?.is_end ?? true };
   }
 
   saveCache(): void {

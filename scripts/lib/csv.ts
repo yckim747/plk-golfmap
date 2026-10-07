@@ -18,7 +18,7 @@ export interface PlkCourseRow {
   status?: '협의중' | null;
 }
 
-export interface SkippedRow { plkCode: string; name: string; address: string; reason: string }
+export interface SkippedRow { plkCode: string; name: string; address: string; reason: string; lat?: number; lng?: number }
 export interface ParsedCourses { format: 'template' | 'operations'; rows: PlkCourseRow[]; skipped: SkippedRow[] }
 
 export interface OverrideRow {
@@ -109,7 +109,7 @@ export function parseOperationsCourses(text: string): { rows: PlkCourseRow[]; sk
     const address = row['도로명주소'] || row['전체주소'].replace(/^\d{5,6}\s+/, '');
     // 주소가 비어 있으면 빌드 단계에서 카카오 장소 검색으로 채운다.
     const reason = exclusionReason(row, name);
-    if (reason) { skipped.push({ plkCode: code, name, address, reason }); continue; }
+    if (reason) { const at = koreanPoint(row['위도'], row['경도']); skipped.push({ plkCode: code, name, address, reason, lat: at?.lat, lng: at?.lng }); continue; }
     const holes = Number(row['홀수']);
     const point = koreanPoint(row['위도'], row['경도']);
     const status = row['사용여부'] === 'Y' ? null : '협의중' as const;

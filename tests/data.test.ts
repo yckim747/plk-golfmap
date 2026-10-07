@@ -5,6 +5,7 @@ import { decodeCsv, parseCourseFile, parseOverrides, parsePlkCourses, type PlkCo
 import { matchPlace, nameSimilarity, normalizeName, type KakaoPlace } from '../scripts/lib/match';
 import { mergeCourse, normalizeHomepage, validateCourses } from '../scripts/lib/merge';
 import type { GolfCourse } from '../lib/types';
+import { clusterPlaces, findExisting, isNationalCourse, nameVariants, tmToWgs84, toMasterRow } from '../scripts/lib/national';
 
 const HEADER = 'plk_code,name,address,phone,homepage,holes,partner,partner_note';
 
@@ -211,4 +212,54 @@ test('generated data/golf-courses.json passes validation', () => {
   const courses = JSON.parse(readFileSync('data/golf-courses.json', 'utf8')) as GolfCourse[];
   assert.ok(courses.length > 0);
   assert.deepEqual(validateCourses(courses), []);
+});
+
+// ── 전국 골프장 보완 ─────────────────────────────────────────
+const kakaoPlace = (id: string, name: string, lat: number, lng: number, category = '스포츠,레저 > 골프 > 골프장'): KakaoPlace => place(id, name, '경기 여주시', lat, lng, category);
+
+test('national: only real golf courses survive the Kakao filter', () => {
+  assert.equal(isNationalCourse(kakaoPlace('1', '레이크사이드CC', 37.3, 127.2)), true);
+  assert.equal(isNationalCourse(kakaoPlace('2', '오산체력단련장', 37.1, 127.0)), true);
+  assert.equal(isNationalCourse(kakaoPlace('3', 'OO스크린골프', 37.1, 127.0, '스포츠,레저 > 골프 > 스크린골프장')), false);
+  assert.equal(isNationalCourse(kakaoPlace('4', '한강파크골프장', 37.1, 127.0)), false);
+  assert.equal(isNationalCourse(kakaoPlace('5', '헤르몬CC (2026년 10월 예정)', 37.1, 127.0)), false);
+});
+
+test('national: one course registered several times on Kakao is grouped', () => {
+  const grouped = clusterPlaces([
+    kakaoPlace('1', '레이크사이드CC', 37.3, 127.2),
+    kakaoPlace('2', '레이크사이드CC 동코스', 37.305, 127.205),
+    kakaoPlace('3', '레이크사이드개발', 37.31, 127.21),
+    kakaoPlace('4', '남촌CC', 37.5, 127.5),
+  ]);
+  assert.deepEqual(grouped.map((item) => [item.place_name, item.member_ids.length]), [['남촌CC', 1], ['레이크사이드CC', 3]]);
+});
+
+test('national: existing courses are found by place ID, old names in brackets, or nearly identical names', () => {
+  const existing = [
+    { id: 'A-317', name: 'H1(에이치원클럽)', lat: 37.1856, lng: 127.4055, placeIds: [] },
+    { id: 'F-110', name: '베어포트리조트CC(구.웅포)', lat: 36.07, lng: 126.88, placeIds: ['999'] },
+    { id: 'A-302', name: '서원힐스 컨트리클럽', lat: 37.80, lng: 126.85, placeIds: [] },
+    { id: 'blocked:알펜시아700', name: '알펜시아700', lat: null, lng: null, placeIds: [], blocked: true },
+  ];
+  assert.equal(findExisting({ name: '에이치원클럽', lat: 37.189, lng: 127.405, placeIds: [] }, existing)?.id, 'A-317');
+  assert.equal(findExisting({ name: '웅포컨트리클럽', lat: 36.071, lng: 126.881, placeIds: [] }, existing)?.id, 'F-110');
+  assert.equal(findExisting({ name: '아무이름', lat: 30, lng: 120, placeIds: ['999'] }, existing)?.id, 'F-110');
+  assert.equal(findExisting({ name: '서원힐스CC', lat: 37.76, lng: 126.95, placeIds: [] }, existing)?.id, 'A-302'); // 원본 좌표가 ~10km 어긋난 경우
+  assert.equal(findExisting({ name: '알펜시아700GC', lat: 37.66, lng: 128.67, placeIds: [] }, existing)?.blocked, true);
+  assert.equal(findExisting({ name: '남촌CC', lat: 35.0, lng: 128.0, placeIds: [] }, existing), null);
+  assert.deepEqual(nameVariants('베어포트리조트CC(구.웅포)'), ['베어포트리조트CC(구.웅포)', '베어포트리조트CC', '웅포']);
+});
+
+test('national: EPSG:5174 TM coordinates convert to WGS84 near the origin', () => {
+  const point = tmToWgs84(200000, 500000);
+  assert.ok(point && Math.abs(point.lat - 38) < 0.01 && Math.abs(point.lng - 127.0029) < 0.01);
+  assert.equal(tmToWgs84(0, 0), null);
+});
+
+test('national: new courses are written in the operations master column layout', () => {
+  const columns = ['골프장코드', '골프장명', '국가코드', '시도', '시군', '도로명주소', '위도', '경도', '홀수', '제휴구분', '사용여부', '주중그린피_원'];
+  const row = toMasterRow(columns, { name: '오산체력단련장', address: '경기 오산시 양산동 100', lat: 37.1, lng: 127.0, homepage: '', holes: null });
+  assert.deepEqual(Object.keys(row), columns);
+  assert.deepEqual([row['골프장코드'], row['시도'], row['시군'], row['제휴구분'], row['사용여부'], row['주중그린피_원']], ['', '경기', '오산시', '비제휴', 'N', '']);
 });

@@ -3,7 +3,9 @@
 // 경로를 생략하면 data/source/에서 템플릿이 아닌 가장 최근 CSV(운영팀 골프장 마스터 원본 등)를 사용한다.
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { decodeCsv, parseCourseFile, parseOverrides, toCsv } from './lib/csv';
+import { decodeCsv, OPERATIONS_COLUMNS, parseCourseFile, parseOverrides, toCsv, type SkippedRow } from './lib/csv';
+import { writeNationalWorkbook, type CourseMeta } from './lib/excel';
+import { findExisting, nearestWithin, type ClusteredPlace, type ExistingCourse, type NationalCandidate } from './lib/national';
 import { KakaoLocalClient } from './lib/kakao';
 import { distanceKm, isGolfCourse, matchPlace, nameSimilarity, normalizeName, type KakaoPlace } from './lib/match';
 import { mergeCourse, validateCourses } from './lib/merge';
@@ -95,11 +97,19 @@ async function main() {
     kakao.saveCache();
   }
 
+  const meta = new Map<string, CourseMeta>(courses.map((course) => [course.id, { source: 'PLK 마스터', licenseNo: '', businessStatus: '', note: '' }]));
+  // PLK 마스터에서 공개 불가·휴장으로 뺀 골프장은 전국 보완에서도 다시 넣지 않는다.
+  const blocked = skipped.filter((row) => row.reason === '공개 불가' || row.reason === '휴장');
+  const national = supplementNational(courses, overrides, report, meta, blocked);
+
   mkdirSync(path.dirname(reportFile), { recursive: true });
   writeFileSync(reportFile, toCsv(report, ['plk_code', 'name', 'address', 'status', 'match_status', 'score', 'place_id', 'place_name', 'place_address', 'candidates', 'note']));
   const errors = validateCourses(courses);
   if (errors.length) throw new Error(`검증 실패로 ${path.relative(root, outputFile)}을 갱신하지 않았습니다:\n- ${errors.join('\n- ')}`);
   writeFileSync(outputFile, JSON.stringify(courses, null, 2) + '\n');
+  const masterColumns = format === 'operations' ? decodeCsv(readFileSync(inputFile)).split(/\r?\n/, 1)[0].split(',').map((column) => column.trim()) : [...OPERATIONS_COLUMNS];
+  const workbookFile = path.join(root, `data/reports/전국골프장_${new Date().toISOString().slice(2, 10).replaceAll('-', '')}.xlsx`);
+  await writeNationalWorkbook(workbookFile, courses, meta, masterColumns, national);
 
   const reasons: Record<string, number> = { ...skippedCounts };
   for (const row of skipped) reasons[row.reason] = (reasons[row.reason] ?? 0) + 1;
@@ -109,7 +119,55 @@ async function main() {
   카카오 장소 확정 ${counts.confirmed ?? 0} / 보정 적용 ${counts.override ?? 0} / 원본 좌표만 ${counts.source_coords ?? 0} / 주소 좌표 대체 ${counts.address_fallback ?? 0} / 좌표 없음·보정 제외 ${(counts.excluded ?? 0) + (counts.no_coords ?? 0)}
   원본에서 제외: ${Object.entries(reasons).map(([reason, count]) => `${reason} ${count}`).join(', ') || '없음'}
   카카오 API 호출 ${kakao.apiCalls}건 (나머지는 캐시)
-  매칭 리포트: ${path.relative(root, reportFile)} — source_coords/address_fallback/no_coords 건은 data/source/overrides.csv로 보정할 수 있습니다.`);
+  매칭 리포트: ${path.relative(root, reportFile)} — source_coords/address_fallback/no_coords 건은 data/source/overrides.csv로 보정할 수 있습니다.
+  전국 보완: 공공데이터 신규 ${national.addedPublic}곳, 카카오 신규 ${national.addedKakao}곳 (후보 ${national.candidates}곳 중 기존과 같은 골프장 ${national.matched}곳, 공개 불가·휴장 차단 ${national.blocked}곳, 검토 필요 ${national.reviewNeeded}곳)
+  엑셀: ${path.relative(root, workbookFile)}`);
+}
+
+// 전국 골프장 보완: 공공데이터(인허가) → 카카오 순으로, 지금 목록에 없는 골프장을 '협의중'으로 추가한다.
+// data/source/public-golf.json, kakao-golf.json은 `npm run data:fetch`가 만든다(없으면 건너뜀).
+function supplementNational(courses: GolfCourse[], overrides: Map<string, { exclude: boolean }>, report: Record<string, string | number>[], meta: Map<string, CourseMeta>, blocked: SkippedRow[]) {
+  const load = <T,>(file: string, key: string): T[] => { const full = path.join(sourceDir, file); return existsSync(full) ? JSON.parse(readFileSync(full, 'utf8'))[key] : []; };
+  const publicItems = load<NationalCandidate>('public-golf.json', 'items');
+  const kakaoPlaces = load<ClusteredPlace>('kakao-golf.json', 'places');
+  const candidates: (NationalCandidate & { placeIds: string[] })[] = [
+    ...publicItems.map((item) => ({ ...item, placeIds: [] })),
+    ...kakaoPlaces.map((place) => ({ source: '카카오' as const, key: place.id, name: place.place_name, address: place.road_address_name || place.address_name, lat: Number(place.y), lng: Number(place.x), phone: place.phone, businessStatus: '', placeUrl: place.place_url.replace(/^http:/, 'https:'), placeIds: place.member_ids })),
+  ];
+  const placeIdOf = (url?: string) => url ? [url.split('/').pop()!] : [];
+  const existing: ExistingCourse[] = [
+    ...courses.map((course) => ({ id: course.id, name: course.name, lat: course.lat, lng: course.lng, placeIds: placeIdOf(course.kakaoPlaceUrl) })),
+    ...blocked.map((row) => ({ id: `blocked:${row.name}`, name: row.name, lat: row.lat ?? null, lng: row.lng ?? null, placeIds: [], blocked: true })),
+  ];
+  const stats = { candidates: candidates.length, matched: 0, blocked: 0, addedPublic: 0, addedKakao: 0, reviewNeeded: 0, excludedByOverride: 0 };
+  for (const candidate of candidates) {
+    const hit = findExisting(candidate, existing);
+    if (hit?.blocked) { stats.blocked += 1; report.push({ plk_code: `${candidate.source}:${candidate.key}`, name: candidate.name, address: candidate.address, status: 'skipped_national', note: `PLK 마스터 ${hit.name}(공개 불가·휴장)과 같은 골프장` }); continue; }
+    if (hit) {
+      stats.matched += 1;
+      // 공공데이터로 추가된 골프장에 같은 골프장의 카카오 정보(전화·카카오맵 링크)를 채운다.
+      const course = courses.find((item) => item.id === hit.id)!;
+      if (candidate.source === '카카오' && meta.get(hit.id)?.source === '공공데이터') {
+        if (!course.phone) course.phone = candidate.phone;
+        if (!course.kakaoPlaceUrl && candidate.placeUrl) course.kakaoPlaceUrl = candidate.placeUrl;
+        hit.placeIds.push(...candidate.placeIds);
+      }
+      continue;
+    }
+    const id = `${candidate.source === '공공데이터' ? 'KR' : 'KK'}-${candidate.key}`;
+    if (overrides.get(id)?.exclude) { stats.excludedByOverride += 1; continue; }
+    const near = nearestWithin(candidate, existing);
+    const note = near ? `3km 안 기존 골프장: ${near.course.name} (${near.km.toFixed(1)}km)` : '';
+    if (near) stats.reviewNeeded += 1;
+    const course: GolfCourse = { id, name: candidate.name, address: candidate.address, lat: candidate.lat, lng: candidate.lng, holes: null, phone: candidate.phone, homepage: '', plkPartner: false, status: '협의중' };
+    if (candidate.placeUrl) course.kakaoPlaceUrl = candidate.placeUrl;
+    courses.push(course);
+    existing.push({ id, name: candidate.name, lat: candidate.lat, lng: candidate.lng, placeIds: [...candidate.placeIds] });
+    meta.set(id, { source: candidate.source, licenseNo: candidate.source === '공공데이터' ? candidate.key : '', businessStatus: candidate.businessStatus, note });
+    report.push({ plk_code: id, name: candidate.name, address: candidate.address, status: candidate.source === '공공데이터' ? 'added_public' : 'added_kakao', note });
+    if (candidate.source === '공공데이터') stats.addedPublic += 1; else stats.addedKakao += 1;
+  }
+  return stats;
 }
 
 main().catch((error: Error) => { console.error(`\n오류: ${error.message}`); process.exitCode = 1; });

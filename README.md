@@ -119,29 +119,28 @@ PLK 원본 자료(`data/source/`의 CSV·엑셀)와 `.env*`는 `.gitignore`로 �
 
 ## 골프장 데이터 갱신
 
-1. PLK 골프장 CSV를 `data/source/plk-golf-courses.csv`로 저장합니다 (UTF-8 또는 엑셀 기본 CSV 모두 가능). 형식은 `data/source/plk-golf-courses.template.csv` 참고:
-   ```
-   plk_code,name,address,phone,homepage,holes,partner,partner_note
-   ```
-   `plk_code`·`name`·`address` 필수, `plk_code`는 유일해야 하며 앱의 골프장 ID가 됩니다. `partner`는 `Y`/`N`.
-2. `.env.local`에 카카오 **REST API 키**를 넣습니다 (`NEXT_PUBLIC_` 접두사 금지, 브라우저에 노출되지 않음).
-   ```dotenv
-   KAKAO_REST_API_KEY=발급받은_REST_API_키
-   ```
-3. `npm run data:build` 실행 (다른 파일은 `npm run data:build -- <경로>`).
-   - 주소로 좌표를 구하고, 골프장명으로 카카오 장소를 검색해 이름·시군구·거리 점수로 매칭합니다.
-   - **병합 우선순위: overrides.csv > PLK CSV > 카카오.** PLK 값은 덮어쓰지 않고 빈 값만 채웁니다.
-   - 결과 검증(ID 중복, 좌표 범위 등)에 실패하면 `data/golf-courses.json`을 갱신하지 않습니다.
-   - API 응답은 `data/cache/`에 저장되어 재실행 시 다시 호출하지 않습니다.
-4. `data/reports/match-report.csv`를 확인합니다.
-   - `confirmed`: 카카오 장소 확정. `address_fallback`: 장소 미확정, 주소 좌표 사용. `no_coords`/`excluded`: 결과에서 빠짐.
-   - 잘못되거나 애매한 건은 `data/source/overrides.csv`에 적고 다시 빌드합니다.
-     ```
-     plk_code,kakao_place_id,lat,lng,exclude
-     PLK0012,9769457,,,          ← 리포트 candidates 중 장소 지정
-     PLK0034,,37.1234,127.5678,  ← 좌표 직접 지정
-     PLK0056,,,,Y                ← 제외
-     ```
-5. `npm run test`로 결과 파일을 검증한 뒤 배포합니다.
+지도에는 **대한민국 전체 골프장**이 표시됩니다. PLK 운영팀 골프장 마스터가 기준이고, 마스터에 없는 골프장은 공공데이터(인허가)·카카오 전국 검색으로 찾아 '협의중'으로 추가합니다.
 
-향후 공공데이터(체육시설업-골프장)로 홀 수·영업상태를 보강하는 단계는 `scripts/build-golf-data.ts`의 병합 단계에 추가합니다. 브라우저는 외부 API를 직접 호출하지 않습니다.
+1. **운영팀 골프장 마스터 CSV**를 받은 그대로 `data/source/`에 넣습니다(수정 불필요, git 제외). 가장 최근 CSV를 자동으로 사용합니다.
+   - 사용여부 N → '협의중', 공개 불가·휴장·이름 없음 → 제외(전국 보완에서도 다시 넣지 않음).
+2. `.env.local` 키 (모두 서버·스크립트 전용, 브라우저에 노출되지 않음)
+   ```dotenv
+   KAKAO_REST_API_KEY=카카오_REST_API_키
+   PUBLIC_DATA_SERVICE_KEY=공공데이터포털_일반_인증키   # 행정안전부_생활_골프장 조회서비스
+   ```
+3. `npm run data:fetch` — 전국 골프장 후보 수집 → `data/source/kakao-golf.json`, `data/source/public-golf.json`
+   - 카카오: 대한민국을 격자로 나눠 '골프장'을 전수 검색(연습장·스크린·파크골프·개장 예정 제외, 같은 골프장의 여러 등록은 하나로).
+   - 공공데이터: 인허가 대장의 영업·휴업 골프장(키가 없으면 건너뜀).
+4. `npm run data:build` — 마스터 + 전국 후보를 중복 없이 병합 → `data/golf-courses.json`(지도), `data/reports/전국골프장_YYMMDD.xlsx`(엑셀)
+   - 우선순위: overrides.csv > 운영팀 마스터 > 공공데이터 > 카카오. 마스터의 제휴 구분은 그대로 유지됩니다.
+   - 같은 골프장 판정: 카카오 장소 ID, 이름(괄호 속 옛 이름 포함)·거리. 추가분 ID는 `KR-관리번호` / `KK-카카오ID`.
+   - 엑셀: **전체**(구분·출처 포함) / **신규_마스터형식**(운영팀 마스터와 같은 52개 컬럼, 그대로 붙여넣기 가능) / **요약**.
+5. `data/reports/match-report.csv` 검토 후 필요하면 `data/source/overrides.csv`로 보정하고 다시 빌드합니다.
+   ```
+   plk_code,kakao_place_id,lat,lng,exclude
+   A-302,9769457,,,          ← 마스터 골프장의 카카오 장소 지정
+   A-317,,37.1234,127.5678,  ← 좌표 직접 지정
+   KK-1169468033,,,,Y        ← 전국 보완으로 잘못 추가된 곳 제외
+   ```
+   - `added_kakao`·`added_public` 중 note에 '3km 안 기존 골프장'이 있으면 중복 여부를 확인합니다.
+6. `npm run test` 후 `data/golf-courses.json`을 커밋·push하면 자동 배포됩니다.
