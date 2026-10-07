@@ -1,4 +1,8 @@
+import { createHash } from 'node:crypto';
 import { parse } from 'csv-parse/sync';
+import { normalizeName } from './match';
+
+export type PartnerType = '제휴' | '이용협약';
 
 export interface PlkCourseRow {
   plkCode: string;
@@ -7,9 +11,14 @@ export interface PlkCourseRow {
   phone: string;
   homepage: string;
   holes: number | null;
-  partner: boolean;
+  partnerType: PartnerType | null;
   partnerNote: string;
+  lat: number | null;
+  lng: number | null;
 }
+
+export interface SkippedRow { plkCode: string; name: string; address: string; reason: string }
+export interface ParsedCourses { format: 'template' | 'operations'; rows: PlkCourseRow[]; skipped: SkippedRow[] }
 
 export interface OverrideRow {
   plkCode: string;
@@ -21,6 +30,8 @@ export interface OverrideRow {
 
 export const PLK_COLUMNS = ['plk_code', 'name', 'address', 'phone', 'homepage', 'holes', 'partner', 'partner_note'] as const;
 export const OVERRIDE_COLUMNS = ['plk_code', 'kakao_place_id', 'lat', 'lng', 'exclude'] as const;
+// 운영팀 골프장 마스터(한글 컬럼) 중 지도에 필요한 컬럼. 그린피·정산 등 나머지 컬럼은 읽지 않는다.
+export const OPERATIONS_COLUMNS = ['골프장코드', '골프장명', '도로명주소', '전체주소', '위도', '경도', '홈페이지', '홀수', '제휴구분', '사용여부', '골프장공개형태', '국가코드', '지역'] as const;
 
 // UTF-8(BOM 허용)을 먼저 시도하고, 깨진 바이트가 있으면 엑셀 기본 저장 형식(CP949/EUC-KR)으로 읽는다.
 export function decodeCsv(buffer: Uint8Array): string {
@@ -40,6 +51,13 @@ function lineError(label: string, index: number, message: string): Error {
   return new Error(`${label} ${index + 2}행: ${message}`);
 }
 
+// 헤더로 형식을 판별한다: 운영팀 마스터(한글 컬럼)는 그대로 받고, 그 외에는 템플릿 형식으로 엄격하게 검사한다.
+export function parseCourseFile(text: string): ParsedCourses {
+  const header = text.replace(/^﻿/, '').split(/\r?\n/, 1)[0];
+  if (header.includes('골프장코드') && header.includes('골프장명')) return { format: 'operations', ...parseOperationsCourses(text) };
+  return { format: 'template', rows: parsePlkCourses(text), skipped: [] };
+}
+
 export function parsePlkCourses(text: string): PlkCourseRow[] {
   const label = 'PLK 골프장 CSV';
   const seen = new Set<string>();
@@ -56,8 +74,56 @@ export function parsePlkCourses(text: string): PlkCourseRow[] {
       holes = Number(row.holes);
       if (!Number.isInteger(holes) || holes <= 0) throw lineError(label, index, 'holes는 양의 정수여야 합니다.');
     }
-    return { plkCode, name: row.name, address: row.address, phone: row.phone, homepage: row.homepage, holes, partner: partner === 'Y', partnerNote: row.partner_note };
+    return { plkCode, name: row.name, address: row.address, phone: row.phone, homepage: row.homepage, holes, partnerType: partner === 'Y' ? '제휴' : null, partnerNote: row.partner_note, lat: null, lng: null };
   });
+}
+
+function koreanPoint(latText: string, lngText: string): { lat: number; lng: number } | null {
+  const lat = Number(latText);
+  const lng = Number(lngText);
+  return latText && lngText && lat >= 33 && lat <= 39 && lng >= 124 && lng <= 132 ? { lat, lng } : null;
+}
+
+function exclusionReason(row: Record<string, string>, name: string): string {
+  if (!name || name === '0') return '입력 오류(골프장명 없음)';
+  if (row['사용여부'] !== 'Y') return '미사용';
+  if (row['제휴구분'] === '휴장') return '휴장';
+  if (row['골프장공개형태'] === '불가') return '공개 불가';
+  if (row['국가코드'] !== 'KR' || row['지역'] === '중국권') return '해외';
+  return '';
+}
+
+function shortHash(value: string): string {
+  return createHash('sha1').update(value).digest('hex').slice(0, 6);
+}
+
+// 운영팀 마스터의 골프장코드는 여러 골프장이 같은 코드를 쓰거나 비어 있기도 하다.
+// 코드가 유일하면 그대로 ID로 쓰고, 아니면 이름·주소 해시를 붙여 파일이 갱신돼도 같은 ID가 나오게 한다.
+export function parseOperationsCourses(text: string): { rows: PlkCourseRow[]; skipped: SkippedRow[] } {
+  const skipped: SkippedRow[] = [];
+  const kept: { row: PlkCourseRow; code: string }[] = [];
+  for (const row of readTable(text, OPERATIONS_COLUMNS, '운영팀 골프장 마스터')) {
+    const code = row['골프장코드'] === '0' ? '' : row['골프장코드'];
+    const name = row['골프장명'].replace(/\s+/g, ' ').trim();
+    const address = row['도로명주소'] || row['전체주소'].replace(/^\d{5,6}\s+/, '');
+    const reason = exclusionReason(row, name) || (address ? '' : '입력 오류(주소 없음)');
+    if (reason) { skipped.push({ plkCode: code, name, address, reason }); continue; }
+    const holes = Number(row['홀수']);
+    const point = koreanPoint(row['위도'], row['경도']);
+    const partnerType = (['제휴', '이용협약'] as const).find((type) => type === row['제휴구분']) ?? null;
+    kept.push({ code, row: { plkCode: code, name, address, phone: '', homepage: row['홈페이지'], holes: Number.isInteger(holes) && holes > 0 ? holes : null, partnerType, partnerNote: '', lat: point?.lat ?? null, lng: point?.lng ?? null } });
+  }
+  const codeCounts = new Map<string, number>();
+  for (const { code } of kept) if (code) codeCounts.set(code, (codeCounts.get(code) ?? 0) + 1);
+  const ids = new Set<string>();
+  const rows: PlkCourseRow[] = [];
+  for (const { code, row } of kept) {
+    const id = code && codeCounts.get(code) === 1 ? code : `${code || 'X'}-${shortHash(`${normalizeName(row.name)}|${row.address}`)}`;
+    if (ids.has(id)) { skipped.push({ plkCode: code, name: row.name, address: row.address, reason: '중복 행' }); continue; }
+    ids.add(id);
+    rows.push({ ...row, plkCode: id });
+  }
+  return { rows, skipped };
 }
 
 export function parseOverrides(text: string): Map<string, OverrideRow> {

@@ -8,6 +8,7 @@ export interface GolfCourse {
   phone: string;
   homepage: string;
   plkPartner: boolean;
+  partnerType?: '제휴' | '이용협약';
   partnerNote?: string;
   kakaoPlaceUrl?: string;
 }

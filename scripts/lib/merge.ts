@@ -2,7 +2,7 @@ import type { GolfCourse } from '../../lib/types';
 import type { OverrideRow, PlkCourseRow } from './csv';
 import type { KakaoPlace, MatchResult } from './match';
 
-export type ReportStatus = 'confirmed' | 'override' | 'address_fallback' | 'excluded' | 'no_coords';
+export type ReportStatus = 'confirmed' | 'override' | 'source_coords' | 'address_fallback' | 'excluded' | 'no_coords';
 export interface MergeResult { course: GolfCourse | null; status: ReportStatus; place: KakaoPlace | null; note: string }
 
 export function normalizeHomepage(value: string): string {
@@ -25,10 +25,14 @@ export function mergeCourse(row: PlkCourseRow, override: OverrideRow | undefined
     place = match.best.place;
     status = 'confirmed';
   }
-  let point = place ? { lat: Number(place.y), lng: Number(place.x) } : addressPoint;
+  // 좌표 우선순위: 보정 CSV > 원본 위·경도 > 카카오 확정 장소 > 주소 지오코딩
+  const sourcePoint = row.lat != null && row.lng != null ? { lat: row.lat, lng: row.lng } : null;
+  let point = sourcePoint ?? (place ? { lat: Number(place.y), lng: Number(place.x) } : addressPoint);
   if (override?.lat != null && override.lng != null) { point = { lat: override.lat, lng: override.lng }; status = 'override'; }
   if (!point) return { course: null, status: 'no_coords', place, note: [...notes, '좌표를 찾지 못해 제외'].join(' / ') };
+  if (status === 'address_fallback' && sourcePoint) status = 'source_coords';
   if (status === 'address_fallback') notes.push('장소 매칭 미확정: 주소 좌표 사용');
+  if (status === 'source_coords') notes.push('카카오 장소 미확정: 원본 좌표 사용 (전화·카카오맵 링크 없음)');
   const homepage = normalizeHomepage(row.homepage);
   if (row.homepage && !homepage) notes.push(`홈페이지 형식 오류: ${row.homepage}`);
   const course: GolfCourse = {
@@ -40,8 +44,9 @@ export function mergeCourse(row: PlkCourseRow, override: OverrideRow | undefined
     holes: row.holes,
     phone: row.phone || place?.phone || '',
     homepage,
-    plkPartner: row.partner,
+    plkPartner: row.partnerType !== null,
   };
+  if (row.partnerType) course.partnerType = row.partnerType;
   if (row.partnerNote) course.partnerNote = row.partnerNote;
   if (place?.place_url) course.kakaoPlaceUrl = place.place_url.replace(/^http:/, 'https:');
   return { course, status, place, note: notes.join(' / ') };
