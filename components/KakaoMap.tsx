@@ -5,7 +5,7 @@ import type { GolfCourse } from '@/lib/types';
 import type { MyLocation } from '@/lib/geo';
 import { markerImageUrl, markerKind } from './GolfCourseMarker';
 let sdkPromise: Promise<void> | null = null;
-function loadSdk(key: string): Promise<void> {
+export function loadSdk(key: string): Promise<void> {
   if (sdkPromise) return sdkPromise;
   sdkPromise = new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');

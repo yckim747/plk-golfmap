@@ -29,6 +29,8 @@ jobs:
       NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
       NEXT_PUBLIC_BACK_URL: ${{ vars.BACK_URL }}
       NEXT_PUBLIC_WEB_ENTRY: map
+      # 관리 화면(/admin)이 수정 내용을 저장할 저장소
+      NEXT_PUBLIC_ADMIN_REPO: ${{ github.repository }}
       NEXT_PUBLIC_KAKAO_MAP_APP_KEY: ${{ vars.KAKAO_JS_KEY }}
     steps:
       - uses: actions/checkout@v4

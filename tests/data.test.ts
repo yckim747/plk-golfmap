@@ -8,6 +8,8 @@ import type { GolfCourse } from '../lib/types';
 import { clusterPlaces, findExisting, isNationalCourse, nameVariants, tmToWgs84, toMasterRow } from '../scripts/lib/national';
 import { cleanAddress, cleanLotAddress } from '../scripts/lib/address';
 import { describeParsed, parseSearchQuery } from '../lib/searchQuery';
+import { applyCorrections, kindOf, validateEdit } from '../lib/corrections';
+import { buildViewSearch, readViewParams } from '../lib/share';
 
 const HEADER = 'plk_code,name,address,phone,homepage,holes,partner,partner_note';
 
@@ -287,4 +289,31 @@ test('search query: region, partner type, nearby and filler words are understood
   assert.deepEqual(parseSearchQuery('남서울'), { keywords: ['남서울'], region: null, kind: null, nearby: false });
   assert.deepEqual(parseSearchQuery('경상남도 레이크힐스'), { keywords: ['레이크힐스'], region: '경상', kind: null, nearby: false });
   assert.equal(describeParsed(parseSearchQuery('충청 제휴 골프장 근처')), '충청 · 제휴 · 가까운 순');
+});
+
+// ── 운영팀 수정(corrections) · 공유 링크 ─────────────────────────
+test('corrections: edits, partner kind changes, exclusions and re-added courses are applied at build time', () => {
+  const base: GolfCourse[] = [
+    { id: 'A', name: '가CC', address: '경기 용인시', lat: 37.1, lng: 127.1, holes: null, phone: '', homepage: '', plkPartner: false },
+    { id: 'B', name: '나CC', address: '강원 춘천시', lat: 37.8, lng: 127.7, holes: 18, phone: '033', homepage: '', plkPartner: true, partnerType: '제휴' },
+    { id: 'C', name: '다CC', address: '제주 서귀포시', lat: 33.3, lng: 126.5, holes: null, phone: '', homepage: '', plkPartner: false, status: '협의중' },
+  ];
+  const result = applyCorrections(base, {
+    updatedAt: '', reviews: {},
+    courses: { A: { kind: '이용협약', partnerNote: '그린피 10% 할인', holes: 27, lat: 37.2, lng: 127.2 }, B: { kind: '일반' }, C: { exclude: true } },
+    added: { D: { id: 'D', name: '라CC', address: '충남 천안시', lat: 36.8, lng: 127.1, holes: null, phone: '', homepage: '', plkPartner: false, status: '협의중' } },
+  });
+  assert.deepEqual(result.map((course) => course.id), ['A', 'B', 'D']);
+  assert.deepEqual([result[0].partnerType, result[0].plkPartner, result[0].partnerNote, result[0].holes, result[0].lat], ['이용협약', true, '그린피 10% 할인', 27, 37.2]);
+  assert.deepEqual([result[1].plkPartner, result[1].partnerType], [false, undefined]);
+  assert.equal(kindOf(result[2]), '협의중');
+  assert.deepEqual(validateEdit({ lat: 10, lng: 127 }), ['좌표가 대한민국 범위를 벗어났습니다.']);
+  assert.deepEqual(validateEdit({ homepage: 'www.x.com', holes: 0 }).length, 2);
+});
+
+test('share links: view conditions round-trip through the URL', () => {
+  const search = buildViewSearch({ q: '용인', region: '강원', kind: '제휴', sort: 'distance', course: 'A-104', view: 'list', fav: true });
+  assert.deepEqual(readViewParams(search), { q: '용인', region: '강원', kind: '제휴', sort: 'distance', course: 'A-104', view: 'list', fav: true });
+  assert.equal(buildViewSearch({ q: '', region: 'all', kind: 'all', sort: 'default', course: null, view: 'map', fav: false }), '');
+  assert.deepEqual(readViewParams('?region=없는권역&kind=아무거나'), {});
 });

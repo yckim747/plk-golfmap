@@ -1,0 +1,98 @@
+/* ── 운영팀 관리 화면(/admin) ───────────────────────────────── */
+.admin-shell{min-height:100dvh;display:flex;flex-direction:column;background:var(--bg)}
+.admin-loading{display:flex;align-items:center;gap:8px;margin:40px auto;color:var(--muted)}
+.admin-header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.admin-title{display:flex;align-items:center;gap:10px}
+.admin-title h1{margin:0;font-size:17px;font-weight:700}
+.admin-title p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.admin-title a{color:var(--brand-strong);font-weight:600}
+.admin-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.admin-shell button.primary,.admin-shell button.ghost,.admin-shell button.danger,.admin-shell a.ghost,.admin-menu summary{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-radius:10px;font-size:13.5px;font-weight:600;cursor:pointer}
+.admin-shell button.primary{background:var(--ink);color:#fff}
+.admin-shell button.primary:disabled{background:var(--line-strong);cursor:default}
+.admin-shell button.ghost,.admin-shell a.ghost,.admin-menu summary{border:1px solid var(--line);background:#fff;color:var(--ink)}
+.admin-shell button.danger{border:1px solid #f3c2c2;background:#fff5f5;color:#b42318}
+.admin-shell button.block{width:calc(100% - 24px);margin:8px 12px 16px;justify-content:center}
+.admin-shell button.link{color:var(--brand-strong);font-weight:600;font-size:13px}
+.change-count{font-size:12.5px;color:var(--muted);padding:0 4px}
+.change-count.on{color:#b54708;font-weight:700}
+.admin-menu{position:relative}
+.admin-menu summary{list-style:none}
+.admin-menu summary::-webkit-details-marker{display:none}
+.admin-menu>div{position:absolute;right:0;top:42px;z-index:20;display:flex;flex-direction:column;min-width:230px;padding:6px;border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:var(--shadow-lg)}
+.admin-menu>div button{padding:9px 10px;border-radius:8px;text-align:left;font-size:13.5px}
+.admin-menu>div button:hover{background:var(--surface-2)}
+.admin-message{display:flex;align-items:center;gap:8px;margin:10px 20px 0;padding:10px 12px;border-radius:10px;font-size:13.5px;line-height:1.5}
+.admin-message span{flex:1}
+.admin-message>button:last-child:not(.link){font-size:18px;color:var(--muted)}
+.admin-message.ok{background:var(--brand-soft);color:var(--brand-ink)}
+.admin-message.error{background:#fff1f0;color:#b42318}
+.admin-message.info{background:#eef4ff;color:#1d4ed8}
+.admin-message a{font-weight:700;text-decoration:underline}
+.admin-connect{margin:12px 20px 0;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.admin-connect h2{margin:0 0 6px;font-size:15px}
+.admin-connect p,.admin-connect ol{margin:0 0 10px;font-size:13px;color:var(--sub);line-height:1.7}
+.admin-connect ol{padding-left:18px}
+.admin-connect form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
+.admin-connect label,.course-editor label{display:flex;flex-direction:column;gap:5px;font-size:12.5px;font-weight:600;color:var(--sub)}
+.admin-connect input,.course-editor input,.course-editor textarea,.admin-select{height:38px;padding:0 10px;border:1px solid var(--line);border-radius:9px;background:#fff;font:inherit;font-size:14px;color:var(--ink)}
+.course-editor textarea{height:auto;padding:8px 10px;resize:vertical;line-height:1.5}
+.admin-connect .row{display:flex;gap:8px}
+.admin-body{flex:1;min-height:0;display:grid;grid-template-columns:360px minmax(0,1fr);gap:16px;padding:16px 20px 24px}
+.admin-list{display:flex;flex-direction:column;min-height:0;max-height:calc(100dvh - 120px);position:sticky;top:76px;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.admin-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.admin-tabs button{height:44px;font-size:14px;font-weight:600;color:var(--muted)}
+.admin-tabs button.active{color:var(--ink);box-shadow:inset 0 -2px 0 var(--ink)}
+.admin-tabs span{margin-left:4px;font-size:12px;color:var(--muted)}
+.admin-search{display:flex;align-items:center;gap:8px;margin:12px 12px 8px;padding:0 10px;height:38px;border:1px solid var(--line);border-radius:10px;color:var(--muted)}
+.admin-search input{flex:1;border:0;outline:none;font:inherit;font-size:14px}
+.admin-filters{display:flex;gap:4px;padding:0 12px 8px;flex-wrap:wrap}
+.admin-filters button{height:28px;padding:0 10px;border-radius:999px;border:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+.admin-filters button.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.admin-select{margin:12px 12px 6px}
+.admin-check{display:flex;align-items:center;gap:6px;padding:0 14px 8px;font-size:12.5px;color:var(--sub)}
+.admin-items{flex:1;overflow:auto;margin:0;padding:4px 6px 8px;list-style:none}
+.admin-items button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 8px;border-radius:10px;text-align:left}
+.admin-items button:hover{background:var(--surface-2)}
+.admin-items button.selected{background:var(--brand-soft)}
+.admin-items button.excluded strong{text-decoration:line-through;color:var(--muted)}
+.admin-items span{flex:1;min-width:0}
+.admin-items strong,.admin-items small{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.admin-items strong{font-size:14px;font-weight:600}
+.admin-items small{font-size:12px;color:var(--muted);margin-top:2px}
+.admin-items .more{padding:14px;text-align:center;font-size:12.5px;color:var(--muted)}
+.badge{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:3px 7px;border-radius:999px}
+.badge-green{background:var(--brand-soft);color:var(--brand-ink)}
+.badge-gray{background:var(--surface-2);color:var(--muted)}
+.badge-blue{background:#eef4ff;color:#1d4ed8}
+.admin-editor{min-width:0;border:1px solid var(--line);border-radius:14px;background:#fff;padding:18px 20px}
+.admin-empty{display:flex;flex-direction:column;align-items:center;gap:8px;padding:80px 20px;text-align:center;color:var(--muted)}
+.admin-empty p{margin:0;font-size:15px;color:var(--sub)}
+.editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.editor-head h2,.review-panel h2{margin:4px 0 0;font-size:21px;font-weight:700}
+.editor-tools,.review-actions{display:flex;gap:6px;flex-wrap:wrap}
+.course-editor .admin-message{margin:0 0 12px}
+.editor-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px}
+.editor-form{display:flex;flex-direction:column;gap:12px}
+.editor-form .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.course-editor label.changed input,.course-editor label.changed textarea{border-color:#f5c56b;background:#fffbf0}
+.course-editor label small{font-weight:500;color:#b54708}
+.kind-select{display:flex;gap:4px;flex-wrap:wrap}
+.kind-select button{height:34px;padding:0 12px;border-radius:9px;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--sub);background:#fff}
+.kind-select button.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.location-head{display:flex;align-items:center;gap:10px;font-size:13px}
+.location-head span{color:var(--muted);font-variant-numeric:tabular-nums}
+.location-head.changed span{color:#b54708;font-weight:700}
+.hint{margin:6px 0 8px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.admin-map{height:420px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface-2)}
+.admin-map-canvas{width:100%;height:100%}
+.admin-map-error{padding:20px;font-size:13px;color:var(--muted)}
+.review-panel{display:flex;flex-direction:column;gap:10px}
+.review-detail{margin:0;font-size:14px;color:var(--sub);line-height:1.6}
+@media (max-width:899px){
+  .admin-body{grid-template-columns:1fr;padding:12px}
+  .admin-list{position:static;max-height:50dvh}
+  .editor-grid{grid-template-columns:1fr}
+  .admin-connect form{grid-template-columns:1fr}
+  .admin-map{height:320px}
+}

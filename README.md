@@ -117,6 +117,20 @@ PLK 원본 자료(`data/source/`의 CSV·엑셀)와 `.env*`는 `.gitignore`로 �
 - 향후 짧은 수명의 Mini App Token을 앱 브리지 또는 안전한 교환 절차로 전달하고 서버에서 검증합니다. member_id와 토큰을 URL query에 노출하지 않습니다. 브리지 메시지는 origin과 payload를 검증합니다.
 - `@plk/mini-sdk`는 미구현입니다. getUser/close/share/openBooking/getLocation 같은 기능은 별도 SDK 모듈에 추가하고 Mini App UI와 분리합니다. 기능이 준비되면 홈 카드와 독립 route를 추가하세요.
 
+## 운영팀 데이터 관리 화면 (`/admin`)
+
+주소: `https://<사이트>/admin/` (예: `https://yckim747.github.io/plk-golfmap/admin/`). 검색엔진에는 노출되지 않습니다.
+
+- **골프장 탭:** 이름·주소·전화·홈페이지·홀 수·구분(제휴/이용협약/일반/협의중)·혜택 문구·운영 메모 수정, 지도에서 핀을 끌어 위치 지정, 지도에서 제외/복구
+- **검수 탭:** `data/review.json`의 검수 항목(위치 수정·카카오 미연결·신규 인근·통합·중복·위치 불명)을 확인/보류 처리, 빠졌던 골프장 "지도에 다시 넣기"
+- **저장:** GitHub 연결 후 "저장" → 저장소의 `data/corrections.json` 커밋 → GitHub Actions가 2~3분 안에 재배포(화면 상단에 배포 상태 표시)
+  - 토큰: github.com → Settings → Developer settings → Fine-grained tokens. 이 저장소만, **Contents: Read and write**, **Actions: Read-only**. 토큰은 그 브라우저에만 저장됩니다. 토큰을 가진 사람이 곧 관리 권한자입니다.
+- **파일 받기:** 수정 파일(`corrections.json`), 전체 골프장 목록 CSV, 검수 목록 CSV. **불러오기:** 받은 수정 파일을 다시 불러와 저장.
+- 저장하지 않은 수정은 그 브라우저에 임시 보관되며, 다시 열면 "불러오기"로 이어서 할 수 있습니다.
+
+수정 내용은 원본(`data/golf-courses.json`)과 따로 `data/corrections.json`에 저장되고 **사이트 빌드 때 원본에 덮어씁니다.** 그래서 `npm run data:build`로 원본을 다시 만들어도 운영팀이 고친 내용은 유지됩니다(`lib/corrections.ts`).
+PLK 도메인(Apache)에 올리는 경우에는 저장 후 `npm run build:web`으로 다시 빌드해 업로드해야 반영됩니다.
+
 ## 골프장 데이터 갱신
 
 지도에는 **대한민국 전체 골프장**이 표시됩니다. PLK 운영팀 골프장 마스터가 기준이고, 마스터에 없는 골프장은 공공데이터(인허가)·카카오 전국 검색으로 찾아 '협의중'으로 추가합니다.
