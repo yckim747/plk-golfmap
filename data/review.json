@@ -1,0 +1,2804 @@
+{
+ "generatedAt": "2026-10-07T22:47:58.177Z",
+ "items": [
+  {
+   "key": "moved:A-104",
+   "type": "moved",
+   "courseId": "A-104",
+   "title": "360도컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-307",
+   "type": "moved",
+   "courseId": "A-307",
+   "title": "88컨트리클럽",
+   "detail": "마스터 좌표에서 1.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-317",
+   "type": "moved",
+   "courseId": "A-317",
+   "title": "H1(에이치원클럽)",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-107",
+   "type": "moved",
+   "courseId": "A-107",
+   "title": "YJC골프클럽(구,여주cc)",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-303-8d93a1",
+   "type": "moved",
+   "courseId": "E-303-8d93a1",
+   "title": "가야컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-105",
+   "type": "moved",
+   "courseId": "B-105",
+   "title": "감곡컨트리클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:K-CC-cef6dd",
+   "type": "moved",
+   "courseId": "K-CC-cef6dd",
+   "title": "강남300컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:D-109",
+   "type": "moved",
+   "courseId": "D-109",
+   "title": "강동디아너스컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-309",
+   "type": "moved",
+   "courseId": "E-309",
+   "title": "강동베이스타즈 컨트리클럽",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:D-108",
+   "type": "moved",
+   "courseId": "D-108",
+   "title": "경주 신라컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-CC-95768d",
+   "type": "moved",
+   "courseId": "G-CC-95768d",
+   "title": "경주 컨트리클럽",
+   "detail": "마스터 좌표에서 2.7km 옮김 (근거: 공공데이터 인허가)"
+  },
+  {
+   "key": "unlinked:G-CC-95768d",
+   "type": "unlinked",
+   "courseId": "G-CC-95768d",
+   "title": "경주 컨트리클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:X-362907",
+   "type": "moved",
+   "courseId": "X-362907",
+   "title": "고양컨트리클럽",
+   "detail": "마스터 좌표에서 1.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-102",
+   "type": "moved",
+   "courseId": "F-102",
+   "title": "고창CC",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-d46e86",
+   "type": "moved",
+   "courseId": "X-d46e86",
+   "title": "곤지암cc",
+   "detail": "마스터 좌표에서 2.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-d90bc6",
+   "type": "moved",
+   "courseId": "X-d90bc6",
+   "title": "골드그린컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-202",
+   "type": "moved",
+   "courseId": "E-202",
+   "title": "골프존카운티 더골프",
+   "detail": "마스터 좌표에서 5.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-4c938b",
+   "type": "moved",
+   "courseId": "X-4c938b",
+   "title": "골프존카운티 선운",
+   "detail": "마스터 좌표에서 6.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:W-GC",
+   "type": "moved",
+   "courseId": "W-GC",
+   "title": "골프존카운티 안성W",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-101",
+   "type": "moved",
+   "courseId": "G-101",
+   "title": "골프존카운티 오라",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-104",
+   "type": "moved",
+   "courseId": "E-104",
+   "title": "골프존카운티 이든",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-c7771f",
+   "type": "moved",
+   "courseId": "X-c7771f",
+   "title": "골프존카운티선산CC",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-203",
+   "type": "moved",
+   "courseId": "A-203",
+   "title": "골프존카운티송도",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-208-a98797",
+   "type": "moved",
+   "courseId": "B-208-a98797",
+   "title": "골프존카운티천안",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:D-114",
+   "type": "moved",
+   "courseId": "D-114",
+   "title": "구미CC",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-112",
+   "type": "moved",
+   "courseId": "F-112",
+   "title": "군산 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-CC-2c3c27",
+   "type": "moved",
+   "courseId": "G-CC-2c3c27",
+   "title": "그랜드컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-378b0f",
+   "type": "moved",
+   "courseId": "X-378b0f",
+   "title": "그린필드골프클럽",
+   "detail": "마스터 좌표에서 23.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-121",
+   "type": "moved",
+   "courseId": "A-121",
+   "title": "그린힐컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-7b3c8f",
+   "type": "moved",
+   "courseId": "X-7b3c8f",
+   "title": "글렌로스골프클럽",
+   "detail": "마스터 좌표에서 2.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-28468a",
+   "type": "moved",
+   "courseId": "X-28468a",
+   "title": "금강컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-f59e60",
+   "type": "moved",
+   "courseId": "X-f59e60",
+   "title": "기장 동원로얄 컨트리 클럽",
+   "detail": "마스터 좌표에서 8.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-c86b57",
+   "type": "moved",
+   "courseId": "X-c86b57",
+   "title": "김천 애플밸리 컨트리클럽",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-c90c2f",
+   "type": "moved",
+   "courseId": "X-c90c2f",
+   "title": "김천 포도 컨트리클럽",
+   "detail": "마스터 좌표에서 4.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-207",
+   "type": "moved",
+   "courseId": "A-207",
+   "title": "김포씨사이드컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:N-CC-8b8815",
+   "type": "moved",
+   "courseId": "N-CC-8b8815",
+   "title": "남서울컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-206",
+   "type": "moved",
+   "courseId": "C-206",
+   "title": "남춘천컨트리클럽",
+   "detail": "마스터 좌표에서 1.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-40205c",
+   "type": "moved",
+   "courseId": "X-40205c",
+   "title": "남한강에스파크컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-104",
+   "type": "moved",
+   "courseId": "F-104",
+   "title": "내장산골프앤리조트",
+   "detail": "마스터 좌표에서 1.0km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-405",
+   "type": "moved",
+   "courseId": "A-405",
+   "title": "노스팜 컨트리클럽",
+   "detail": "마스터 좌표에서 1.0km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-324",
+   "type": "moved",
+   "courseId": "A-324",
+   "title": "뉴서울 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:N-CC-76a8b0",
+   "type": "moved",
+   "courseId": "N-CC-76a8b0",
+   "title": "뉴스프링빌 컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-211",
+   "type": "moved",
+   "courseId": "A-211",
+   "title": "뉴코리아 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-106",
+   "type": "moved",
+   "courseId": "E-106",
+   "title": "다이아몬드 컨트리클럽",
+   "detail": "마스터 좌표에서 1.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:D-106",
+   "type": "moved",
+   "courseId": "D-106",
+   "title": "대구컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-8ac5e8",
+   "type": "moved",
+   "courseId": "X-8ac5e8",
+   "title": "더스타휴골프앤리조트",
+   "detail": "마스터 좌표에서 1.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:S-CC-520735",
+   "type": "moved",
+   "courseId": "S-CC-520735",
+   "title": "더시에나 벨루토 컨트리클럽(구,세라지오)",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-204",
+   "type": "moved",
+   "courseId": "A-204",
+   "title": "더헤븐컨트리클럽",
+   "detail": "마스터 좌표에서 1.0km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:D-cc",
+   "type": "moved",
+   "courseId": "D-cc",
+   "title": "동래베네스트 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-310",
+   "type": "moved",
+   "courseId": "E-310",
+   "title": "동훈힐마루컨트리클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-216",
+   "type": "moved",
+   "courseId": "F-216",
+   "title": "디오션컨트리클럽",
+   "detail": "마스터 좌표에서 0.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-102",
+   "type": "moved",
+   "courseId": "B-102",
+   "title": "떼제베컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:C-210",
+   "type": "unlinked",
+   "courseId": "C-210",
+   "title": "라비에벨컨트리클럽(듄스코스)",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:C-209",
+   "type": "moved",
+   "courseId": "C-209",
+   "title": "라비에벨컨트리클럽(올드코스)",
+   "detail": "마스터 좌표에서 7.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-408",
+   "type": "moved",
+   "courseId": "A-408",
+   "title": "라싸골프클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:라헨느-CC",
+   "type": "moved",
+   "courseId": "라헨느-CC",
+   "title": "라헨느컨트리클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-647675",
+   "type": "moved",
+   "courseId": "X-647675",
+   "title": "락가든골프클럽",
+   "detail": "마스터 좌표에서 5.2km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-838ab6",
+   "type": "moved",
+   "courseId": "X-838ab6",
+   "title": "레인보우힐스 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-211",
+   "type": "moved",
+   "courseId": "C-211",
+   "title": "로드힐스 골프&리조트",
+   "detail": "마스터 좌표에서 0.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:A-117",
+   "type": "unlinked",
+   "courseId": "A-117",
+   "title": "루나힐스안성",
+   "detail": "위치 근거: 마스터 좌표 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:A-108",
+   "type": "moved",
+   "courseId": "A-108",
+   "title": "루트52컨트리클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-119",
+   "type": "moved",
+   "courseId": "A-119",
+   "title": "리베라 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:M-CC-5a6987",
+   "type": "moved",
+   "courseId": "M-CC-5a6987",
+   "title": "마에스트로 컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-311",
+   "type": "moved",
+   "courseId": "E-311",
+   "title": "마우나오션컨트리클럽",
+   "detail": "마스터 좌표에서 1.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-CC-7f5bf9",
+   "type": "moved",
+   "courseId": "B-CC-7f5bf9",
+   "title": "몽베르 컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-203",
+   "type": "moved",
+   "courseId": "F-203",
+   "title": "무등산컨트리클럽",
+   "detail": "마스터 좌표에서 1.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-3cc307",
+   "type": "moved",
+   "courseId": "X-3cc307",
+   "title": "무안",
+   "detail": "마스터 좌표에서 4.2km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-220",
+   "type": "moved",
+   "courseId": "F-220",
+   "title": "무안클린밸리",
+   "detail": "마스터 좌표에서 3.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-3acc48",
+   "type": "moved",
+   "courseId": "X-3acc48",
+   "title": "문경GC",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-208-6b5127",
+   "type": "moved",
+   "courseId": "B-208-6b5127",
+   "title": "발리오스 컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-3fca91",
+   "type": "moved",
+   "courseId": "X-3fca91",
+   "title": "백양우리컨트리클럽",
+   "detail": "마스터 좌표에서 6.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-204",
+   "type": "moved",
+   "courseId": "B-204",
+   "title": "백제컨트리클럽",
+   "detail": "마스터 좌표에서 4.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-GC",
+   "type": "moved",
+   "courseId": "B-GC",
+   "title": "버치힐 골프클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-416",
+   "type": "moved",
+   "courseId": "A-416",
+   "title": "베뉴지컨트리클럽",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-86ecd1",
+   "type": "moved",
+   "courseId": "X-86ecd1",
+   "title": "베어크리크 춘천",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-e1de33",
+   "type": "moved",
+   "courseId": "X-e1de33",
+   "title": "베어크리크포천",
+   "detail": "마스터 좌표에서 3.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-110",
+   "type": "moved",
+   "courseId": "F-110",
+   "title": "베어포트리조트CC(구.웅포)",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-210",
+   "type": "moved",
+   "courseId": "E-210",
+   "title": "베이사이드골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-107",
+   "type": "moved",
+   "courseId": "E-107",
+   "title": "보라컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-GC-d8329b",
+   "type": "moved",
+   "courseId": "G-GC-d8329b",
+   "title": "보문GC",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-213",
+   "type": "moved",
+   "courseId": "F-213",
+   "title": "보성컨트리클럽",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-302",
+   "type": "moved",
+   "courseId": "E-302",
+   "title": "부곡컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-207",
+   "type": "moved",
+   "courseId": "E-207",
+   "title": "부산컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-1a1ed5",
+   "type": "moved",
+   "courseId": "X-1a1ed5",
+   "title": "블랙밸리 컨트리클럽",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-109",
+   "type": "moved",
+   "courseId": "A-109",
+   "title": "블랙스톤이천컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-81cee6",
+   "type": "moved",
+   "courseId": "X-81cee6",
+   "title": "블랙스톤제주컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-29e46a",
+   "type": "moved",
+   "courseId": "X-29e46a",
+   "title": "블루마운틴 컨트리클럽",
+   "detail": "마스터 좌표에서 5.3km 옮김 (근거: 주소 좌표)"
+  },
+  {
+   "key": "unlinked:X-29e46a",
+   "type": "unlinked",
+   "courseId": "X-29e46a",
+   "title": "블루마운틴 컨트리클럽",
+   "detail": "위치 근거: 주소 좌표 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:SJ Blueone",
+   "type": "moved",
+   "courseId": "SJ Blueone",
+   "title": "블루원상주컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-301",
+   "type": "moved",
+   "courseId": "A-301",
+   "title": "블루원용인컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-101",
+   "type": "moved",
+   "courseId": "A-101",
+   "title": "블루헤런 골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-4ecd2f",
+   "type": "moved",
+   "courseId": "X-4ecd2f",
+   "title": "비전힐스",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-205",
+   "type": "moved",
+   "courseId": "C-205",
+   "title": "비콘힐스CC(구, 홍천CC)",
+   "detail": "마스터 좌표에서 5.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:F-217",
+   "type": "unlinked",
+   "courseId": "F-217",
+   "title": "사우스링스 영암",
+   "detail": "위치 근거: 마스터 좌표 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:X-a60a70",
+   "type": "moved",
+   "courseId": "X-a60a70",
+   "title": "사우스케이프 컨트리클럽",
+   "detail": "마스터 좌표에서 1.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-6b03c9",
+   "type": "moved",
+   "courseId": "X-6b03c9",
+   "title": "사이프러스 골프&리조트",
+   "detail": "마스터 좌표에서 0.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-6722a3",
+   "type": "moved",
+   "courseId": "X-6722a3",
+   "title": "샌드파인GC(라카이)",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-92d626",
+   "type": "moved",
+   "courseId": "X-92d626",
+   "title": "샤인데일 골프&리조트",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A411",
+   "type": "moved",
+   "courseId": "A411",
+   "title": "샴발라컨트리클럽",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-203",
+   "type": "moved",
+   "courseId": "G-203",
+   "title": "서귀포팬텀 골프앤리조트 (구,우리들컨트리클럽)",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:D-103",
+   "type": "moved",
+   "courseId": "D-103",
+   "title": "서라벌GC",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:S-CC-ebbac2",
+   "type": "moved",
+   "courseId": "S-CC-ebbac2",
+   "title": "서원밸리 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-302-c5772d",
+   "type": "moved",
+   "courseId": "A-302-c5772d",
+   "title": "서원힐스 컨트리클럽",
+   "detail": "마스터 좌표에서 9.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-bfe420",
+   "type": "moved",
+   "courseId": "X-bfe420",
+   "title": "설악썬밸리컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-103",
+   "type": "moved",
+   "courseId": "B-103",
+   "title": "세레니티컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:SJ-CC",
+   "type": "moved",
+   "courseId": "SJ-CC",
+   "title": "세종에머슨 컨트리클럽",
+   "detail": "마스터 좌표에서 5.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-306",
+   "type": "moved",
+   "courseId": "A-306",
+   "title": "세현컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-CC-ed086f",
+   "type": "moved",
+   "courseId": "C-CC-ed086f",
+   "title": "센추리21 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-113",
+   "type": "moved",
+   "courseId": "B-113",
+   "title": "센테리움컨트리클럽",
+   "detail": "마스터 좌표에서 2.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-ab3fbd",
+   "type": "moved",
+   "courseId": "X-ab3fbd",
+   "title": "소노펠리체CC 델피노",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-1a9129",
+   "type": "moved",
+   "courseId": "X-1a9129",
+   "title": "소노펠리체CC 비발디파크 EAST",
+   "detail": "마스터 좌표에서 2.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-112",
+   "type": "moved",
+   "courseId": "A-112",
+   "title": "소피아그린 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-102",
+   "type": "moved",
+   "courseId": "A-102",
+   "title": "솔모로컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:S-CC-e2fbdd",
+   "type": "moved",
+   "courseId": "S-CC-e2fbdd",
+   "title": "스마트KU골프파빌리온",
+   "detail": "마스터 좌표에서 1.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-205",
+   "type": "moved",
+   "courseId": "B-205",
+   "title": "스톤비치컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-f641d0",
+   "type": "moved",
+   "courseId": "X-f641d0",
+   "title": "스프링베일 골프클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:S-CC-98d58c",
+   "type": "moved",
+   "courseId": "S-CC-98d58c",
+   "title": "시그너스 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-302-bdafed",
+   "type": "moved",
+   "courseId": "A-302-bdafed",
+   "title": "써닝포인트컨트리클럽",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:S-CC-bb8c37",
+   "type": "moved",
+   "courseId": "S-CC-bb8c37",
+   "title": "썬힐골프클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-7188c1",
+   "type": "moved",
+   "courseId": "X-7188c1",
+   "title": "아난티코드 골프클럽",
+   "detail": "마스터 좌표에서 1.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-f56a56",
+   "type": "moved",
+   "courseId": "X-f56a56",
+   "title": "아리지컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-201bbb",
+   "type": "moved",
+   "courseId": "X-201bbb",
+   "title": "아세코밸리",
+   "detail": "마스터 좌표에서 1.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-CC-cb49c1",
+   "type": "moved",
+   "courseId": "A-CC-cb49c1",
+   "title": "아시아나컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-204",
+   "type": "moved",
+   "courseId": "E-204",
+   "title": "아시아드 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-2a568d",
+   "type": "moved",
+   "courseId": "X-2a568d",
+   "title": "아크로 컨트리클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-318",
+   "type": "moved",
+   "courseId": "A-318",
+   "title": "안성베네스트골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-CC-18aa38",
+   "type": "moved",
+   "courseId": "A-CC-18aa38",
+   "title": "안성컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-105",
+   "type": "moved",
+   "courseId": "C-105",
+   "title": "알펜시아컨트리클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-8feff7",
+   "type": "moved",
+   "courseId": "X-8feff7",
+   "title": "알프스대영CC(청우)",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-103-a8a2c5",
+   "type": "moved",
+   "courseId": "E-103-a8a2c5",
+   "title": "양산동원로얄컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:E-102",
+   "type": "unlinked",
+   "courseId": "E-102",
+   "title": "양산컨트리클럽",
+   "detail": "위치 근거: 마스터 좌표 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:A-415",
+   "type": "moved",
+   "courseId": "A-415",
+   "title": "양주컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-303",
+   "type": "moved",
+   "courseId": "A-303",
+   "title": "양지파인컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-110",
+   "type": "moved",
+   "courseId": "A-110",
+   "title": "양평TPC골프클럽",
+   "detail": "마스터 좌표에서 0.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-CC-e11c34",
+   "type": "moved",
+   "courseId": "E-CC-e11c34",
+   "title": "에덴블루컨트리클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-105",
+   "type": "moved",
+   "courseId": "G-105",
+   "title": "에버리스 컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-108",
+   "type": "moved",
+   "courseId": "E-108",
+   "title": "에이원컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-1a71a8",
+   "type": "moved",
+   "courseId": "X-1a71a8",
+   "title": "엘리시안 제주 컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-215",
+   "type": "moved",
+   "courseId": "F-215",
+   "title": "여수경도컨트리클럽(세이지우드)",
+   "detail": "마스터 좌표에서 1.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-f5a829",
+   "type": "moved",
+   "courseId": "X-f5a829",
+   "title": "여수시티파크",
+   "detail": "마스터 좌표에서 1.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-209",
+   "type": "moved",
+   "courseId": "A-209",
+   "title": "영종베르힐컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:D-116",
+   "type": "moved",
+   "courseId": "D-116",
+   "title": "영천오펠골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-19f09e",
+   "type": "moved",
+   "courseId": "X-19f09e",
+   "title": "예미지컨트리클럽",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-202",
+   "type": "moved",
+   "courseId": "C-202",
+   "title": "오너스골프클럽",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-c4c349",
+   "type": "moved",
+   "courseId": "X-c4c349",
+   "title": "오르비스",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:D-117",
+   "type": "moved",
+   "courseId": "D-117",
+   "title": "오션힐스 영천CC",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-897d01",
+   "type": "moved",
+   "courseId": "X-897d01",
+   "title": "오션힐스 포항CC",
+   "detail": "마스터 좌표에서 2.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-107",
+   "type": "moved",
+   "courseId": "C-107",
+   "title": "오크밸리컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-106",
+   "type": "moved",
+   "courseId": "C-106",
+   "title": "옥스필드컨트리클럽",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-110",
+   "type": "moved",
+   "courseId": "B-110",
+   "title": "올데이골프앤리조트",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-208",
+   "type": "moved",
+   "courseId": "E-208",
+   "title": "용원골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-440e12",
+   "type": "moved",
+   "courseId": "X-440e12",
+   "title": "용인컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:Y-GC",
+   "type": "moved",
+   "courseId": "Y-GC",
+   "title": "용평 골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-b8e84b",
+   "type": "moved",
+   "courseId": "X-b8e84b",
+   "title": "우정힐스 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-105",
+   "type": "moved",
+   "courseId": "E-105",
+   "title": "울산컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:W-CC",
+   "type": "unlinked",
+   "courseId": "W-CC",
+   "title": "웨스트파인 컨트리클럽",
+   "detail": "위치 근거: 마스터 좌표 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:C-102",
+   "type": "moved",
+   "courseId": "C-102",
+   "title": "웰리힐리컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-ee140c",
+   "type": "moved",
+   "courseId": "X-ee140c",
+   "title": "웰링턴컨트리클럽",
+   "detail": "마스터 좌표에서 1.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-321",
+   "type": "moved",
+   "courseId": "A-321",
+   "title": "윈체스트 골프클럽",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-1f8996",
+   "type": "moved",
+   "courseId": "X-1f8996",
+   "title": "유니아일랜드 골프&스파 리조트",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-a51c5a",
+   "type": "moved",
+   "courseId": "X-a51c5a",
+   "title": "유성컨트리클럽",
+   "detail": "마스터 좌표에서 5.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-320",
+   "type": "moved",
+   "courseId": "A-320",
+   "title": "은화삼 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-111",
+   "type": "moved",
+   "courseId": "E-111",
+   "title": "의령리온컨트리클럽",
+   "detail": "마스터 좌표에서 3.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-CC-588871",
+   "type": "moved",
+   "courseId": "E-CC-588871",
+   "title": "이븐데일컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-0e9174",
+   "type": "moved",
+   "courseId": "X-0e9174",
+   "title": "이스턴 컨트리클럽",
+   "detail": "마스터 좌표에서 1.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-ff6e0f",
+   "type": "moved",
+   "courseId": "X-ff6e0f",
+   "title": "이스트밸리컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-1dc14d",
+   "type": "moved",
+   "courseId": "X-1dc14d",
+   "title": "이스트힐 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-fb2790",
+   "type": "moved",
+   "courseId": "X-fb2790",
+   "title": "이천 실크밸리 골프클럽",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-113",
+   "type": "moved",
+   "courseId": "A-113",
+   "title": "이포 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:i-cc",
+   "type": "moved",
+   "courseId": "i-cc",
+   "title": "인천국제컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-206",
+   "type": "moved",
+   "courseId": "A-206",
+   "title": "인천그랜드컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-413",
+   "type": "moved",
+   "courseId": "A-413",
+   "title": "일동레이크골프클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:S-CC-1d3a0c",
+   "type": "moved",
+   "courseId": "S-CC-1d3a0c",
+   "title": "일죽썬밸리 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-108",
+   "type": "moved",
+   "courseId": "B-108",
+   "title": "임페리얼레이크",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-105",
+   "type": "moved",
+   "courseId": "F-105",
+   "title": "전주샹그릴라 컨트리클럽",
+   "detail": "마스터 좌표에서 2.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-303-451513",
+   "type": "moved",
+   "courseId": "E-303-451513",
+   "title": "정산컨트리클럽",
+   "detail": "마스터 좌표에서 1.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-b9238a",
+   "type": "moved",
+   "courseId": "X-b9238a",
+   "title": "제이드팰리스골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-CC-0183cc",
+   "type": "moved",
+   "courseId": "A-CC-0183cc",
+   "title": "제일컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-761b04",
+   "type": "moved",
+   "courseId": "X-761b04",
+   "title": "제주 나인브릿지CC",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-5258ad",
+   "type": "moved",
+   "courseId": "X-5258ad",
+   "title": "제주 크라운컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-4b9558",
+   "type": "moved",
+   "courseId": "X-4b9558",
+   "title": "제주CC 퍼블릭",
+   "detail": "마스터 좌표에서 1.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-205",
+   "type": "moved",
+   "courseId": "G-205",
+   "title": "제주해비치컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-101",
+   "type": "moved",
+   "courseId": "B-101",
+   "title": "젠스필드컨트리클럽",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-67ddd5",
+   "type": "moved",
+   "courseId": "X-67ddd5",
+   "title": "중문골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-104-c9cf1f",
+   "type": "moved",
+   "courseId": "B-104-c9cf1f",
+   "title": "진양밸리",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-473ead",
+   "type": "moved",
+   "courseId": "X-473ead",
+   "title": "진주 컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-CC-549bb0",
+   "type": "moved",
+   "courseId": "C-CC-549bb0",
+   "title": "창원컨트리클럽",
+   "detail": "마스터 좌표에서 3.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-6d41f2",
+   "type": "moved",
+   "courseId": "X-6d41f2",
+   "title": "처인 컨트리클럽",
+   "detail": "마스터 좌표에서 1.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-0e8ef7",
+   "type": "moved",
+   "courseId": "X-0e8ef7",
+   "title": "천룡컨트리클럽",
+   "detail": "마스터 좌표에서 1.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:X-715e9e",
+   "type": "unlinked",
+   "courseId": "X-715e9e",
+   "title": "청주그랜드컨트리클럽",
+   "detail": "위치 근거: 마스터 좌표 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:A-106",
+   "type": "moved",
+   "courseId": "A-106",
+   "title": "청평마이다스골프클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-a93a8b",
+   "type": "moved",
+   "courseId": "X-a93a8b",
+   "title": "충성대 컨트리클럽",
+   "detail": "마스터 좌표에서 3.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:L-CC",
+   "type": "moved",
+   "courseId": "L-CC",
+   "title": "카운티 경남(레이크힐스)",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-310",
+   "type": "moved",
+   "courseId": "A-310",
+   "title": "캐슬렉스서울골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-207",
+   "type": "moved",
+   "courseId": "G-207",
+   "title": "캐슬렉스제주컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-GC",
+   "type": "moved",
+   "courseId": "C-GC",
+   "title": "캐슬파인골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-313",
+   "type": "moved",
+   "courseId": "A-313",
+   "title": "코리아컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-402-86b015",
+   "type": "moved",
+   "courseId": "A-402-86b015",
+   "title": "크리스탈밸리 컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:C-CC-d63c60",
+   "type": "unlinked",
+   "courseId": "C-CC-d63c60",
+   "title": "크리스탈카운티 컨트리클럽",
+   "detail": "위치 근거: 마스터 좌표 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "moved:A-210",
+   "type": "moved",
+   "courseId": "A-210",
+   "title": "클럽72 하늘코스",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-3150e4",
+   "type": "moved",
+   "courseId": "X-3150e4",
+   "title": "클럽디 보은",
+   "detail": "마스터 좌표에서 4.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-312",
+   "type": "moved",
+   "courseId": "E-312",
+   "title": "클럽디거창컨트리클럽",
+   "detail": "마스터 좌표에서 5.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-115",
+   "type": "moved",
+   "courseId": "B-115",
+   "title": "킹스데일골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-663b5b",
+   "type": "moved",
+   "courseId": "X-663b5b",
+   "title": "타미우스컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-e38b82",
+   "type": "moved",
+   "courseId": "X-e38b82",
+   "title": "타이거컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-325",
+   "type": "moved",
+   "courseId": "A-325",
+   "title": "태광 컨트리클럽",
+   "detail": "마스터 좌표에서 0.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-109",
+   "type": "moved",
+   "courseId": "F-109",
+   "title": "태인 컨트리클럽",
+   "detail": "마스터 좌표에서 1.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:G-204",
+   "type": "moved",
+   "courseId": "G-204",
+   "title": "테디밸리 골프앤리조트",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-101",
+   "type": "moved",
+   "courseId": "E-101",
+   "title": "통도파인이스트 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-308",
+   "type": "moved",
+   "courseId": "E-308",
+   "title": "통영동원로얄컨트리클럽",
+   "detail": "마스터 좌표에서 1.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-0fc987",
+   "type": "moved",
+   "courseId": "X-0fc987",
+   "title": "트리니티CC",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:T-CC",
+   "type": "moved",
+   "courseId": "T-CC",
+   "title": "티클라우드 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-1b5027",
+   "type": "moved",
+   "courseId": "X-1b5027",
+   "title": "파미힐스CC",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-930921",
+   "type": "moved",
+   "courseId": "X-930921",
+   "title": "파인리즈CC",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-103",
+   "type": "moved",
+   "courseId": "C-103",
+   "title": "파인밸리컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-304",
+   "type": "moved",
+   "courseId": "A-304",
+   "title": "파인크리크컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-211-b99f31",
+   "type": "moved",
+   "courseId": "F-211-b99f31",
+   "title": "파인힐스컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-401",
+   "type": "moved",
+   "courseId": "A-401",
+   "title": "파주컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-104",
+   "type": "moved",
+   "courseId": "C-104",
+   "title": "파크밸리골프클럽",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-114",
+   "type": "moved",
+   "courseId": "A-114",
+   "title": "페럼클럽",
+   "detail": "마스터 좌표에서 72.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-1895bd",
+   "type": "moved",
+   "courseId": "X-1895bd",
+   "title": "평창 휘닉스CC",
+   "detail": "마스터 좌표에서 1.1km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-f1f7b9",
+   "type": "moved",
+   "courseId": "X-f1f7b9",
+   "title": "포천힐스 컨트리클럽",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:P-CC",
+   "type": "moved",
+   "courseId": "P-CC",
+   "title": "프리스틴밸리골프클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-207",
+   "type": "moved",
+   "courseId": "B-207",
+   "title": "플라밍고컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:B-203-103ffb",
+   "type": "moved",
+   "courseId": "B-203-103ffb",
+   "title": "플라자CC 설악",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-cb56c0",
+   "type": "moved",
+   "courseId": "X-cb56c0",
+   "title": "플라자CC 제주",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-309",
+   "type": "moved",
+   "courseId": "A-309",
+   "title": "플라자용인",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:P-GC",
+   "type": "moved",
+   "courseId": "P-GC",
+   "title": "필로스컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-ae826b",
+   "type": "moved",
+   "courseId": "X-ae826b",
+   "title": "하이원컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-402-6de687",
+   "type": "moved",
+   "courseId": "A-402-6de687",
+   "title": "한림광릉컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-06b092",
+   "type": "moved",
+   "courseId": "X-06b092",
+   "title": "한림안성 컨트리클럽",
+   "detail": "마스터 좌표에서 2.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-308",
+   "type": "moved",
+   "courseId": "A-308",
+   "title": "한성컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:H-CC-307560",
+   "type": "moved",
+   "courseId": "H-CC-307560",
+   "title": "한양 컨트리클럽",
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:A-314",
+   "type": "moved",
+   "courseId": "A-314",
+   "title": "한원컨트리클럽",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-38eaea",
+   "type": "moved",
+   "courseId": "X-38eaea",
+   "title": "해슬리 나인브릿지CC",
+   "detail": "마스터 좌표에서 2.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:E-209",
+   "type": "moved",
+   "courseId": "E-209",
+   "title": "해운대 컨트리클럽",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-221",
+   "type": "moved",
+   "courseId": "F-221",
+   "title": "해피니스 컨트리클럽",
+   "detail": "마스터 좌표에서 5.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-370e28",
+   "type": "moved",
+   "courseId": "X-370e28",
+   "title": "화성상록골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:F-210",
+   "type": "moved",
+   "courseId": "F-210",
+   "title": "화순엘리체컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-b7f3aa",
+   "type": "moved",
+   "courseId": "X-b7f3aa",
+   "title": "화순컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-212",
+   "type": "moved",
+   "courseId": "C-212",
+   "title": "휘슬링락CC",
+   "detail": "마스터 좌표에서 0.8km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-7724a0",
+   "type": "moved",
+   "courseId": "X-7724a0",
+   "title": "히든밸리 골프클럽",
+   "detail": "마스터 좌표에서 0.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:KR-6440000-302012025000001",
+   "type": "unlinked",
+   "courseId": "KR-6440000-302012025000001",
+   "title": "내포골프클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-5875000-CDFH2302012023000001",
+   "type": "unlinked",
+   "courseId": "KR-5875000-CDFH2302012023000001",
+   "title": "COSMOS 1(대중형 골프장)",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "nearby:KR-6470000-302012022000003",
+   "type": "nearby",
+   "courseId": "KR-6470000-302012022000003",
+   "title": "이지스카이컨트리클럽",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 파라지오 컨트리클럽 (1.3km)"
+  },
+  {
+   "key": "unlinked:KR-6280000-302012021000002",
+   "type": "unlinked",
+   "courseId": "KR-6280000-302012021000002",
+   "title": "드림아일랜드골프장",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-6540000-302012020000001",
+   "type": "unlinked",
+   "courseId": "KR-6540000-302012020000001",
+   "title": "케이밸리컨트리클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-6440000-302012020000002",
+   "type": "unlinked",
+   "courseId": "KR-6440000-302012020000002",
+   "title": "에스앤골프리조트",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-5845000-CDFH2302012019000001",
+   "type": "unlinked",
+   "courseId": "KR-5845000-CDFH2302012019000001",
+   "title": "고흥골프장",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-6470000-302012019000005",
+   "type": "unlinked",
+   "courseId": "KR-6470000-302012019000005",
+   "title": "다산 샤인힐 컨트리클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "nearby:KR-6470000-302012019000005",
+   "type": "nearby",
+   "courseId": "KR-6470000-302012019000005",
+   "title": "다산 샤인힐 컨트리클럽",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 고령오펠골프클럽 (1.9km)"
+  },
+  {
+   "key": "unlinked:KR-6470000-302012019000004",
+   "type": "unlinked",
+   "courseId": "KR-6470000-302012019000004",
+   "title": "대가야컨트리클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "nearby:KR-6430000-302012017000002",
+   "type": "nearby",
+   "courseId": "KR-6430000-302012017000002",
+   "title": "세일골프장",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 레인보우힐스 컨트리클럽 (2.3km)"
+  },
+  {
+   "key": "unlinked:KR-6130000-302012016000001",
+   "type": "unlinked",
+   "courseId": "KR-6130000-302012016000001",
+   "title": "나주혁신도시 부영CC",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-6430000-302012014000001",
+   "type": "unlinked",
+   "courseId": "KR-6430000-302012014000001",
+   "title": "레이크힐속리산골프장",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-6430000-302012012000005",
+   "type": "unlinked",
+   "courseId": "KR-6430000-302012012000005",
+   "title": "제천친환경대중골프장",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-6270000-302012011000001",
+   "type": "unlinked",
+   "courseId": "KR-6270000-302012011000001",
+   "title": "냉천개발 윤상락",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-6480000-302012011000004",
+   "type": "unlinked",
+   "courseId": "KR-6480000-302012011000004",
+   "title": "함양리조트 스카이뷰컨트리클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-4681000-CDFH2302012011000002",
+   "type": "unlinked",
+   "courseId": "KR-4681000-CDFH2302012011000002",
+   "title": "송산",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "nearby:KR-4681000-CDFH2302012011000002",
+   "type": "nearby",
+   "courseId": "KR-4681000-CDFH2302012011000002",
+   "title": "송산",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 쌍떼힐 익산 컨트리클럽 (2.6km)"
+  },
+  {
+   "key": "nearby:KR-6540000-302012010000003",
+   "type": "nearby",
+   "courseId": "KR-6540000-302012010000003",
+   "title": "에스페란사골프클럽",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 더나인골프클럽 (2.3km)"
+  },
+  {
+   "key": "nearby:KR-6130000-302012010000003",
+   "type": "nearby",
+   "courseId": "KR-6130000-302012010000003",
+   "title": "옥과골프장",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 광주컨트리클럽 (2.5km)"
+  },
+  {
+   "key": "unlinked:KR-6480000-302012008000008",
+   "type": "unlinked",
+   "courseId": "KR-6480000-302012008000008",
+   "title": "롯데스카이힐김해 컨트리클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "nearby:KR-6480000-302012008000008",
+   "type": "nearby",
+   "courseId": "KR-6480000-302012008000008",
+   "title": "롯데스카이힐김해 컨트리클럽",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 4WELL(포웰) 컨트리클럽 (1.1km)"
+  },
+  {
+   "key": "nearby:KR-6470000-302012008000043",
+   "type": "nearby",
+   "courseId": "KR-6470000-302012008000043",
+   "title": "우리골프장",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 마우나오션컨트리클럽 (0.6km)"
+  },
+  {
+   "key": "unlinked:KR-6470000-302012008000037",
+   "type": "unlinked",
+   "courseId": "KR-6470000-302012008000037",
+   "title": "헤븐랜드컨트리클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "unlinked:KR-6480000-302012007000001",
+   "type": "unlinked",
+   "courseId": "KR-6480000-302012007000001",
+   "title": "통도c.c",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "nearby:KR-6480000-302012007000001",
+   "type": "nearby",
+   "courseId": "KR-6480000-302012007000001",
+   "title": "통도c.c",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 통도파인이스트 컨트리클럽 (1.2km)"
+  },
+  {
+   "key": "nearby:KR-6300000-302012006000001",
+   "type": "nearby",
+   "courseId": "KR-6300000-302012006000001",
+   "title": "사이언스대덕골프장",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 금실대덕밸리 (1.8km)"
+  },
+  {
+   "key": "unlinked:KR-4771000-CDFH2302012003000001",
+   "type": "unlinked",
+   "courseId": "KR-4771000-CDFH2302012003000001",
+   "title": "금과간이골프장",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
+  },
+  {
+   "key": "nearby:KR-3940000-CDFH2302011990000001",
+   "type": "nearby",
+   "courseId": "KR-3940000-CDFH2302011990000001",
+   "title": "올림픽 골프장",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 서서울 컨트리클럽 (1.1km)"
+  },
+  {
+   "key": "nearby:KK-25772512",
+   "type": "nearby",
+   "courseId": "KK-25772512",
+   "title": "순창CC",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 디케이레저 (0.3km)"
+  },
+  {
+   "key": "nearby:KK-207859089",
+   "type": "nearby",
+   "courseId": "KK-207859089",
+   "title": "거창CC",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 아델스코트 (2.7km)"
+  },
+  {
+   "key": "nearby:KK-1046050715",
+   "type": "nearby",
+   "courseId": "KK-1046050715",
+   "title": "맹방골프장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 파인밸리컨트리클럽 (2.6km)"
+  },
+  {
+   "key": "nearby:KK-26103198",
+   "type": "nearby",
+   "courseId": "KK-26103198",
+   "title": "남양골프랜드",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 화성골프클럽 (2.8km)"
+  },
+  {
+   "key": "nearby:KK-25574283",
+   "type": "nearby",
+   "courseId": "KK-25574283",
+   "title": "드림파크CC",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 인천국제컨트리클럽 (1.5km)"
+  },
+  {
+   "key": "nearby:KK-1974252037",
+   "type": "nearby",
+   "courseId": "KK-1974252037",
+   "title": "코스모스 링스",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: COSMOS 1(대중형 골프장) (1.3km)"
+  },
+  {
+   "key": "nearby:KK-8182042",
+   "type": "nearby",
+   "courseId": "KK-8182042",
+   "title": "계룡체력단련장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 구룡대CC (2.1km)"
+  },
+  {
+   "key": "nearby:KK-20031590",
+   "type": "nearby",
+   "courseId": "KK-20031590",
+   "title": "남성대체력단련장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 일라이트 골프앤리조트 (1.6km)"
+  },
+  {
+   "key": "nearby:KK-18203593",
+   "type": "nearby",
+   "courseId": "KK-18203593",
+   "title": "블랙나이트골프장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 블랙스톤제주컨트리클럽 (2.1km)"
+  },
+  {
+   "key": "nearby:KK-8196722",
+   "type": "nearby",
+   "courseId": "KK-8196722",
+   "title": "남수원체력단련장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 화산골프장 (1.7km)"
+  },
+  {
+   "key": "nearby:KK-14974377",
+   "type": "nearby",
+   "courseId": "KK-14974377",
+   "title": "비승대체력단련장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 더반 골프클럽(대중형) (2.6km)"
+  },
+  {
+   "key": "nearby:KK-734914182",
+   "type": "nearby",
+   "courseId": "KK-734914182",
+   "title": "동여주체력단련장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 남여주골프클럽 (1.4km)"
+  },
+  {
+   "key": "nearby:KK-18385289",
+   "type": "nearby",
+   "courseId": "KK-18385289",
+   "title": "에콜리안CC 제천",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 제천친환경대중골프장 (2.4km)"
+  },
+  {
+   "key": "nearby:KK-25772511",
+   "type": "nearby",
+   "courseId": "KK-25772511",
+   "title": "강릉공군체력단련장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 메이플비치 골프&리조트 (0.9km)"
+  },
+  {
+   "key": "nearby:KK-18203447",
+   "type": "nearby",
+   "courseId": "KK-18203447",
+   "title": "계룡대 컨트리클럽",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 계룡체력단련장 (0.4km)"
+  },
+  {
+   "key": "nearby:KK-9106613",
+   "type": "nearby",
+   "courseId": "KK-9106613",
+   "title": "서창퍼블릭골프클럽",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 강남300컨트리클럽 (2.8km)"
+  },
+  {
+   "key": "nearby:KK-535021021",
+   "type": "nearby",
+   "courseId": "KK-535021021",
+   "title": "용인경찰체력단련장",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 한성컨트리클럽 (1.2km)"
+  },
+  {
+   "key": "nearby:KK-10001405",
+   "type": "nearby",
+   "courseId": "KK-10001405",
+   "title": "아난티 중앙 골프클럽",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 에머슨 골프클럽 (0.4km)"
+  },
+  {
+   "key": "nearby:KK-229961815",
+   "type": "nearby",
+   "courseId": "KK-229961815",
+   "title": "힐스카이CC 경주지점",
+   "detail": "카카오 신규 · 3km 안 기존 골프장: 루나엑스CC (0.5km)"
+  },
+  {
+   "key": "merged:KR-4050000-CDFH2302012012000001",
+   "type": "merged",
+   "courseId": "A-302-bdafed",
+   "title": "케이지써닝라이프(주)",
+   "detail": "써닝포인트컨트리클럽과 같은 골프장으로 통합 (0.3km)",
+   "candidate": {
+    "id": "KR-4050000-CDFH2302012012000001",
+    "name": "케이지써닝라이프(주)",
+    "address": "경기도 용인시 처인구 백암면 고안로51번길 205",
+    "lat": 37.14316657983749,
+    "lng": 127.42008324221187,
+    "holes": null,
+    "phone": "031-329-0754",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-3930000-CDFH2302012012000001",
+   "type": "merged",
+   "courseId": "A-204",
+   "title": "아일랜드컨트리클럽",
+   "detail": "더헤븐컨트리클럽과 같은 골프장으로 통합 (0.5km)",
+   "candidate": {
+    "id": "KR-3930000-CDFH2302012012000001",
+    "name": "아일랜드컨트리클럽",
+    "address": "경기도 안산시 단원구 대부남동 1111",
+    "lat": 37.233253053458064,
+    "lng": 126.56463966508542,
+    "holes": null,
+    "phone": "032-885-1004",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-6480000-302012010000006",
+   "type": "merged",
+   "courseId": "E-310",
+   "title": "힐마루컨트리클럽창녕(회원제)",
+   "detail": "동훈힐마루컨트리클럽과 같은 골프장으로 통합 (0.8km)",
+   "candidate": {
+    "id": "KR-6480000-302012010000006",
+    "name": "힐마루컨트리클럽창녕(회원제)",
+    "address": "경상남도 창녕군 장마면 영산계성로 469-195",
+    "lat": 35.49580635279056,
+    "lng": 128.49210115304325,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-6480000-302012010000005",
+   "type": "merged",
+   "courseId": "E-310",
+   "title": "힐마루컨트리클럽창녕(대중제)",
+   "detail": "동훈힐마루컨트리클럽과 같은 골프장으로 통합 (0.8km)",
+   "candidate": {
+    "id": "KR-6480000-302012010000005",
+    "name": "힐마루컨트리클럽창녕(대중제)",
+    "address": "경상남도 창녕군 장마면 영산계성로 469-195",
+    "lat": 35.49580635279056,
+    "lng": 128.49210115304325,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-6430000-302012010000003",
+   "type": "merged",
+   "courseId": "B-104-c9cf1f",
+   "title": "진양벨리 CC(대중제)",
+   "detail": "진양밸리과 같은 골프장으로 통합 (0.4km)",
+   "candidate": {
+    "id": "KR-6430000-302012010000003",
+    "name": "진양벨리 CC(대중제)",
+    "address": "충청북도 음성군 삼성면 금일로 1195",
+    "lat": 37.030416116974905,
+    "lng": 127.46508539181326,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-6470000-302012008000060",
+   "type": "merged",
+   "courseId": "E-109",
+   "title": "오션뷰 컨트리클럽(정규대중제27홀)",
+   "detail": "오션비치 컨트리클럽과 같은 골프장으로 통합 (0.7km)",
+   "candidate": {
+    "id": "KR-6470000-302012008000060",
+    "name": "오션뷰 컨트리클럽(정규대중제27홀)",
+    "address": "경상북도 영덕군 강구면 삼사1길 2",
+    "lat": 36.34292691161978,
+    "lng": 129.38058773516184,
+    "holes": null,
+    "phone": "054-730-9090",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-6280000-302012008000003",
+   "type": "merged",
+   "courseId": "A-205",
+   "title": "인천국제공항스카이칠십이골프장",
+   "detail": "클럽72과 같은 골프장으로 통합 (0.5km)",
+   "candidate": {
+    "id": "KR-6280000-302012008000003",
+    "name": "인천국제공항스카이칠십이골프장",
+    "address": "인천광역시 영종구 공항동로 392",
+    "lat": 37.48587710470266,
+    "lng": 126.46646896134067,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-6130000-302012007000012",
+   "type": "merged",
+   "courseId": "F-204",
+   "title": "담양다이너스티컨트리클럽",
+   "detail": "담양레이나컨트리클럽과 같은 골프장으로 통합 (1.0km)",
+   "candidate": {
+    "id": "KR-6130000-302012007000012",
+    "name": "담양다이너스티컨트리클럽",
+    "address": "전남광주통합특별시 담양군 금성면 깊은실길 169",
+    "lat": 35.30315853849704,
+    "lng": 127.02383062001144,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-6480000-302012007000004",
+   "type": "merged",
+   "courseId": "E-313",
+   "title": "남해 선베이컨트리클럽",
+   "detail": "아난티 남해 컨트리클럽과 같은 골프장으로 통합 (0.3km)",
+   "candidate": {
+    "id": "KR-6480000-302012007000004",
+    "name": "남해 선베이컨트리클럽",
+    "address": "경상남도 남해군 남면 남서대로1179번길 40-109",
+    "lat": 34.77961714231374,
+    "lng": 127.85146893905342,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-6310000-302012007000002",
+   "type": "merged",
+   "courseId": "X-d90bc6",
+   "title": "삼남대중골프장",
+   "detail": "골드그린컨트리클럽과 같은 골프장으로 통합 (0.3km)",
+   "candidate": {
+    "id": "KR-6310000-302012007000002",
+    "name": "삼남대중골프장",
+    "address": "울산광역시 울주군 삼남면 방기가천로 179",
+    "lat": 35.50753598678259,
+    "lng": 129.0741931663048,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-4620000-CDFH2302012006000001",
+   "type": "merged",
+   "courseId": "B-205",
+   "title": "태안비치컨트리클럽",
+   "detail": "스톤비치컨트리클럽과 같은 골프장으로 통합 (0.8km)",
+   "candidate": {
+    "id": "KR-4620000-CDFH2302012006000001",
+    "name": "태안비치컨트리클럽",
+    "address": "충청남도 태안군 근흥면 갈음이길 77",
+    "lat": 36.691075278706144,
+    "lng": 126.1615885881237,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-4291000-CDFH2302012005000001",
+   "type": "merged",
+   "courseId": "X-ae826b",
+   "title": "강원랜드골프클럽",
+   "detail": "하이원컨트리클럽과 같은 골프장으로 통합 (0.4km)",
+   "candidate": {
+    "id": "KR-4291000-CDFH2302012005000001",
+    "name": "강원랜드골프클럽",
+    "address": "강원특별자치도 정선군 고한읍 고한리 산 1-166",
+    "lat": 37.17652375904159,
+    "lng": 128.8414233444826,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-4050000-CDFH2302012003000001",
+   "type": "merged",
+   "courseId": "X-440e12",
+   "title": "석천씨씨",
+   "detail": "용인컨트리클럽과 같은 골프장으로 통합 (0.4km)",
+   "candidate": {
+    "id": "KR-4050000-CDFH2302012003000001",
+    "name": "석천씨씨",
+    "address": "경기도 용인시 처인구 백암면 석천리 744-1",
+    "lat": 37.11436916270422,
+    "lng": 127.34616669451724,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-4231000-CDFH2302012001000001",
+   "type": "merged",
+   "courseId": "KR-6530000-302012007000018",
+   "title": "레익스빌골프장",
+   "detail": "영랑호컨트리클럽과 같은 골프장으로 통합 (0.3km)",
+   "candidate": {
+    "id": "KR-4231000-CDFH2302012001000001",
+    "name": "레익스빌골프장",
+    "address": "강원특별자치도 속초시 영랑호반길 140",
+    "lat": 38.21423424814897,
+    "lng": 128.58076433998045,
+    "holes": null,
+    "phone": "02-534-2283",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-4090000-CDFH2302011995000001",
+   "type": "merged",
+   "courseId": "A-207",
+   "title": "김포 SEASIDE 컨트리클럽",
+   "detail": "김포씨사이드컨트리클럽과 같은 골프장으로 통합 (0.4km)",
+   "candidate": {
+    "id": "KR-4090000-CDFH2302011995000001",
+    "name": "김포 SEASIDE 컨트리클럽",
+    "address": "경기도 김포시 월곶면 김포대로2801번길 219",
+    "lat": 37.707197107649876,
+    "lng": 126.53726786257917,
+    "holes": null,
+    "phone": "031-987-9992",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "merged:KR-3990000-CDFH2302011990000002",
+   "type": "merged",
+   "courseId": "X-9b4392",
+   "title": "록인 컨트리클럽",
+   "detail": "남양주 해비치 컨트리클럽과 같은 골프장으로 통합 (0.7km)",
+   "candidate": {
+    "id": "KR-3990000-CDFH2302011990000002",
+    "name": "록인 컨트리클럽",
+    "address": "경기도 남양주시 화도읍 재재기로190번길 26",
+    "lat": 37.61320555363349,
+    "lng": 127.2978190846501,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:X-78d7b4",
+   "type": "duplicate",
+   "courseId": "X-7b3c8f",
+   "title": "글로렌스CC",
+   "detail": "글렌로스골프클럽과 같은 자리 9m → 협의중 중복 제외",
+   "candidate": {
+    "id": "X-78d7b4",
+    "name": "글로렌스CC",
+    "address": "경기 용인시 처인구 포곡읍 에버랜드로562번길 69",
+    "lat": 37.29459,
+    "lng": 127.18577,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:X-303701",
+   "type": "duplicate",
+   "courseId": "X-ca7ceb",
+   "title": "대명비발디CC",
+   "detail": "소노펠리체CC 비발디파크 WEST과 같은 자리 31m → 협의중 중복 제외",
+   "candidate": {
+    "id": "X-303701",
+    "name": "대명비발디CC",
+    "address": "강원 홍천군 서면 한치골길 200",
+    "lat": 37.63891503821693,
+    "lng": 127.6742031550323,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:X-0e0dfa",
+   "type": "duplicate",
+   "courseId": "X-1733fa",
+   "title": "레이크힐스 제주CC",
+   "detail": "레이크 힐스 제주 컨트리 클럽과 같은 자리 328m → 협의중 중복 제외",
+   "candidate": {
+    "id": "X-0e0dfa",
+    "name": "레이크힐스 제주CC",
+    "address": "제주특별자치도 서귀포시 산록남로 1391",
+    "lat": 33.2994777,
+    "lng": 126.4375805,
+    "holes": 27,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:X-833960",
+   "type": "duplicate",
+   "courseId": "KK-229961815",
+   "title": "루나엑스CC",
+   "detail": "힐스카이CC 경주지점과 같은 자리 477m → 협의중 중복 제외",
+   "candidate": {
+    "id": "X-833960",
+    "name": "루나엑스CC",
+    "address": "경상북도 경주시 천북면 천강로 412-299",
+    "lat": 35.90974632048873,
+    "lng": 129.31958214905404,
+    "holes": null,
+    "phone": "",
+    "homepage": "http://www.luna-x.cc/",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:S-CC-6eaf05",
+   "type": "duplicate",
+   "courseId": "B-117",
+   "title": "상떼힐 컨트리클럽",
+   "detail": "스타컨트리클럽과 같은 자리 395m → 협의중 중복 제외",
+   "candidate": {
+    "id": "S-CC-6eaf05",
+    "name": "상떼힐 컨트리클럽",
+    "address": "충북 충주시 앙성면 지당리",
+    "lat": 37.079875,
+    "lng": 127.7028833,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://santehillcc.co.kr/main/",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:X-249393",
+   "type": "duplicate",
+   "courseId": "X-ab3fbd",
+   "title": "소노델피노CC",
+   "detail": "소노펠리체CC 델피노과 같은 자리 275m → 협의중 중복 제외",
+   "candidate": {
+    "id": "X-249393",
+    "name": "소노델피노CC",
+    "address": "강원도 고성군 토성면 미시령옛길 1153",
+    "lat": 38.21009181060447,
+    "lng": 128.4978166799873,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:A-CC-1acf13",
+   "type": "duplicate",
+   "courseId": "X-23e942",
+   "title": "아트밸리 컨트리클럽",
+   "detail": "골프존카운티 진천과 같은 자리 403m → 협의중 중복 제외",
+   "candidate": {
+    "id": "A-CC-1acf13",
+    "name": "아트밸리 컨트리클럽",
+    "address": "충청북도 진천군 진천읍 송강로 783-51",
+    "lat": 36.81861,
+    "lng": 127.4012,
+    "holes": 27,
+    "phone": "",
+    "homepage": "http://www.artvalleycc.net/n_i",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:X-6907d7",
+   "type": "duplicate",
+   "courseId": "포웰",
+   "title": "안성 아덴힐 컨트리클럽",
+   "detail": "포웰CC 안성과 같은 자리 258m → 협의중 중복 제외",
+   "candidate": {
+    "id": "X-6907d7",
+    "name": "안성 아덴힐 컨트리클럽",
+    "address": "경기도 안성시 양성면 약산길 67-6",
+    "lat": 37.11939061993937,
+    "lng": 127.2684491602189,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.ardenhillcc.com/",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:X-8cdf87",
+   "type": "duplicate",
+   "courseId": "KK-10001405",
+   "title": "에머슨 골프클럽",
+   "detail": "아난티 중앙 골프클럽과 같은 자리 260m → 협의중 중복 제외",
+   "candidate": {
+    "id": "X-8cdf87",
+    "name": "에머슨 골프클럽",
+    "address": "충청북도 진천군 백곡면 배티로 818-105",
+    "lat": 36.93772762671114,
+    "lng": 127.33903632156179,
+    "holes": 27,
+    "phone": "",
+    "homepage": "https://www.emersongolfclub.co/",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:KK-1133013211",
+   "type": "duplicate",
+   "courseId": "X-3150e4",
+   "title": "이도클럽디보은",
+   "detail": "클럽디 보은과 같은 자리 1m → 마스터 골프장으로 통합",
+   "candidate": {
+    "id": "KK-1133013211",
+    "name": "이도클럽디보은",
+    "address": "충북 보은군 보은읍 장속중초로 386",
+    "lat": 36.51002118207882,
+    "lng": 127.69132356536343,
+    "holes": null,
+    "phone": "043-540-8888",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1133013211"
+   }
+  },
+  {
+   "key": "duplicate:X-7d707b",
+   "type": "duplicate",
+   "courseId": "X-897d01",
+   "title": "포항CC",
+   "detail": "오션힐스 포항CC과 같은 자리 12m → 협의중 중복 제외",
+   "candidate": {
+    "id": "X-7d707b",
+    "name": "포항CC",
+    "address": "경북 포항시 북구 송라면 상송리 산 48",
+    "lat": 36.223861180975,
+    "lng": 129.34216290211,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.pohangcc.com/",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:H-CC-dde062",
+   "type": "duplicate",
+   "courseId": "X-e84681",
+   "title": "현대더링스 컨트리클럽(로얄링스)",
+   "detail": "로얄링스cc과 같은 자리 118m → 협의중 중복 제외",
+   "candidate": {
+    "id": "H-CC-dde062",
+    "name": "현대더링스 컨트리클럽(로얄링스)",
+    "address": "충청남도 태안군 태안읍 기업도시6길 43 로얄링스cc",
+    "lat": 36.72057,
+    "lng": 126.33794,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.thelinkscc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:KR-6500000-302012011000001",
+   "type": "duplicate",
+   "courseId": "X-4b9558",
+   "title": "그랜드부민 꿈드림목장 (비회원제 9홀)",
+   "detail": "제주CC 퍼블릭과 같은 자리 318m → 협의중 중복 제외",
+   "candidate": {
+    "id": "KR-6500000-302012011000001",
+    "name": "그랜드부민 꿈드림목장 (비회원제 9홀)",
+    "address": "제주특별자치도 제주시 516로 2596-117",
+    "lat": 33.43965843167042,
+    "lng": 126.60213722245994,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "duplicate:KR-6540000-302012010000001",
+   "type": "duplicate",
+   "courseId": "KK-25772512",
+   "title": "디케이레저",
+   "detail": "순창CC과 같은 자리 316m → 협의중 중복 제외",
+   "candidate": {
+    "id": "KR-6540000-302012010000001",
+    "name": "디케이레저",
+    "address": "전북특별자치도 순창군 순창읍 금산로 152",
+    "lat": 35.3894231629398,
+    "lng": 127.12432548023567,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:계룡산골프장:0",
+   "type": "unlocated",
+   "title": "계룡산골프장",
+   "detail": "충청남도 공주시 계룡면 내흥리 28-1 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-1",
+    "name": "계룡산골프장",
+    "address": "충청남도 공주시 계룡면 내흥리 28-1",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:무주안성CC:1",
+   "type": "unlocated",
+   "title": "무주안성CC",
+   "detail": "전북특별자치도 무주군 안성면 공진리 산 53-1 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-2",
+    "name": "무주안성CC",
+    "address": "전북특별자치도 무주군 안성면 공진리 산 53-1",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:여수아일랜드 골프&리조트 골프장:2",
+   "type": "unlocated",
+   "title": "여수아일랜드 골프&리조트 골프장",
+   "detail": "전남광주통합특별시 여수시 대경도길 8-8 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-3",
+    "name": "여수아일랜드 골프&리조트 골프장",
+    "address": "전남광주통합특별시 여수시 대경도길 8-8",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:광산 친환경대중골프장:3",
+   "type": "unlocated",
+   "title": "광산 친환경대중골프장",
+   "detail": "전남광주통합특별시 광산구 연산동 산 118 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-4",
+    "name": "광산 친환경대중골프장",
+    "address": "전남광주통합특별시 광산구 연산동 산 118",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:무주안성CC:4",
+   "type": "unlocated",
+   "title": "무주안성CC",
+   "detail": "전북특별자치도 무주군 안성면 공진리 산 53-1 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-5",
+    "name": "무주안성CC",
+    "address": "전북특별자치도 무주군 안성면 공진리 산 53-1",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:고성Nobel컨트리클럽:5",
+   "type": "unlocated",
+   "title": "고성Nobel컨트리클럽",
+   "detail": "경상남도 고성군 회화면 영회로 2770 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-6",
+    "name": "고성Nobel컨트리클럽",
+    "address": "경상남도 고성군 회화면 영회로 2770",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:제이스C.C 시사이드:6",
+   "type": "unlocated",
+   "title": "제이스C.C 시사이드",
+   "detail": "경상북도 경주시 감포읍 나정리 산 47 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-7",
+    "name": "제이스C.C 시사이드",
+    "address": "경상북도 경주시 감포읍 나정리 산 47",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:제이드팰리스솔프클럽:7",
+   "type": "unlocated",
+   "title": "제이드팰리스솔프클럽",
+   "detail": "강원특별자치도 춘천시 남산면 서천리 산 35 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-8",
+    "name": "제이드팰리스솔프클럽",
+    "address": "강원특별자치도 춘천시 남산면 서천리 산 35",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:백암비스타골프장:8",
+   "type": "unlocated",
+   "title": "백암비스타골프장",
+   "detail": "경기도 이천시 모가면 어농리 산 86 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-9",
+    "name": "백암비스타골프장",
+    "address": "경기도 이천시 모가면 어농리 산 86",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:파라다이스골프장:9",
+   "type": "unlocated",
+   "title": "파라다이스골프장",
+   "detail": "제주특별자치도 서귀포시 안덕면 광평리 산 125 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-10",
+    "name": "파라다이스골프장",
+    "address": "제주특별자치도 서귀포시 안덕면 광평리 산 125",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  },
+  {
+   "key": "unlocated:한일골프장:10",
+   "type": "unlocated",
+   "title": "한일골프장",
+   "detail": "경기도 여주군 가남면 양귀리 산 59 · 영업상태 영업/정상 · 위치를 지정하면 지도에 추가할 수 있음",
+   "candidate": {
+    "id": "KR-UNLOCATED-11",
+    "name": "한일골프장",
+    "address": "경기도 여주군 가남면 양귀리 산 59",
+    "lat": 0,
+    "lng": 0,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
+  }
+ ]
+}

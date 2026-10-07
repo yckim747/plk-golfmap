@@ -29,7 +29,8 @@ const MARKER_Z = { partner: 3, agreement: 3, regular: 2, pending: 1 } as const;
 // "YJC골프클럽(구,여주cc)" → "YJC골프클럽": 지도 위에서는 괄호 설명을 뺀 짧은 이름을 쓴다.
 const shortName = (name: string) => name.replace(/\s*[(（][^)）]*[)）]\s*/g, ' ').trim() || name;
 const labelWidth = (text: string) => [...text].reduce((width, char) => width + (/[가-힣]/.test(char) ? 12 : 7), 14);
-export default function KakaoMap({ courses, selected, onSelect, myLocation, locating, onLocate, onInteract }: { courses: GolfCourse[]; selected: GolfCourse | null; onSelect: (course: GolfCourse) => void; myLocation: MyLocation | null; locating: boolean; onLocate: () => void; onInteract?: () => void }) {
+export interface MapBounds { south: number; west: number; north: number; east: number }
+export default function KakaoMap({ courses, selected, onSelect, myLocation, locating, onLocate, onInteract, onBoundsChange }: { courses: GolfCourse[]; selected: GolfCourse | null; onSelect: (course: GolfCourse) => void; myLocation: MyLocation | null; locating: boolean; onLocate: () => void; onInteract?: () => void; onBoundsChange?: (bounds: MapBounds) => void }) {
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<kakao.maps.Map | null>(null);
   const clusterer = useRef<kakao.maps.MarkerClusterer | null>(null);
@@ -132,6 +133,22 @@ export default function KakaoMap({ courses, selected, onSelect, myLocation, loca
     map.current.panTo(position);
   }, [selected, status]);
   const zoom = (delta: number) => map.current?.setLevel(map.current.getLevel() + delta, { animate: true });
+  // 지도 이동·확대가 끝날 때마다 보이는 영역을 알린다(목록을 "이 지역"으로 좁히는 데 쓴다).
+  const boundsCallback = useRef(onBoundsChange);
+  boundsCallback.current = onBoundsChange;
+  useEffect(() => {
+    if (status !== 'ready' || !map.current) return;
+    const current = map.current;
+    const emit = () => {
+      const bounds = current.getBounds();
+      const sw = bounds.getSouthWest();
+      const ne = bounds.getNorthEast();
+      boundsCallback.current?.({ south: sw.getLat(), west: sw.getLng(), north: ne.getLat(), east: ne.getLng() });
+    };
+    kakao.maps.event.addListener(current, 'idle', emit);
+    emit();
+    return () => kakao.maps.event.removeListener(current, 'idle', emit);
+  }, [status]);
   // 내 위치: 파란 점 + 정확도 범위 원. 위치는 GolfMapApp이 구하고, 새로 구할 때마다(at 변경) 그 위치로 이동한다.
   const me = useRef<{ overlay: kakao.maps.CustomOverlay; circle: kakao.maps.Circle } | null>(null);
   useEffect(() => {

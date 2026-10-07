@@ -253,3 +253,20 @@ a{text-decoration:none}
 .search-box.listening{border-color:#ef4444;box-shadow:0 0 0 4px rgba(239,68,68,.14);background:#fff}
 .search-box.listening .mic-button{background:#ef4444;color:#fff;animation:mic-pulse 1.2s ease-in-out infinite}
 @keyframes mic-pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.45)}50%{box-shadow:0 0 0 7px rgba(239,68,68,0)}}
+/* 관심 골프장 */
+.course-item{position:relative}
+.course-item .course-card{padding-right:44px}
+.fav-toggle{color:var(--line-strong)}
+.course-item .fav-toggle{position:absolute;right:6px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:34px;height:34px;border-radius:10px}
+.course-item .fav-toggle:hover{background:var(--surface-2);color:var(--muted)}
+.fav-toggle.active,.fav-toggle.active:hover{color:#f5a524}
+.fav-toggle.active svg{fill:#f5a524}
+.chip.fav-chip{display:inline-flex;align-items:center;gap:4px}
+.chip.fav-chip span{font-size:11.5px;color:var(--muted)}
+.chip.fav-chip.active{background:#fff7e6;border-color:#f5c56b;color:#9a5b00}
+.chip.fav-chip.active svg{fill:#f5a524;color:#f5a524}
+.chip.fav-chip.active span{color:#9a5b00}
+.sheet-tools{display:flex;gap:2px}
+/* 지도 영역 · 목록 메타 */
+.list-meta>span:first-child{flex-wrap:wrap;row-gap:4px}
+.topbar-end .icon-button{color:var(--sub)}

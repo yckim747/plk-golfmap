@@ -1,3 +1,4 @@
+import { Star } from 'lucide-react';
 import { REGIONS, type Region } from '@/lib/region';
 export type PartnerFilter = 'all' | '제휴' | '이용협약' | '일반' | '협의중';
 const KINDS: { value: PartnerFilter; label: string; dot?: string }[] = [
@@ -7,9 +8,19 @@ const KINDS: { value: PartnerFilter; label: string; dot?: string }[] = [
   { value: '일반', label: '일반', dot: 'regular' },
   { value: '협의중', label: '협의중', dot: 'pending' },
 ];
-export default function GolfCourseFilter({ kind, onKind, counts, region, onRegion }: { kind: PartnerFilter; onKind: (value: PartnerFilter) => void; counts: Record<PartnerFilter, number> | null; region: Region | 'all'; onRegion: (value: Region | 'all') => void }) {
+export default function GolfCourseFilter({ kind, onKind, counts, region, onRegion, favorite }: {
+  kind: PartnerFilter;
+  onKind: (value: PartnerFilter) => void;
+  counts: Record<PartnerFilter, number> | null;
+  region: Region | 'all';
+  onRegion: (value: Region | 'all') => void;
+  favorite: { active: boolean; count: number; onToggle: () => void };
+}) {
   return <>
     <div className="segmented" role="group" aria-label="제휴 구분">{KINDS.map(({ value, label, dot }) => <button key={value} aria-pressed={kind === value} className={kind === value ? 'active' : ''} onClick={() => onKind(value)}>{dot && <i className={`dot ${dot}`}/>}{label}{counts && <span className="count">{counts[value]}</span>}</button>)}</div>
-    <div className="chips" role="group" aria-label="권역">{(['all', ...REGIONS] as const).map((value) => <button key={value} aria-pressed={region === value} className={`chip${region === value ? ' active' : ''}`} onClick={() => onRegion(value)}>{value === 'all' ? '전국' : value}</button>)}</div>
+    <div className="chips" role="group" aria-label="권역·관심">
+      <button aria-pressed={favorite.active} className={`chip fav-chip${favorite.active ? ' active' : ''}`} onClick={favorite.onToggle}><Star size={13}/>관심{favorite.count > 0 && <span>{favorite.count}</span>}</button>
+      {(['all', ...REGIONS] as const).map((value) => <button key={value} aria-pressed={region === value} className={`chip${region === value ? ' active' : ''}`} onClick={() => onRegion(value)}>{value === 'all' ? '전국' : value}</button>)}
+    </div>
   </>;
 }

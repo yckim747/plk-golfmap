@@ -1,18 +1,22 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { X, MapPin, Phone, Globe, ArrowUpRight, Gift, Map, Navigation, Clock } from 'lucide-react';
+import { X, MapPin, Phone, Globe, ArrowUpRight, Gift, Map, Navigation, Clock, Share2, Star } from 'lucide-react';
 import type { GolfCourse } from '@/lib/types';
 import { regionOf } from '@/lib/region';
 import { formatDistance } from '@/lib/geo';
 import { markerKind } from './GolfCourseMarker';
 const KIND_LABEL = { partner: 'PLK 제휴', agreement: 'PLK 이용협약', regular: '일반 골프장', pending: '협의중' } as const;
-export default function GolfCourseSheet({ course, onClose, distance }: { course: GolfCourse | null; onClose: () => void; distance?: number }) {
+export default function GolfCourseSheet({ course, onClose, distance, favorite, onToggleFavorite, onShare }: { course: GolfCourse | null; onClose: () => void; distance?: number; favorite: boolean; onToggleFavorite: (course: GolfCourse) => void; onShare: (course: GolfCourse) => void }) {
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => { if (course) dialog.current?.showModal(); else dialog.current?.close(); }, [course]);
   const kind = course ? markerKind(course) : 'regular';
   return <dialog ref={dialog} className="course-dialog" aria-labelledby="course-title" onCancel={onClose} onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}><div className="sheet-content">{course && <>
     <div className="sheet-handle"/>
-    <div className="sheet-top"><div className="tags"><span className={`tag ${kind}`}>{KIND_LABEL[kind]}</span></div><button className="icon-button" onClick={onClose} aria-label="골프장 상세 닫기"><X size={18}/></button></div>
+    <div className="sheet-top"><div className="tags"><span className={`tag ${kind}`}>{KIND_LABEL[kind]}</span></div><div className="sheet-tools">
+      <button className={`icon-button fav-toggle${favorite ? ' active' : ''}`} onClick={() => onToggleFavorite(course)} aria-pressed={favorite} aria-label={favorite ? '관심 해제' : '관심 골프장에 추가'} title="관심 골프장"><Star size={18}/></button>
+      <button className="icon-button" onClick={() => onShare(course)} aria-label="이 골프장 링크 공유" title="링크 공유"><Share2 size={17}/></button>
+      <button className="icon-button" onClick={onClose} aria-label="골프장 상세 닫기"><X size={18}/></button>
+    </div></div>
     <h2 id="course-title">{course.name}</h2>
     <p className="sheet-address"><MapPin size={15}/><span>{course.address}{distance !== undefined && <b className="distance"> · 내 위치에서 {formatDistance(distance)}</b>}</span></p>
     <dl className="info-grid"><div><dt>권역</dt><dd>{regionOf(course.address)}</dd></div><div><dt>홀</dt><dd>{course.holes ? `${course.holes}홀` : '–'}</dd></div><div><dt>구분</dt><dd>{course.status ?? course.partnerType ?? '일반'}</dd></div></dl>

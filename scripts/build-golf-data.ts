@@ -10,6 +10,7 @@ import { KakaoLocalClient } from './lib/kakao';
 import { distanceKm, isGolfCourse, matchPlace, nameSimilarity, normalizeName, type KakaoPlace } from './lib/match';
 import { mergeCourse, validateCourses } from './lib/merge';
 import type { GolfCourse } from '../lib/types';
+import type { ReviewData, ReviewItem } from '../lib/review';
 
 const root = process.cwd();
 const sourceDir = path.join(root, 'data/source');
@@ -118,7 +119,8 @@ async function main() {
   // PLK 마스터에서 공개 불가·휴장으로 뺀 골프장은 전국 보완에서도 다시 넣지 않는다.
   const blocked = skipped.filter((row) => row.reason === '공개 불가' || row.reason === '휴장');
   const duplicates: DuplicateRecord[] = [];
-  const national = supplementNational(courses, overrides, report, meta, blocked, coordSources, duplicates);
+  const merged: MergedRecord[] = [];
+  const national = supplementNational(courses, overrides, report, meta, blocked, coordSources, duplicates, merged);
 
   mkdirSync(path.dirname(reportFile), { recursive: true });
   writeFileSync(reportFile, toCsv(report, ['plk_code', 'name', 'address', 'status', 'match_status', 'score', 'place_id', 'place_name', 'place_address', 'candidates', 'note']));
@@ -129,6 +131,20 @@ async function main() {
   const workbookFile = path.join(root, `data/reports/전국골프장_${new Date().toISOString().slice(2, 10).replaceAll('-', '')}.xlsx`);
   const unlocatedPublic = existsSync(path.join(sourceDir, 'public-golf.json')) ? JSON.parse(readFileSync(path.join(sourceDir, 'public-golf.json'), 'utf8')).unlocated ?? [] : [];
   await writeNationalWorkbook(workbookFile, courses, meta, masterColumns, national, { coordSources, masterPoints, unlocatedPublic, duplicates });
+  // 관리 화면(/admin)의 검수 목록. 지도에서 빠진 골프장은 다시 넣을 수 있도록 골프장 정보를 함께 저장한다.
+  const reviewItems: ReviewItem[] = [];
+  for (const course of courses) {
+    const master = masterPoints.get(course.id);
+    const moved = master ? distanceKm(master, course) : 0;
+    if (moved >= 0.3) reviewItems.push({ key: `moved:${course.id}`, type: 'moved', courseId: course.id, title: course.name, detail: `마스터 좌표에서 ${moved.toFixed(1)}km 옮김 (근거: ${coordSources.get(course.id) ?? '-'})` });
+    if (!course.kakaoPlaceUrl) reviewItems.push({ key: `unlinked:${course.id}`, type: 'unlinked', courseId: course.id, title: course.name, detail: `위치 근거: ${coordSources.get(course.id) ?? '-'} · 카카오맵 링크·전화 없음` });
+    const nearby = meta.get(course.id)?.note.match(/3km 안 기존 골프장: [^/]+/)?.[0];
+    if (nearby && meta.get(course.id)?.source !== 'PLK 마스터') reviewItems.push({ key: `nearby:${course.id}`, type: 'nearby', courseId: course.id, title: course.name, detail: `${meta.get(course.id)?.source} 신규 · ${nearby.trim()}` });
+  }
+  for (const record of merged) reviewItems.push({ key: `merged:${record.candidate.id}`, type: 'merged', courseId: record.keptId, title: record.candidate.name, detail: `${record.keptName}과 같은 골프장으로 통합 (${record.km.toFixed(1)}km)`, candidate: record.candidate });
+  for (const record of duplicates) reviewItems.push({ key: `duplicate:${record.removedId}`, type: 'duplicate', courseId: record.keptId, title: record.removedName, detail: `${record.keptName}과 같은 자리 ${(record.km * 1000).toFixed(0)}m → ${record.action}`, candidate: record.removedCourse });
+  for (const [index, item] of (unlocatedPublic as { name: string; address: string; status: string }[]).entries()) reviewItems.push({ key: `unlocated:${item.name}:${index}`, type: 'unlocated', title: item.name, detail: `${item.address} · 영업상태 ${item.status} · 위치를 지정하면 지도에 추가할 수 있음`, candidate: { id: `KR-UNLOCATED-${index + 1}`, name: item.name, address: item.address, lat: 0, lng: 0, holes: null, phone: '', homepage: '', plkPartner: false, status: '협의중' } });
+  writeFileSync(path.join(root, 'data/review.json'), JSON.stringify({ generatedAt: new Date().toISOString(), items: reviewItems } satisfies ReviewData, null, 1) + '\n');
 
   const reasons: Record<string, number> = { ...skippedCounts };
   for (const row of skipped) reasons[row.reason] = (reasons[row.reason] ?? 0) + 1;
@@ -145,7 +161,8 @@ async function main() {
 
 // 전국 골프장 보완: 공공데이터(인허가) → 카카오 순으로, 지금 목록에 없는 골프장을 '협의중'으로 추가한다.
 // data/source/public-golf.json, kakao-golf.json은 `npm run data:fetch`가 만든다(없으면 건너뜀).
-function supplementNational(courses: GolfCourse[], overrides: Map<string, OverrideRow>, report: Record<string, string | number>[], meta: Map<string, CourseMeta>, blocked: SkippedRow[], coordSources: Map<string, string>, duplicates: DuplicateRecord[]) {
+interface MergedRecord { candidate: GolfCourse; keptId: string; keptName: string; km: number }
+function supplementNational(courses: GolfCourse[], overrides: Map<string, OverrideRow>, report: Record<string, string | number>[], meta: Map<string, CourseMeta>, blocked: SkippedRow[], coordSources: Map<string, string>, duplicates: DuplicateRecord[], merged: MergedRecord[]) {
   const load = <T,>(file: string, key: string): T[] => { const full = path.join(sourceDir, file); return existsSync(full) ? JSON.parse(readFileSync(full, 'utf8'))[key] : []; };
   const publicItems = load<NationalCandidate>('public-golf.json', 'items');
   const kakaoPlaces = load<ClusteredPlace>('kakao-golf.json', 'places');
@@ -204,6 +221,7 @@ function supplementNational(courses: GolfCourse[], overrides: Map<string, Overri
         const info = meta.get(near.course.id);
         if (info) info.note = [info.note, `인허가 명칭: ${candidate.name}(${near.km.toFixed(1)}km, 동일 골프장 처리)`].filter(Boolean).join(' / ');
         report.push({ plk_code: `공공데이터:${candidate.key}`, name: candidate.name, address: candidate.address, status: 'merged_nearby', note: `${near.course.name}과 같은 골프장으로 처리(${near.km.toFixed(1)}km)` });
+        merged.push({ candidate: { id: `KR-${candidate.key}`, name: candidate.name, address: candidate.address, lat: candidate.lat, lng: candidate.lng, holes: null, phone: candidate.phone, homepage: '', plkPartner: false, status: '협의중' }, keptId: near.course.id, keptName: near.course.name, km: near.km });
         continue;
       }
     }
@@ -235,7 +253,7 @@ main().catch((error: Error) => { console.error(`\n오류: ${error.message}`); pr
 // - 협의중이면 지도에서 빼고 남는 골프장 비고에 다른 명칭을 남긴다(예: 글로렌스CC ↔ 글렌로스골프클럽).
 // - 운영 중인 마스터 골프장이고 옆이 전국 수집 추가분이면, 마스터 쪽이 카카오 정보를 넘겨받고 추가분을 뺀다(예: 클럽디 보은).
 // - 둘 다 운영 중인 마스터 골프장이면 같은 단지의 다른 코스일 수 있어 그대로 둔다(예: 라비에벨 듄스/올드).
-export interface DuplicateRecord { removedId: string; removedName: string; keptId: string; keptName: string; km: number; action: string }
+export interface DuplicateRecord { removedId: string; removedName: string; keptId: string; keptName: string; km: number; action: string; removedCourse: GolfCourse }
 function removeSameSpotDuplicates(courses: GolfCourse[], meta: Map<string, CourseMeta>, report: Record<string, string | number>[], coordSources: Map<string, string>, duplicates: DuplicateRecord[]): number {
   const removed = new Set<string>();
   const note = (id: string, text: string) => { const info = meta.get(id); if (info) info.note = [info.note, text].filter(Boolean).join(' / '); };
@@ -250,14 +268,15 @@ function removeSameSpotDuplicates(courses: GolfCourse[], meta: Map<string, Cours
     if (course.status === '협의중') {
       removed.add(course.id);
       note(other.id, `다른 명칭: ${course.name}`);
-      duplicates.push({ removedId: course.id, removedName: course.name, keptId: other.id, keptName: other.name, km, action: '협의중 중복 제외' });
+      duplicates.push({ removedId: course.id, removedName: course.name, keptId: other.id, keptName: other.name, km, action: '협의중 중복 제외', removedCourse: { ...course } });
     } else if (meta.get(other.id)?.source !== 'PLK 마스터') {
+      const removedCourse = { ...other };
       course.lat = other.lat; course.lng = other.lng; course.kakaoPlaceUrl = other.kakaoPlaceUrl;
       if (!course.phone) course.phone = other.phone;
       coordSources.set(course.id, '카카오 장소');
       removed.add(other.id);
       note(course.id, `다른 명칭: ${other.name}`);
-      duplicates.push({ removedId: other.id, removedName: other.name, keptId: course.id, keptName: course.name, km, action: '마스터 골프장으로 통합' });
+      duplicates.push({ removedId: other.id, removedName: other.name, keptId: course.id, keptName: course.name, km, action: '마스터 골프장으로 통합', removedCourse });
     }
   }
   for (const record of duplicates) report.push({ plk_code: record.removedId, name: record.removedName, address: '', status: 'removed_duplicate', note: `${record.keptName}과 같은 자리(${record.km.toFixed(2)}km) → ${record.action}` });
