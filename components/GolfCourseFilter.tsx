@@ -1,9 +1,10 @@
 import { REGIONS, type Region } from '@/lib/region';
-export type PartnerFilter = 'all' | '제휴' | '이용협약' | '협의중';
+export type PartnerFilter = 'all' | '제휴' | '이용협약' | '일반' | '협의중';
 const KINDS: { value: PartnerFilter; label: string; dot?: string }[] = [
   { value: 'all', label: '전체' },
   { value: '제휴', label: '제휴', dot: 'partner' },
   { value: '이용협약', label: '이용협약', dot: 'agreement' },
+  { value: '일반', label: '일반', dot: 'regular' },
   { value: '협의중', label: '협의중', dot: 'pending' },
 ];
 export default function GolfCourseFilter({ kind, onKind, counts, region, onRegion }: { kind: PartnerFilter; onKind: (value: PartnerFilter) => void; counts: Record<PartnerFilter, number> | null; region: Region | 'all'; onRegion: (value: Region | 'all') => void }) {

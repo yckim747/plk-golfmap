@@ -1,6 +1,6 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Map as MapIcon, LoaderCircle, Plus, Minus, Maximize2 } from 'lucide-react';
+import { Map as MapIcon, LoaderCircle, LocateFixed, Plus, Minus, Maximize2 } from 'lucide-react';
 import type { GolfCourse } from '@/lib/types';
 import { markerImageUrl, markerKind } from './GolfCourseMarker';
 let sdkPromise: Promise<void> | null = null;
@@ -131,9 +131,41 @@ export default function KakaoMap({ courses, selected, onSelect }: { courses: Gol
     map.current.panTo(position);
   }, [selected, status]);
   const zoom = (delta: number) => map.current?.setLevel(map.current.getLevel() + delta, { animate: true });
+  // 내 위치: 파란 점 + 정확도 범위 원을 그리고 그 위치로 이동한다. HTTPS(또는 localhost)에서만 동작한다.
+  const [locating, setLocating] = useState(false);
+  const [notice, setNotice] = useState('');
+  const me = useRef<{ overlay: kakao.maps.CustomOverlay; circle: kakao.maps.Circle } | null>(null);
+  useEffect(() => { if (!notice) return; const timer = setTimeout(() => setNotice(''), 3500); return () => clearTimeout(timer); }, [notice]);
+  useEffect(() => () => { me.current?.overlay.setMap(null); me.current?.circle.setMap(null); }, [attempt]);
+  const locate = () => {
+    if (!map.current || locating) return;
+    if (!('geolocation' in navigator)) { setNotice('이 기기에서는 위치 확인을 지원하지 않아요.'); return; }
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      setLocating(false);
+      if (!map.current) return;
+      const position = new kakao.maps.LatLng(coords.latitude, coords.longitude);
+      me.current?.overlay.setMap(null); me.current?.circle.setMap(null);
+      const content = document.createElement('div');
+      content.className = 'my-location';
+      content.title = '내 위치';
+      const overlay = new kakao.maps.CustomOverlay({ position, content, zIndex: 6 });
+      const circle = new kakao.maps.Circle({ center: position, radius: Math.min(coords.accuracy, 3000), strokeWeight: 1, strokeColor: '#2f7cf6', strokeOpacity: 0.45, fillColor: '#2f7cf6', fillOpacity: 0.1 });
+      overlay.setMap(map.current); circle.setMap(map.current);
+      me.current = { overlay, circle };
+      map.current.setLevel(coords.accuracy > 2000 ? 9 : 8);
+      map.current.panTo(position);
+      const inKorea = coords.latitude >= 33 && coords.latitude <= 39 && coords.longitude >= 124 && coords.longitude <= 132;
+      if (!inKorea) setNotice('현재 위치가 대한민국 밖이라 주변 골프장이 없어요.');
+    }, (error) => {
+      setLocating(false);
+      setNotice(error.code === error.PERMISSION_DENIED ? '위치 권한이 꺼져 있어요. 브라우저 설정에서 위치 접근을 허용해 주세요.' : '현재 위치를 찾지 못했어요. 잠시 후 다시 시도해 주세요.');
+    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+  };
   return <div className="map-stage">
     <div ref={container} className="kakao-canvas" aria-label="대한민국 골프장 지도"/>
-    {status === 'ready' && <div className="map-controls"><div className="control-group"><button onClick={() => zoom(-1)} aria-label="확대"><Plus size={18}/></button><button onClick={() => zoom(1)} aria-label="축소"><Minus size={18}/></button></div><div className="control-group"><button onClick={fitAll} aria-label="전체 골프장 보기" title="전체 보기"><Maximize2 size={16}/></button></div></div>}
+    {status === 'ready' && <div className="map-controls"><div className="control-group"><button onClick={() => zoom(-1)} aria-label="확대"><Plus size={18}/></button><button onClick={() => zoom(1)} aria-label="축소"><Minus size={18}/></button></div><div className="control-group"><button onClick={fitAll} aria-label="전체 골프장 보기" title="전체 보기"><Maximize2 size={16}/></button></div><div className="control-group"><button className={locating ? "locating" : ""} onClick={locate} aria-label="내 위치 보기" title="내 위치">{locating ? <LoaderCircle className="spin" size={18}/> : <LocateFixed size={18}/>}</button></div></div>}
+    {notice && <div className="map-notice" role="status">{notice}</div>}
     {status !== 'ready' && <div className="map-placeholder"><div className="map-message">{status === 'loading' ? <LoaderCircle className="spin" size={28}/> : <MapIcon size={28}/>}<h2>{status === 'missing' ? '지도를 연결할 준비가 되었어요' : status === 'loading' ? '지도를 불러오는 중' : '지도 연결을 확인해 주세요'}</h2><p>{status === 'missing' ? '.env.local에 Kakao JavaScript 키를 넣으면 실제 지도가 표시됩니다. 목록에서 검색과 상세 화면은 바로 이용할 수 있어요.' : status === 'error' ? error : '잠시만 기다려 주세요.'}</p>{status === 'error' && <button className="primary-button" onClick={() => setAttempt((value) => value + 1)}>다시 연결하기</button>}</div></div>}
     <div className="map-legend" aria-hidden="true"><span><i className="dot partner"/>제휴</span><span><i className="dot agreement"/>이용협약</span><span><i className="dot regular"/>일반</span><span><i className="dot pending"/>협의중</span></div>
   </div>;

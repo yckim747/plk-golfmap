@@ -166,7 +166,7 @@ a{text-decoration:none}
 @media (min-width:900px){
   .topbar{padding:0 20px 0 14px}
   .stat-pill{display:inline-flex}
-  .workspace{display:grid;grid-template-columns:400px minmax(0,1fr)}
+  .workspace{display:grid;grid-template-columns:424px minmax(0,1fr)}
   .workspace[data-view] .panel{border-right:1px solid var(--line)}
   .workspace[data-view] .list-scroll{display:block;padding-bottom:16px}
   .workspace[data-view] .map-stage{display:block}
@@ -227,3 +227,16 @@ a{text-decoration:none}
 .home-footer small{display:block;margin-top:10px;font-size:11px;letter-spacing:.12em}
 @media (max-width:360px){.header-label{display:none}.home-intro h1{font-size:28px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* 내 위치 */
+.my-location{position:relative;width:18px;height:18px;border-radius:50%;background:#2f7cf6;border:3px solid #fff;box-shadow:0 1px 4px rgba(11,18,32,.35)}
+.my-location::after{content:'';position:absolute;inset:-9px;border-radius:50%;background:rgba(47,124,246,.28);animation:my-pulse 1.8s ease-out infinite}
+@keyframes my-pulse{from{transform:scale(.4);opacity:1}to{transform:scale(1.3);opacity:0}}
+.control-group button.locating{color:#2f7cf6}
+.map-notice{position:absolute;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));z-index:7;transform:translateX(-50%);max-width:calc(100% - 32px);padding:10px 14px;border-radius:12px;background:rgba(11,18,32,.88);color:#fff;font-size:13px;line-height:1.5;text-align:center;box-shadow:var(--shadow-lg)}
+@media (min-width:900px){.map-notice{bottom:64px}}
+/* 제휴 구분 5개: 좁은 화면에서는 옆으로 밀어서 보기 */
+.segmented{overflow-x:auto;scrollbar-width:none}
+.segmented::-webkit-scrollbar{display:none}
+.segmented button{flex:1 0 auto}
+.segmented button{padding:0 5px;gap:4px}
+@media (max-width:899px){.segmented{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}}

@@ -37,8 +37,10 @@ export default function GolfMapApp() {
     const keyword = query.trim().toLowerCase();
     return courses.filter((course) => (region === 'all' || regionOf(course.address) === region) && `${course.name} ${course.address}`.toLowerCase().includes(keyword));
   }, [courses, query, region]);
-  const matchesKind = (course: GolfCourse, value: PartnerFilter) => value === 'all' || (value === '협의중' ? course.status === '협의중' : course.partnerType === value);
-  const counts = useMemo(() => ({ all: base.length, 제휴: base.filter((course) => matchesKind(course, '제휴')).length, 이용협약: base.filter((course) => matchesKind(course, '이용협약')).length, 협의중: base.filter((course) => matchesKind(course, '협의중')).length }), [base]);
+  // 필터 값 → 지도 핀 종류(markerKind)와 같은 기준으로 판정한다.
+  const KIND_OF = { 제휴: 'partner', 이용협약: 'agreement', 일반: 'regular', 협의중: 'pending' } as const;
+  const matchesKind = (course: GolfCourse, value: PartnerFilter) => value === 'all' || markerKind(course) === KIND_OF[value];
+  const counts = useMemo(() => Object.fromEntries((['all', '제휴', '이용협약', '일반', '협의중'] as const).map((value) => [value, base.filter((course) => matchesKind(course, value)).length])) as Record<PartnerFilter, number>, [base]);
   // 목록은 운영 중인 골프장을 먼저, 협의중은 뒤에 둔다.
   const filtered = useMemo(() => base.filter((course) => matchesKind(course, kind)).sort((a, b) => Number(a.status === '협의중') - Number(b.status === '협의중')), [base, kind]);
   const partners = useMemo(() => courses.filter((course) => course.plkPartner).length, [courses]);
