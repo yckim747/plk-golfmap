@@ -29,7 +29,7 @@ const MARKER_Z = { partner: 3, agreement: 3, regular: 2, pending: 1 } as const;
 // "YJC골프클럽(구,여주cc)" → "YJC골프클럽": 지도 위에서는 괄호 설명을 뺀 짧은 이름을 쓴다.
 const shortName = (name: string) => name.replace(/\s*[(（][^)）]*[)）]\s*/g, ' ').trim() || name;
 const labelWidth = (text: string) => [...text].reduce((width, char) => width + (/[가-힣]/.test(char) ? 12 : 7), 14);
-export default function KakaoMap({ courses, selected, onSelect, myLocation, locating, onLocate }: { courses: GolfCourse[]; selected: GolfCourse | null; onSelect: (course: GolfCourse) => void; myLocation: MyLocation | null; locating: boolean; onLocate: () => void }) {
+export default function KakaoMap({ courses, selected, onSelect, myLocation, locating, onLocate, onInteract }: { courses: GolfCourse[]; selected: GolfCourse | null; onSelect: (course: GolfCourse) => void; myLocation: MyLocation | null; locating: boolean; onLocate: () => void; onInteract?: () => void }) {
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<kakao.maps.Map | null>(null);
   const clusterer = useRef<kakao.maps.MarkerClusterer | null>(null);
@@ -148,7 +148,8 @@ export default function KakaoMap({ courses, selected, onSelect, myLocation, loca
     map.current.panTo(position);
     return () => { overlay.setMap(null); circle.setMap(null); };
   }, [myLocation, status]);
-  return <div className="map-stage">
+  // 지도를 터치하면(캡처 단계라 카카오 지도보다 먼저) 상위에 알려 검색 키보드를 내린다. 지도 조작은 그대로 이어진다.
+  return <div className="map-stage" onPointerDownCapture={onInteract}>
     <div ref={container} className="kakao-canvas" aria-label="대한민국 골프장 지도"/>
     {status === 'ready' && <div className="map-controls"><div className="control-group"><button onClick={() => zoom(-1)} aria-label="확대"><Plus size={18}/></button><button onClick={() => zoom(1)} aria-label="축소"><Minus size={18}/></button></div><div className="control-group"><button onClick={fitAll} aria-label="전체 골프장 보기" title="전체 보기"><Maximize2 size={16}/></button></div><div className="control-group"><button className={locating ? "locating" : ""} onClick={onLocate} aria-label="내 위치 보기" title="내 위치">{locating ? <LoaderCircle className="spin" size={18}/> : <LocateFixed size={18}/>}</button></div></div>}
     {status !== 'ready' && <div className="map-placeholder"><div className="map-message">{status === 'loading' ? <LoaderCircle className="spin" size={28}/> : <MapIcon size={28}/>}<h2>{status === 'missing' ? '지도를 연결할 준비가 되었어요' : status === 'loading' ? '지도를 불러오는 중' : '지도 연결을 확인해 주세요'}</h2><p>{status === 'missing' ? '.env.local에 Kakao JavaScript 키를 넣으면 실제 지도가 표시됩니다. 목록에서 검색과 상세 화면은 바로 이용할 수 있어요.' : status === 'error' ? error : '잠시만 기다려 주세요.'}</p>{status === 'error' && <button className="primary-button" onClick={() => setAttempt((value) => value + 1)}>다시 연결하기</button>}</div></div>}

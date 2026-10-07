@@ -25,6 +25,8 @@ export default function GolfMapApp() {
   const [notice, setNotice] = useState('');
   const [sort, setSort] = useState<'default' | 'distance'>('default');
   const searchInput = useRef<HTMLInputElement>(null);
+  // 모바일: 검색 중 지도·목록을 터치하면 키보드를 내린다.
+  const dismissKeyboard = useCallback(() => { if (document.activeElement === searchInput.current) searchInput.current?.blur(); }, []);
   useEffect(() => {
     const controller = new AbortController();
     setLoading(true); setError('');
@@ -85,7 +87,7 @@ export default function GolfMapApp() {
           <GolfCourseSearch value={query} onChange={setQuery} inputRef={searchInput}/>
           <GolfCourseFilter kind={kind} onKind={setKind} counts={loading ? null : counts} region={region} onRegion={setRegion}/>
         </div>
-        <section className="list-scroll" aria-label="골프장 목록" aria-busy={loading}>
+        <section className="list-scroll" aria-label="골프장 목록" aria-busy={loading} onPointerDownCapture={dismissKeyboard}>
           {!loading && !error && <div className="list-meta"><span><span><strong>{filtered.length}</strong>개 골프장</span>{(query || kind !== 'all' || region !== 'all') && <button onClick={reset}>필터 초기화</button>}</span><span className="sort-toggle" role="group" aria-label="정렬"><button aria-pressed={sort === 'default'} className={sort === 'default' ? 'active' : ''} onClick={() => setSort('default')}>기본순</button><button aria-pressed={sort === 'distance'} className={sort === 'distance' ? 'active' : ''} onClick={sortByDistance}>{locating ? <LoaderCircle className="spin" size={13}/> : <LocateFixed size={13}/>}가까운 순</button></span></div>}
           {loading ? <div role="status" aria-label="골프장을 불러오는 중">{Array.from({ length: 7 }, (_, index) => <div key={index} className="skeleton-row"><i/><div><b/><b/></div></div>)}</div>
             : error ? <div className="list-status" role="alert"><p>{error}</p><button onClick={() => setAttempt((value) => value + 1)}><RefreshCw size={15}/>다시 시도</button></div>
@@ -98,7 +100,7 @@ export default function GolfMapApp() {
           {!loading && !error && <p className="list-footnote">정보 출처: PLK · 카카오맵</p>}
         </section>
       </aside>
-      <KakaoMap courses={filtered} selected={selected} onSelect={select} myLocation={myLocation} locating={locating} onLocate={locate}/>
+      <KakaoMap courses={filtered} selected={selected} onSelect={select} myLocation={myLocation} locating={locating} onLocate={locate} onInteract={dismissKeyboard}/>
       {notice && <div className="map-notice" role="status">{notice}</div>}
       <button className="view-toggle" onClick={() => setView(view === 'map' ? 'list' : 'map')}>{view === 'map' ? <><List size={16}/>목록 보기 <span>{filtered.length}</span></> : <><MapIcon size={16}/>지도 보기</>}</button>
     </div>
