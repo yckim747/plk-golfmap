@@ -7,6 +7,7 @@ import { mergeCourse, normalizeHomepage, validateCourses } from '../scripts/lib/
 import type { GolfCourse } from '../lib/types';
 import { clusterPlaces, findExisting, isNationalCourse, nameVariants, tmToWgs84, toMasterRow } from '../scripts/lib/national';
 import { cleanAddress, cleanLotAddress } from '../scripts/lib/address';
+import { describeParsed, parseSearchQuery } from '../lib/searchQuery';
 
 const HEADER = 'plk_code,name,address,phone,homepage,holes,partner,partner_note';
 
@@ -274,4 +275,16 @@ test('national: public licensing names and addresses are normalized for matching
   assert.equal(cleanLotAddress('경상북도 칠곡군 북삼읍 보손리 34번지 2호'), '경상북도 칠곡군 북삼읍 보손리 34-2');
   assert.equal(cleanLotAddress('충청남도 예산군 삽교읍 목리 1420번지 0호'), '충청남도 예산군 삽교읍 목리 1420');
   assert.equal(cleanLotAddress('강원특별자치도 원주시 지정면 월송리 산 171'), '강원특별자치도 원주시 지정면 월송리 산 171');
+});
+
+// ── 검색 문장 해석(음성·직접 입력) ──────────────────────────────
+test('search query: region, partner type, nearby and filler words are understood', () => {
+  assert.deepEqual(parseSearchQuery('강원도 제휴 골프장 찾아줘'), { keywords: [], region: '강원', kind: '제휴', nearby: false });
+  assert.deepEqual(parseSearchQuery('가까운 골프장 보여줘'), { keywords: [], region: null, kind: null, nearby: true });
+  assert.deepEqual(parseSearchQuery('내 주변 이용협약 골프장'), { keywords: [], region: null, kind: '이용협약', nearby: true });
+  assert.deepEqual(parseSearchQuery('용인에 있는 골프장'), { keywords: ['용인'], region: null, kind: null, nearby: false });
+  assert.deepEqual(parseSearchQuery('제주도의 협의중 골프장'), { keywords: [], region: '제주', kind: '협의중', nearby: false });
+  assert.deepEqual(parseSearchQuery('남서울'), { keywords: ['남서울'], region: null, kind: null, nearby: false });
+  assert.deepEqual(parseSearchQuery('경상남도 레이크힐스'), { keywords: ['레이크힐스'], region: '경상', kind: null, nearby: false });
+  assert.equal(describeParsed(parseSearchQuery('충청 제휴 골프장 근처')), '충청 · 제휴 · 가까운 순');
 });

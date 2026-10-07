@@ -8,6 +8,8 @@ import GolfCourseFilter, { type PartnerFilter } from './GolfCourseFilter';
 import GolfCourseSheet from './GolfCourseSheet';
 import { markerKind } from './GolfCourseMarker';
 import { regionOf, type Region } from '@/lib/region';
+import { describeParsed, parseSearchQuery } from '@/lib/searchQuery';
+import { useSpeechSearch } from './useSpeechSearch';
 import type { GolfCourse } from '@/lib/types';
 import { distanceKm, formatDistance, isInKorea, type MyLocation } from '@/lib/geo';
 export default function GolfMapApp() {
@@ -39,17 +41,25 @@ export default function GolfMapApp() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
-  // 검색어·권역을 먼저 적용하고, 제휴 구분 버튼의 숫자는 그 결과 기준으로 보여준다.
+  // 검색 문장 해석: "강원도 제휴 골프장" → 권역·구분 조건 + 남은 검색어. 입력 중에도 바로 결과에 반영한다.
+  const parsed = useMemo(() => parseSearchQuery(query), [query]);
+  const effectiveRegion = region !== 'all' ? region : parsed.region ?? 'all';
+  const effectiveKind: PartnerFilter = kind !== 'all' ? kind : parsed.kind ?? 'all';
+  // 검색어·권역을 먼저 적용하고, 제휴 구분 버튼의 숫자는 그 결과 기준으로 보여준다. 검색어는 단어마다 이름·주소에 있어야 한다.
   const base = useMemo(() => {
-    const keyword = query.trim().toLowerCase();
-    return courses.filter((course) => (region === 'all' || regionOf(course.address) === region) && `${course.name} ${course.address}`.toLowerCase().includes(keyword));
-  }, [courses, query, region]);
+    const keywords = parsed.keywords.map((keyword) => keyword.replace(/\s+/g, ''));
+    return courses.filter((course) => {
+      if (effectiveRegion !== 'all' && regionOf(course.address) !== effectiveRegion) return false;
+      const text = `${course.name}${course.address}`.toLowerCase().replace(/\s+/g, '');
+      return keywords.every((keyword) => text.includes(keyword));
+    });
+  }, [courses, parsed, effectiveRegion]);
   // 필터 값 → 지도 핀 종류(markerKind)와 같은 기준으로 판정한다.
   const KIND_OF = { 제휴: 'partner', 이용협약: 'agreement', 일반: 'regular', 협의중: 'pending' } as const;
   const matchesKind = (course: GolfCourse, value: PartnerFilter) => value === 'all' || markerKind(course) === KIND_OF[value];
   const counts = useMemo(() => Object.fromEntries((['all', '제휴', '이용협약', '일반', '협의중'] as const).map((value) => [value, base.filter((course) => matchesKind(course, value)).length])) as Record<PartnerFilter, number>, [base]);
   // 지도에는 정렬과 무관한 필터 결과를 넘긴다(정렬을 바꿔도 지도가 다시 맞춰지지 않게).
-  const filtered = useMemo(() => base.filter((course) => matchesKind(course, kind)), [base, kind]);
+  const filtered = useMemo(() => base.filter((course) => matchesKind(course, effectiveKind)), [base, effectiveKind]);
   // 내 위치를 알면 각 골프장까지의 거리를 계산한다.
   const distances = useMemo(() => myLocation ? new Map(courses.map((course) => [course.id, distanceKm(myLocation, course)])) : null, [courses, myLocation]);
   // 목록: 가까운 순(내 위치 기준) 또는 기본순(운영 중 → 협의중)
@@ -74,6 +84,17 @@ export default function GolfMapApp() {
     }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
   }, [locating]);
   const sortByDistance = () => { if (myLocation) setSort('distance'); else locate(); };
+  // 검색 확정(검색 키·음성 인식 완료): 해석한 권역·구분을 필터 버튼으로 옮기고, "가까운"이면 가까운 순으로 바꾼다.
+  const applySearch = (text: string) => {
+    const result = parseSearchQuery(text);
+    if (result.region) setRegion(result.region);
+    if (result.kind) setKind(result.kind);
+    setQuery(result.keywords.join(' '));
+    if (result.nearby) sortByDistance();
+    const summary = describeParsed(result);
+    if (result.region || result.kind || result.nearby) setNotice(`${summary} 조건으로 찾았어요.`);
+  };
+  const voice = useSpeechSearch({ onInterim: setQuery, onFinal: applySearch, onError: setNotice });
   const partners = useMemo(() => courses.filter((course) => course.plkPartner).length, [courses]);
   const select = useCallback((course: GolfCourse) => setSelected(course), []);
   const close = useCallback(() => setSelected(null), []);
@@ -84,8 +105,8 @@ export default function GolfMapApp() {
       <aside className="panel">
         <div className="panel-top">
           <div className="panel-title"><h1>전국 골프장 지도</h1><p>PLK 제휴·이용협약 골프장을 한눈에 찾아보세요.</p></div>
-          <GolfCourseSearch value={query} onChange={setQuery} inputRef={searchInput}/>
-          <GolfCourseFilter kind={kind} onKind={setKind} counts={loading ? null : counts} region={region} onRegion={setRegion}/>
+          <GolfCourseSearch value={query} onChange={setQuery} onSubmit={applySearch} inputRef={searchInput} voice={voice}/>
+          <GolfCourseFilter kind={effectiveKind} onKind={setKind} counts={loading ? null : counts} region={effectiveRegion} onRegion={setRegion}/>
         </div>
         <section className="list-scroll" aria-label="골프장 목록" aria-busy={loading} onPointerDownCapture={dismissKeyboard}>
           {!loading && !error && <div className="list-meta"><span><span><strong>{filtered.length}</strong>개 골프장</span>{(query || kind !== 'all' || region !== 'all') && <button onClick={reset}>필터 초기화</button>}</span><span className="sort-toggle" role="group" aria-label="정렬"><button aria-pressed={sort === 'default'} className={sort === 'default' ? 'active' : ''} onClick={() => setSort('default')}>기본순</button><button aria-pressed={sort === 'distance'} className={sort === 'distance' ? 'active' : ''} onClick={sortByDistance}>{locating ? <LoaderCircle className="spin" size={13}/> : <LocateFixed size={13}/>}가까운 순</button></span></div>}
