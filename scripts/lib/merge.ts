@@ -44,9 +44,10 @@ export function mergeCourse(row: PlkCourseRow, override: OverrideRow | undefined
     holes: row.holes,
     phone: row.phone || place?.phone || '',
     homepage,
-    plkPartner: row.partnerType !== null,
+    plkPartner: row.partnerType !== null && !row.status,
   };
-  if (row.partnerType) course.partnerType = row.partnerType;
+  if (row.partnerType && !row.status) course.partnerType = row.partnerType;
+  if (row.status) course.status = row.status;
   if (row.partnerNote) course.partnerNote = row.partnerNote;
   if (place?.place_url) course.kakaoPlaceUrl = place.place_url.replace(/^http:/, 'https:');
   return { course, status, place, note: notes.join(' / ') };

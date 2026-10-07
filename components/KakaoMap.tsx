@@ -23,7 +23,8 @@ const CLUSTER_MIN_LEVEL = 10;
 // 이름표: 클러스터가 풀리는 수준(레벨 9 이하)부터 표시
 const LABEL_MAX_LEVEL = CLUSTER_MIN_LEVEL - 1;
 const LABEL_MAX_WIDTH = 150;
-const LABEL_PRIORITY = { partner: 0, agreement: 1, regular: 2 } as const;
+const LABEL_PRIORITY = { partner: 0, agreement: 1, regular: 2, pending: 3 } as const;
+const MARKER_Z = { partner: 3, agreement: 3, regular: 2, pending: 1 } as const;
 // "YJC골프클럽(구,여주cc)" → "YJC골프클럽": 지도 위에서는 괄호 설명을 뺀 짧은 이름을 쓴다.
 const shortName = (name: string) => name.replace(/\s*[(（][^)）]*[)）]\s*/g, ' ').trim() || name;
 const labelWidth = (text: string) => [...text].reduce((width, char) => width + (/[가-힣]/.test(char) ? 12 : 7), 14);
@@ -64,7 +65,7 @@ export default function KakaoMap({ courses, selected, onSelect }: { courses: Gol
     const listeners: { marker: kakao.maps.Marker; click: () => void }[] = [];
     const markers = courses.map((course) => {
       const kind = markerKind(course);
-      const marker = new kakao.maps.Marker({ position: new kakao.maps.LatLng(course.lat, course.lng), title: course.name, zIndex: kind === 'regular' ? 1 : 2, image: new kakao.maps.MarkerImage(markerImageUrl(kind), new kakao.maps.Size(36, 44), { offset: new kakao.maps.Point(18, 42) }) });
+      const marker = new kakao.maps.Marker({ position: new kakao.maps.LatLng(course.lat, course.lng), title: course.name, zIndex: MARKER_Z[kind], image: new kakao.maps.MarkerImage(markerImageUrl(kind), new kakao.maps.Size(36, 44), { offset: new kakao.maps.Point(18, 42) }) });
       const click = () => onSelect(course);
       kakao.maps.event.addListener(marker, 'click', click);
       listeners.push({ marker, click });
@@ -75,7 +76,7 @@ export default function KakaoMap({ courses, selected, onSelect }: { courses: Gol
     return () => { listeners.forEach(({ marker, click }) => kakao.maps.event.removeListener(marker, 'click', click)); clusterer.current?.clear(); };
   }, [courses, onSelect, status, fitAll]);
   // 클러스터가 풀린 확대 수준에서는 핀 아래에 골프장 이름을 표시한다.
-  // 이름표끼리 겹치면 제휴 → 이용협약 → 일반 순으로 우선 표시하고 나머지는 숨긴다(더 확대하면 나타남).
+  // 이름표끼리 겹치면 제휴 → 이용협약 → 일반 → 협의중 순으로 우선 표시하고 나머지는 숨긴다(더 확대하면 나타남).
   useEffect(() => {
     if (status !== 'ready' || !map.current) return;
     const current = map.current;
@@ -134,6 +135,6 @@ export default function KakaoMap({ courses, selected, onSelect }: { courses: Gol
     <div ref={container} className="kakao-canvas" aria-label="대한민국 골프장 지도"/>
     {status === 'ready' && <div className="map-controls"><div className="control-group"><button onClick={() => zoom(-1)} aria-label="확대"><Plus size={18}/></button><button onClick={() => zoom(1)} aria-label="축소"><Minus size={18}/></button></div><div className="control-group"><button onClick={fitAll} aria-label="전체 골프장 보기" title="전체 보기"><Maximize2 size={16}/></button></div></div>}
     {status !== 'ready' && <div className="map-placeholder"><div className="map-message">{status === 'loading' ? <LoaderCircle className="spin" size={28}/> : <MapIcon size={28}/>}<h2>{status === 'missing' ? '지도를 연결할 준비가 되었어요' : status === 'loading' ? '지도를 불러오는 중' : '지도 연결을 확인해 주세요'}</h2><p>{status === 'missing' ? '.env.local에 Kakao JavaScript 키를 넣으면 실제 지도가 표시됩니다. 목록에서 검색과 상세 화면은 바로 이용할 수 있어요.' : status === 'error' ? error : '잠시만 기다려 주세요.'}</p>{status === 'error' && <button className="primary-button" onClick={() => setAttempt((value) => value + 1)}>다시 연결하기</button>}</div></div>}
-    <div className="map-legend" aria-hidden="true"><span><i className="dot partner"/>제휴</span><span><i className="dot agreement"/>이용협약</span><span><i className="dot regular"/>일반</span></div>
+    <div className="map-legend" aria-hidden="true"><span><i className="dot partner"/>제휴</span><span><i className="dot agreement"/>이용협약</span><span><i className="dot regular"/>일반</span><span><i className="dot pending"/>협의중</span></div>
   </div>;
 }

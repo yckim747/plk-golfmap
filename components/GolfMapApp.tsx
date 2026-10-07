@@ -37,8 +37,10 @@ export default function GolfMapApp() {
     const keyword = query.trim().toLowerCase();
     return courses.filter((course) => (region === 'all' || regionOf(course.address) === region) && `${course.name} ${course.address}`.toLowerCase().includes(keyword));
   }, [courses, query, region]);
-  const counts = useMemo(() => ({ all: base.length, 제휴: base.filter((course) => course.partnerType === '제휴').length, 이용협약: base.filter((course) => course.partnerType === '이용협약').length }), [base]);
-  const filtered = useMemo(() => kind === 'all' ? base : base.filter((course) => course.partnerType === kind), [base, kind]);
+  const matchesKind = (course: GolfCourse, value: PartnerFilter) => value === 'all' || (value === '협의중' ? course.status === '협의중' : course.partnerType === value);
+  const counts = useMemo(() => ({ all: base.length, 제휴: base.filter((course) => matchesKind(course, '제휴')).length, 이용협약: base.filter((course) => matchesKind(course, '이용협약')).length, 협의중: base.filter((course) => matchesKind(course, '협의중')).length }), [base]);
+  // 목록은 운영 중인 골프장을 먼저, 협의중은 뒤에 둔다.
+  const filtered = useMemo(() => base.filter((course) => matchesKind(course, kind)).sort((a, b) => Number(a.status === '협의중') - Number(b.status === '협의중')), [base, kind]);
   const partners = useMemo(() => courses.filter((course) => course.plkPartner).length, [courses]);
   const select = useCallback((course: GolfCourse) => setSelected(course), []);
   const close = useCallback(() => setSelected(null), []);
@@ -57,10 +59,10 @@ export default function GolfMapApp() {
           {loading ? <div role="status" aria-label="골프장을 불러오는 중">{Array.from({ length: 7 }, (_, index) => <div key={index} className="skeleton-row"><i/><div><b/><b/></div></div>)}</div>
             : error ? <div className="list-status" role="alert"><p>{error}</p><button onClick={() => setAttempt((value) => value + 1)}><RefreshCw size={15}/>다시 시도</button></div>
             : filtered.length === 0 ? <div className="list-status"><SearchX size={28}/><p>조건에 맞는 골프장이 없어요.</p><button onClick={reset}>필터 초기화</button></div>
-            : filtered.map((course) => { const type = markerKind(course); return <button key={course.id} className={`course-card${selected?.id === course.id ? ' selected' : ''}`} onClick={() => select(course)}>
-                <span className={`course-icon ${type}`}>{type === 'regular' ? <Flag size={17}/> : 'P'}</span>
+            : filtered.map((course) => { const type = markerKind(course); return <button key={course.id} className={`course-card ${type}${selected?.id === course.id ? ' selected' : ''}`} onClick={() => select(course)}>
+                <span className={`course-icon ${type}`}>{type === 'regular' || type === 'pending' ? <Flag size={17}/> : 'P'}</span>
                 <span className="course-summary"><strong>{course.name}</strong><small>{regionOf(course.address)} · {course.address}</small></span>
-                {course.partnerType ? <span className={`tag ${type}`}>{course.partnerType}</span> : <ChevronRight size={16} className="chevron"/>}
+                {course.status || course.partnerType ? <span className={`tag ${type}`}>{course.status ?? course.partnerType}</span> : <ChevronRight size={16} className="chevron"/>}
               </button>; })}
           {!loading && !error && <p className="list-footnote">정보 출처: PLK · 카카오맵</p>}
         </section>

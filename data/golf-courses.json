@@ -200,6 +200,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/25047985"
   },
   {
+    "id": "X-362907",
+    "name": "고양컨트리클럽",
+    "address": "경기도 고양시 덕양구 도내동 홍도로 304 23 고양컨트리클",
+    "lat": 37.65423,
+    "lng": 126.86031,
+    "holes": null,
+    "phone": "031-960-7700",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/13100652"
+  },
+  {
     "id": "F-102",
     "name": "고창CC",
     "address": "전라북도 고창군 심원면 애향갯벌로 70",
@@ -211,6 +224,32 @@
     "plkPartner": true,
     "partnerType": "제휴",
     "kakaoPlaceUrl": "https://place.map.kakao.com/10166107"
+  },
+  {
+    "id": "X-d46e86",
+    "name": "곤지암cc",
+    "address": "경기도 광주시 도척면 도척윗로 280",
+    "lat": 37.35894,
+    "lng": 127.29418,
+    "holes": null,
+    "phone": "031-760-3555",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25046691"
+  },
+  {
+    "id": "X-d90bc6",
+    "name": "골드그린컨트리클럽",
+    "address": "울산 울주군 삼남읍 방기가천로 179",
+    "lat": 35.5045111,
+    "lng": 129.0729777,
+    "holes": null,
+    "phone": "055-372-0050",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/854685861"
   },
   {
     "id": "F-208",
@@ -520,6 +559,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1442088829"
   },
   {
+    "id": "A-116",
+    "name": "골프클럽Q",
+    "address": "경기 안성시 죽산면 장계길 20-229",
+    "lat": 37.04712,
+    "lng": 127.38953,
+    "holes": null,
+    "phone": "031-8046-7000",
+    "homepage": "http://www.golfclubq.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/737864917"
+  },
+  {
     "id": "KJ-CC",
     "name": "광주컨트리클럽",
     "address": "전라남도 곡성군 옥과면 입면로 455",
@@ -597,6 +649,31 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/8670798"
   },
   {
+    "id": "X-378b0f",
+    "name": "그린필드골프클럽",
+    "address": "제주특별자치도 제주시 조천읍 번영로 1040-70",
+    "lat": 33.67894,
+    "lng": 126.63824,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
+    "id": "A-121",
+    "name": "그린힐컨트리클럽",
+    "address": "경기도 광주시 곤지암읍 내선길 176",
+    "lat": 37.3511444,
+    "lng": 127.4324555,
+    "holes": null,
+    "phone": "031-799-8500",
+    "homepage": "https://www.shinangolf.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/8205133"
+  },
+  {
     "id": "X-7b3c8f",
     "name": "글렌로스골프클럽",
     "address": "경기도 용인시 처인구 포곡읍 에버랜드로 562번길 69",
@@ -609,6 +686,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/10231165"
   },
   {
+    "id": "X-78d7b4",
+    "name": "글로렌스CC",
+    "address": "경기 용인시 처인구 포곡읍 에버랜드로562번길 69",
+    "lat": 37.29459,
+    "lng": 127.18577,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "X-28468a",
     "name": "금강컨트리클럽",
     "address": "경기도 여주시 가남읍 여주남로 541",
@@ -619,6 +708,18 @@
     "homepage": "https://www.kccgolf.co.kr/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/12457489"
+  },
+  {
+    "id": "X-85bf13",
+    "name": "금실대덕밸리",
+    "address": "대전유성구용산동676번",
+    "lat": 36.41941,
+    "lng": 127.40152,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "X-f59e60",
@@ -655,6 +756,19 @@
     "homepage": "http://www.spahillscc.co.kr/",
     "plkPartner": true,
     "partnerType": "제휴"
+  },
+  {
+    "id": "X-c86b57",
+    "name": "김천 애플밸리 컨트리클럽",
+    "address": "경상북도 김천시 어모면 작점로 606",
+    "lat": 36.22662,
+    "lng": 128.05915,
+    "holes": null,
+    "phone": "054-429-0700",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25810122"
   },
   {
     "id": "X-c90c2f",
@@ -694,6 +808,31 @@
     "plkPartner": true,
     "partnerType": "제휴",
     "kakaoPlaceUrl": "https://place.map.kakao.com/24963899"
+  },
+  {
+    "id": "X-52c49e",
+    "name": "남부컨트리클럽",
+    "address": "경기 용인시 기흥구 사은로 163",
+    "lat": 37.26398,
+    "lng": 127.12591,
+    "holes": null,
+    "phone": "",
+    "homepage": "http://www.namboocc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
+    "id": "N-CC-8b8815",
+    "name": "남서울컨트리클럽",
+    "address": "경기 성남시 분당구 판교백현로 161",
+    "lat": 37.3791833,
+    "lng": 127.0851333,
+    "holes": null,
+    "phone": "031-709-6000",
+    "homepage": "http://www.nscc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25045488"
   },
   {
     "id": "D-105-986ae8",
@@ -896,6 +1035,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/10261081"
   },
   {
+    "id": "X-303701",
+    "name": "대명비발디CC",
+    "address": "강원 홍천군 서면 한치골길 200",
+    "lat": 37.64113,
+    "lng": 127.67533,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "X-0b2266",
     "name": "대영베이스컨트리클럽",
     "address": "충북 충주시 대소원면 성종두담길 113",
@@ -993,6 +1144,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1222542813"
   },
   {
+    "id": "X-a70dec",
+    "name": "더클래식 컨트리클럽",
+    "address": "제주특별자치도 서귀포시 남원읍 남조로 1105",
+    "lat": 33.3718093,
+    "lng": 126.6800475,
+    "holes": null,
+    "phone": "064-766-7100",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/14534279"
+  },
+  {
     "id": "A-204",
     "name": "더헤븐컨트리클럽",
     "address": "경기도 안산시 단원구 대선로 466",
@@ -1052,6 +1216,19 @@
     "plkPartner": true,
     "partnerType": "이용협약",
     "kakaoPlaceUrl": "https://place.map.kakao.com/16975978"
+  },
+  {
+    "id": "X-f2f852",
+    "name": "동전주 써미트 CC",
+    "address": "전북 진안군 부귀면 부귀로 72-161",
+    "lat": 35.84096,
+    "lng": 127.32563,
+    "holes": 27,
+    "phone": "063-432-5000",
+    "homepage": "http://www.summitcc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/19990866"
   },
   {
     "id": "B-114",
@@ -1181,6 +1358,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/25042337"
   },
   {
+    "id": "X-647675",
+    "name": "락가든골프클럽",
+    "address": "경기도 포천시 일동면 유동리 15-1",
+    "lat": 37.9768,
+    "lng": 127.32115,
+    "holes": null,
+    "phone": "031-539-5938",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/24268122"
+  },
+  {
     "id": "B-118",
     "name": "레이캐슬 골프&리조트",
     "address": "세종 전의면 의당전의로 252",
@@ -1190,6 +1380,18 @@
     "phone": "",
     "homepage": "http://www.sjraycastle.com/",
     "plkPartner": false
+  },
+  {
+    "id": "X-1733fa",
+    "name": "레이크 힐스 제주 컨트리 클럽",
+    "address": "제주특별자치도 서귀포시 중문동 산 5",
+    "lat": 33.30211,
+    "lng": 126.43546,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "A-322",
@@ -1218,6 +1420,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/10355128"
   },
   {
+    "id": "X-0e0dfa",
+    "name": "레이크힐스 제주CC",
+    "address": "제주특별자치도 서귀포시 산록남로 1391",
+    "lat": 33.2994777,
+    "lng": 126.4375805,
+    "holes": 27,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "X-838ab6",
     "name": "레인보우힐스 컨트리클럽",
     "address": "충북 음성군 생극면 차생로 168",
@@ -1241,6 +1455,19 @@
     "plkPartner": true,
     "partnerType": "이용협약",
     "kakaoPlaceUrl": "https://place.map.kakao.com/21119732"
+  },
+  {
+    "id": "X-e84681",
+    "name": "로얄링스cc",
+    "address": "충청남도태안군태안읍기업도시6길43",
+    "lat": 36.72154,
+    "lng": 126.33845,
+    "holes": null,
+    "phone": "041-670-0300",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1601978096"
   },
   {
     "id": "B-109",
@@ -1293,6 +1520,30 @@
     "plkPartner": true,
     "partnerType": "제휴",
     "kakaoPlaceUrl": "https://place.map.kakao.com/24120253"
+  },
+  {
+    "id": "X-833960",
+    "name": "루나엑스CC",
+    "address": "경상북도 경주시 천북면 천강로 412-299",
+    "lat": 35.91012,
+    "lng": 129.32025,
+    "holes": null,
+    "phone": "",
+    "homepage": "http://www.luna-x.cc/",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
+    "id": "A-117",
+    "name": "루나힐스안성",
+    "address": "경기도 안성시 양성면 악산길67 6",
+    "lat": 37.11968514,
+    "lng": 127.2554234,
+    "holes": 27,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "A-108",
@@ -1407,7 +1658,7 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/990487411"
   },
   {
-    "id": "B-CC",
+    "id": "B-CC-7f5bf9",
     "name": "몽베르 컨트리클럽",
     "address": "경기 포천시 영북면 산정리 558-1번지",
     "lat": 38.0810278,
@@ -1470,6 +1721,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/17151907"
   },
   {
+    "id": "X-3acc48",
+    "name": "문경GC",
+    "address": "경북 문경시 마성면 문경골프장길240",
+    "lat": 36.71266,
+    "lng": 128.16385,
+    "holes": null,
+    "phone": "",
+    "homepage": "https://www.mgle.co.kr/",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "X-aee40f",
     "name": "밀양노벨컨트리클럽",
     "address": "경남 밀양시 단장면 안법리 산 15",
@@ -1508,6 +1771,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/7888743"
   },
   {
+    "id": "X-3fca91",
+    "name": "백양우리컨트리클럽",
+    "address": "전라남도 장성군 북이면 봉암로 1574",
+    "lat": 35.4782,
+    "lng": 126.79995,
+    "holes": 9,
+    "phone": "061-392-2300",
+    "homepage": "http://www.woori-cc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/9894123"
+  },
+  {
     "id": "B-204",
     "name": "백제컨트리클럽",
     "address": "충남 부여군 은산면 충절로 3734-82",
@@ -1519,6 +1795,19 @@
     "plkPartner": true,
     "partnerType": "이용협약",
     "kakaoPlaceUrl": "https://place.map.kakao.com/867761408"
+  },
+  {
+    "id": "B-GC",
+    "name": "버치힐 골프클럽",
+    "address": "강원 평창군 대관령면",
+    "lat": 37.6551722,
+    "lng": 128.7071527,
+    "holes": 18,
+    "phone": "1522-3111",
+    "homepage": "http://www.yongpyong.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/10391593"
   },
   {
     "id": "A-416",
@@ -1596,6 +1885,32 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/12426646"
   },
   {
+    "id": "X-dd5ba1",
+    "name": "벨라45 컨트리클럽",
+    "address": "강원특별자치도 횡성군 서원면 서원남로 80",
+    "lat": 37.47789375850209,
+    "lng": 127.85628006046291,
+    "holes": 45,
+    "phone": "1551-2745",
+    "homepage": "https://www.bella45.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1769002908"
+  },
+  {
+    "id": "B-CC-43770a",
+    "name": "벨라스톤 컨트리클럽",
+    "address": "강원 횡성군 서원면 옥계리",
+    "lat": 37.4538377,
+    "lng": 127.829698,
+    "holes": null,
+    "phone": "033-340-9000",
+    "homepage": "http://www.bellastonecc.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/12964090"
+  },
+  {
     "id": "E-107",
     "name": "보라컨트리클럽",
     "address": "울산 울주군 삼동면 금곡리 산183-6",
@@ -1660,6 +1975,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/7908422"
   },
   {
+    "id": "X-1a1ed5",
+    "name": "블랙밸리 컨트리클럽",
+    "address": "강원 삼척시 도계읍 도상로 307-84",
+    "lat": 37.22423,
+    "lng": 129.06858,
+    "holes": null,
+    "phone": "033-540-5301",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/7903780"
+  },
+  {
     "id": "A-109",
     "name": "블랙스톤이천컨트리클럽",
     "address": "경기도 이천시 장호원읍 장여로 459-160",
@@ -1683,6 +2011,18 @@
     "homepage": "http://www.blackstoneresort.com/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/26424969"
+  },
+  {
+    "id": "X-29e46a",
+    "name": "블루마운틴 컨트리클럽",
+    "address": "강원도 홍천군 두촌면 광석로 898-6",
+    "lat": 37.93052,
+    "lng": 128.08764,
+    "holes": 27,
+    "phone": "",
+    "homepage": "http://bluemountaincc.com/",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "SJ Blueone",
@@ -1724,6 +2064,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/8405831"
   },
   {
+    "id": "B-CC-627217",
+    "name": "비에이비스타 컨트리클럽",
+    "address": "경기 이천시 모가면 어농리 386-1번지",
+    "lat": 37.1800654,
+    "lng": 127.4185272,
+    "holes": null,
+    "phone": "031-636-3577",
+    "homepage": "https://www.bavista.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/21489824"
+  },
+  {
     "id": "X-4ecd2f",
     "name": "비전힐스",
     "address": "경기도 남양주시 화도읍 마치로 226-220",
@@ -1748,6 +2101,31 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/23641219"
   },
   {
+    "id": "X-d332b4",
+    "name": "빅토리아골프클럽",
+    "address": "경기 여주시 가남읍 송삼로 191",
+    "lat": 37.17957,
+    "lng": 127.6311,
+    "holes": null,
+    "phone": "031-883-0111",
+    "homepage": "http://www.victoriagc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/115398166"
+  },
+  {
+    "id": "F-217",
+    "name": "사우스링스 영암",
+    "address": "전남 영암군 삼호읍 난전리 2156",
+    "lat": 34.74028,
+    "lng": 126.42486,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "A-311",
     "name": "사우스스프링스컨트리클럽",
     "address": "경기도 이천시 모가면 공원로 64",
@@ -1761,6 +2139,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/25070457"
   },
   {
+    "id": "X-a60a70",
+    "name": "사우스케이프 컨트리클럽",
+    "address": "경상남도 남해군 창선면 흥선로 1545",
+    "lat": 34.8406276,
+    "lng": 128.0613311,
+    "holes": null,
+    "phone": "1644-0280",
+    "homepage": "http://www.southcape.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/19975143"
+  },
+  {
     "id": "X-6b03c9",
     "name": "사이프러스 골프&리조트",
     "address": "제주 서귀포시 표선면 번영로 2300",
@@ -1771,6 +2162,18 @@
     "homepage": "http://www.cypress.co.kr/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/25070254"
+  },
+  {
+    "id": "S-CC-6eaf05",
+    "name": "상떼힐 컨트리클럽",
+    "address": "충북 충주시 앙성면 지당리",
+    "lat": 37.079875,
+    "lng": 127.7028833,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://santehillcc.co.kr/main/",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "X-6722a3",
@@ -1921,6 +2324,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/19305960"
   },
   {
+    "id": "X-bfe420",
+    "name": "설악썬밸리컨트리클럽",
+    "address": "강원 고성군 죽왕면 순포로 188",
+    "lat": 38.3130305,
+    "lng": 128.5096722,
+    "holes": null,
+    "phone": "033-638-5362",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1973195772"
+  },
+  {
     "id": "C-109",
     "name": "성문안컨트리클럽",
     "address": "강원 원주시 지정면 오크밸리1길 66 66",
@@ -2022,6 +2438,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/679995474"
   },
   {
+    "id": "C-CC-ed086f",
+    "name": "센추리21 컨트리클럽",
+    "address": "강원 원주시 문막읍 궁촌리 산 47-5번지",
+    "lat": 37.2776,
+    "lng": 127.8536666,
+    "holes": 36,
+    "phone": "033-733-2114",
+    "homepage": "http://www.century21cc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/12860546"
+  },
+  {
     "id": "B-113",
     "name": "센테리움컨트리클럽",
     "address": "충북 충주시 노은면 솔고개로 750",
@@ -2033,6 +2462,18 @@
     "plkPartner": true,
     "partnerType": "제휴",
     "kakaoPlaceUrl": "https://place.map.kakao.com/17183711"
+  },
+  {
+    "id": "X-249393",
+    "name": "소노델피노CC",
+    "address": "강원도 고성군 토성면 미시령옛길 1153",
+    "lat": 38.21279,
+    "lng": 128.49387,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "X-ab3fbd",
@@ -2184,6 +2625,32 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/17747774"
   },
   {
+    "id": "X-2d96c5",
+    "name": "순천 컨트리클럽",
+    "address": "전남 순천시 별량면 동화사길 85",
+    "lat": 34.8670951,
+    "lng": 127.4054867,
+    "holes": 10,
+    "phone": "061-720-0000",
+    "homepage": "http://www.suncheoncc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/8177456"
+  },
+  {
+    "id": "S-CC-e2fbdd",
+    "name": "스마트KU골프파빌리온",
+    "address": "경기도 파주시 법원읍 보광로 1616",
+    "lat": 37.8281698,
+    "lng": 126.8688986,
+    "holes": 27,
+    "phone": "031-930-1600",
+    "homepage": "http://kugolf.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/14739884"
+  },
+  {
     "id": "A-111",
     "name": "스카이밸리컨트리클럽",
     "address": "경기도 여주시 북내면 운촌길 254 (운촌리 산68번지)",
@@ -2195,6 +2662,19 @@
     "plkPartner": true,
     "partnerType": "제휴",
     "kakaoPlaceUrl": "https://place.map.kakao.com/10533273"
+  },
+  {
+    "id": "B-117",
+    "name": "스타컨트리클럽",
+    "address": "충북 충주시 앙성면 상대촌1길 198",
+    "lat": 37.08283379,
+    "lng": 127.7006111,
+    "holes": null,
+    "phone": "043-724-9000",
+    "homepage": "http://www.starcc.net/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1927600923"
   },
   {
     "id": "E-103-36c95e",
@@ -2222,6 +2702,57 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1357847052"
   },
   {
+    "id": "X-4e2d8b",
+    "name": "스프링데일컨트리클",
+    "address": "제주특별자치도 서귀포시 남원읍 서성로 459번",
+    "lat": 33.32958,
+    "lng": 126.63793,
+    "holes": null,
+    "phone": "",
+    "homepage": "https://www.springdale.co.kr/h",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
+    "id": "X-f641d0",
+    "name": "스프링베일 골프클럽",
+    "address": "강원도 춘천시 동면 금베이길 93-27",
+    "lat": 37.87593,
+    "lng": 127.7932,
+    "holes": null,
+    "phone": "033-254-7900",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25070450"
+  },
+  {
+    "id": "X-4d5eda",
+    "name": "스프링힐스CC",
+    "address": "경기 고양시 덕양구 산황로 62",
+    "lat": 37.65933,
+    "lng": 126.81396,
+    "holes": null,
+    "phone": "031-969-2000",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/10534177"
+  },
+  {
+    "id": "S-CC-98d58c",
+    "name": "시그너스 컨트리클럽",
+    "address": "충청북도 충주시 앙성면 중전리 산 11-1",
+    "lat": 37.1727,
+    "lng": 127.7443916,
+    "holes": 27,
+    "phone": "043-857-5001",
+    "homepage": "http://www.cygnuscc.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25070228"
+  },
+  {
     "id": "A-120",
     "name": "신안컨트리클럽",
     "address": "경기 안성시 고삼면 개울말길 149",
@@ -2232,6 +2763,19 @@
     "homepage": "https://www.shinangolf.com/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/8439479"
+  },
+  {
+    "id": "X-38d911",
+    "name": "신원컨트리클럽",
+    "address": "경기 용인시 처인구 이동읍 이원로 225",
+    "lat": 37.18137,
+    "lng": 127.24747,
+    "holes": null,
+    "phone": "031-333-1800",
+    "homepage": "http://www.swcc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/7978427"
   },
   {
     "id": "X-16e467",
@@ -2359,6 +2903,32 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/2145532611"
   },
   {
+    "id": "X-f56a56",
+    "name": "아리지컨트리클럽",
+    "address": "경기 여주시 가남읍 아리지그린길 68",
+    "lat": 37.2113583,
+    "lng": 127.597325,
+    "holes": null,
+    "phone": "031-887-5678",
+    "homepage": "http://www.ariji.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/7990803"
+  },
+  {
+    "id": "X-201bbb",
+    "name": "아세코밸리",
+    "address": "경기도 시흥시 군자동 마전로 307",
+    "lat": 37.38028,
+    "lng": 126.77008,
+    "holes": null,
+    "phone": "031-488-8000",
+    "homepage": "https://www.asecovalley.com/in",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25723258"
+  },
+  {
     "id": "A-CC-cb49c1",
     "name": "아시아나컨트리클럽",
     "address": "경기 용인시 처인구 양지읍 양대로 290",
@@ -2396,6 +2966,30 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/9915992"
   },
   {
+    "id": "A-CC-1acf13",
+    "name": "아트밸리 컨트리클럽",
+    "address": "충청북도 진천군 진천읍 송강로 783-51",
+    "lat": 36.81861,
+    "lng": 127.4012,
+    "holes": 27,
+    "phone": "",
+    "homepage": "http://www.artvalleycc.net/n_i",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
+    "id": "X-6907d7",
+    "name": "안성 아덴힐 컨트리클럽",
+    "address": "경기도 안성시 양성면 약산길 67-6",
+    "lat": 37.12273,
+    "lng": 127.27015,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.ardenhillcc.com/",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "A-318",
     "name": "안성베네스트골프클럽",
     "address": "경기 안성시 금광면 삼흥로 660",
@@ -2430,6 +3024,19 @@
     "homepage": "https://www.onetheclub.com/alpensiacc/main",
     "plkPartner": true,
     "partnerType": "이용협약"
+  },
+  {
+    "id": "X-8feff7",
+    "name": "알프스대영CC(청우)",
+    "address": "강원도 횡성군 우천면 한우로 1295",
+    "lat": 37.46474,
+    "lng": 128.07215,
+    "holes": 18,
+    "phone": "033-340-8000",
+    "homepage": "http://www.cwgc.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1971105967"
   },
   {
     "id": "E-103-a8a2c5",
@@ -2509,6 +3116,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/19701706"
   },
   {
+    "id": "E-CC-e11c34",
+    "name": "에덴블루컨트리클럽",
+    "address": "경기 안성시 죽산면 녹배길 175",
+    "lat": 37.0518796,
+    "lng": 127.3865345,
+    "holes": null,
+    "phone": "1588-7207",
+    "homepage": "https://www.edenblue.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/8497384"
+  },
+  {
     "id": "X-b59747",
     "name": "에딘버러",
     "address": "충남 금산군 진산면 살구정길 167",
@@ -2519,6 +3139,18 @@
     "homepage": "https://www.edinburgh.co.kr/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/18251522"
+  },
+  {
+    "id": "X-8cdf87",
+    "name": "에머슨 골프클럽",
+    "address": "충청북도 진천군 백곡면 배티로 818-105",
+    "lat": 36.9365666,
+    "lng": 127.3385861,
+    "holes": 27,
+    "phone": "",
+    "homepage": "https://www.emersongolfclub.co/",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "G-105",
@@ -2545,6 +3177,19 @@
     "plkPartner": true,
     "partnerType": "이용협약",
     "kakaoPlaceUrl": "https://place.map.kakao.com/8004090"
+  },
+  {
+    "id": "X-fcb345",
+    "name": "에코랜드CC",
+    "address": "제주특별자치도 제주시 조천읍 대흘리 1221-1",
+    "lat": 33.456532732345146,
+    "lng": 126.666986364556,
+    "holes": null,
+    "phone": "064-802-8000",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/18193311"
   },
   {
     "id": "X-1a71a8",
@@ -2786,6 +3431,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/25070192"
   },
   {
+    "id": "X-78effe",
+    "name": "오투CC",
+    "address": "강원도 태백시 황지동",
+    "lat": 37.16007,
+    "lng": 128.94884,
+    "holes": 27,
+    "phone": "033-580-7000",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/27303104"
+  },
+  {
     "id": "C-106",
     "name": "옥스필드컨트리클럽",
     "address": "강원 횡성군 서원면 경강로유현6길 28",
@@ -2822,6 +3480,31 @@
     "homepage": "https://www.ywcc.co.kr/",
     "plkPartner": true,
     "partnerType": "제휴"
+  },
+  {
+    "id": "X-440e12",
+    "name": "용인컨트리클럽",
+    "address": "경기 용인시 처인구 백암면 황새울로 255",
+    "lat": 37.1077416,
+    "lng": 127.3462111,
+    "holes": null,
+    "phone": "031-332-3323",
+    "homepage": "http://www.yongincc.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/12854979"
+  },
+  {
+    "id": "Y-GC",
+    "name": "용평 골프클럽",
+    "address": "강원 평창군 대관령면",
+    "lat": 37.6428722,
+    "lng": 128.7043222,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.yongpyong.co.kr/",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "X-b8e84b",
@@ -2874,6 +3557,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/607977330"
   },
   {
+    "id": "W-CC",
+    "name": "웨스트파인 컨트리클럽",
+    "address": "경기 안성시 양성면 동항리",
+    "lat": 37.08586,
+    "lng": 127.19291,
+    "holes": 18,
+    "phone": "",
+    "homepage": "https://www.tyleisure.co.kr/",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "C-102",
     "name": "웰리힐리컨트리클럽",
     "address": "강원도 횡성군 둔내면 고원로 451",
@@ -2887,6 +3582,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/14979830"
   },
   {
+    "id": "X-ee140c",
+    "name": "웰링턴컨트리클럽",
+    "address": "경기 이천시 모가면 사실로725번길 119-73",
+    "lat": 37.1806,
+    "lng": 127.42527,
+    "holes": null,
+    "phone": "031-645-1800",
+    "homepage": "https://www.wellingtoncc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25772476"
+  },
+  {
     "id": "A-321",
     "name": "윈체스트 골프클럽",
     "address": "경기도 안성시 서운면 오촌길 97-31",
@@ -2897,6 +3605,19 @@
     "homepage": "https://www.winchestgc.co.kr/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/8473754"
+  },
+  {
+    "id": "X-1f8996",
+    "name": "유니아일랜드 골프&스파 리조트",
+    "address": "인천 강화군 삼산면 어류정길177번길 15",
+    "lat": 37.649652,
+    "lng": 126.342973,
+    "holes": null,
+    "phone": "032-933-9330",
+    "homepage": "http://www.uniisland.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1535445292"
   },
   {
     "id": "X-a51c5a",
@@ -2946,6 +3667,58 @@
     "homepage": "http://www.evendale.co.kr/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/11518300"
+  },
+  {
+    "id": "X-0e9174",
+    "name": "이스턴 컨트리클럽",
+    "address": "경북 포항시 북구 청하면 용산길 94",
+    "lat": 36.18167,
+    "lng": 129.35875,
+    "holes": null,
+    "phone": "054-253-0070",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25772526"
+  },
+  {
+    "id": "X-ff6e0f",
+    "name": "이스트밸리컨트리클럽",
+    "address": "경기도 광주시 곤지암읍 건업길 195",
+    "lat": 37.4026055,
+    "lng": 127.3868666,
+    "holes": null,
+    "phone": "031-760-3800",
+    "homepage": "http://www.eastvalley.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/8042010"
+  },
+  {
+    "id": "X-1dc14d",
+    "name": "이스트힐 컨트리클럽",
+    "address": "경북 경주시 양남면 외남로 1377",
+    "lat": 35.7239077,
+    "lng": 129.3759872,
+    "holes": null,
+    "phone": "054-775-1700",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/9414050"
+  },
+  {
+    "id": "X-fb2790",
+    "name": "이천 실크밸리 골프클럽",
+    "address": "경기 이천시 율면 임오산로 296",
+    "lat": 37.0801274,
+    "lng": 127.5656174,
+    "holes": null,
+    "phone": "031-639-0077",
+    "homepage": "http://silkvalleygc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/19730102"
   },
   {
     "id": "A-105",
@@ -3047,6 +3820,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1439829278"
   },
   {
+    "id": "S-CC-1d3a0c",
+    "name": "일죽썬밸리 컨트리클럽",
+    "address": "충북 음성군 삼성면 범말길 49",
+    "lat": 37.0329361,
+    "lng": 127.4672361,
+    "holes": 18,
+    "phone": "043-881-5307",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25044055"
+  },
+  {
     "id": "B-108",
     "name": "임페리얼레이크",
     "address": "충북 충주시 금가면 다래울길 52",
@@ -3111,6 +3897,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/10731912"
   },
   {
+    "id": "X-145c4e",
+    "name": "잭 니클라우스",
+    "address": "인천 연수구 아카데미로 209",
+    "lat": 37.380264,
+    "lng": 126.6236123,
+    "holes": null,
+    "phone": "032-850-8000",
+    "homepage": "",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/27571922"
+  },
+  {
     "id": "F-105",
     "name": "전주샹그릴라 컨트리클럽",
     "address": "전라북도 임실군 신덕면 수지로 559-90",
@@ -3149,6 +3947,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/8060635"
   },
   {
+    "id": "X-b9238a",
+    "name": "제이드팰리스골프클럽",
+    "address": "강원특별자치도 춘천시 남산면 경춘로 212-30",
+    "lat": 37.8282333,
+    "lng": 127.5506944,
+    "holes": null,
+    "phone": "",
+    "homepage": "https://www.jadepalacegc.com/",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "A-CC-0183cc",
     "name": "제일컨트리클럽",
     "address": "경기 안산시 상록구 태마당로 28",
@@ -3157,6 +3967,17 @@
     "holes": null,
     "phone": "",
     "homepage": "https://www.jaeil-cc.co.kr/",
+    "plkPartner": false
+  },
+  {
+    "id": "X-761b04",
+    "name": "제주 나인브릿지CC",
+    "address": "제주특별자치도 서귀포시 안덕면 광평로 34-156",
+    "lat": 33.3415472,
+    "lng": 126.3980944,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
     "plkPartner": false
   },
   {
@@ -3170,6 +3991,31 @@
     "homepage": "http://www.jejucrowncc.co.kr/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/8121447"
+  },
+  {
+    "id": "X-4b9558",
+    "name": "제주CC 퍼블릭",
+    "address": "제주시516로2695",
+    "lat": 33.4306,
+    "lng": 126.58358,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
+    "id": "B-CC-9d6c91",
+    "name": "제주부영 컨트리클럽",
+    "address": "제주 서귀포시 남원읍",
+    "lat": 33.3601442,
+    "lng": 126.7119149,
+    "holes": 27,
+    "phone": "064-766-5500",
+    "homepage": "https://www.booyoungcc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/15437263"
   },
   {
     "id": "G-104",
@@ -3209,6 +4055,32 @@
     "plkPartner": true,
     "partnerType": "이용협약",
     "kakaoPlaceUrl": "https://place.map.kakao.com/17157210"
+  },
+  {
+    "id": "X-c6f91b",
+    "name": "조아밸리 컨트리클럽",
+    "address": "전라남도 화순군 도곡면 고인돌2로 450",
+    "lat": 34.98834,
+    "lng": 126.93667,
+    "holes": 9,
+    "phone": "061-370-9000",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/8067248"
+  },
+  {
+    "id": "X-67ddd5",
+    "name": "중문골프클럽",
+    "address": "제주특별자치도 서귀포시 중문관광로72번길 60",
+    "lat": 33.2466583,
+    "lng": 126.4082583,
+    "holes": null,
+    "phone": "064-735-7200",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/22018448"
   },
   {
     "id": "X-2e8140",
@@ -3261,7 +4133,7 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1882610989"
   },
   {
-    "id": "C-CC",
+    "id": "C-CC-549bb0",
     "name": "창원컨트리클럽",
     "address": "경상남도 창원시 의창구 대봉로 137",
     "lat": 35.28614,
@@ -3271,6 +4143,18 @@
     "homepage": "http://www.changwoncountryclub/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/25070455"
+  },
+  {
+    "id": "X-6d41f2",
+    "name": "처인 컨트리클럽",
+    "address": "경기도 용인시 처인구 이동읍 이원로384번길 71",
+    "lat": 37.174101,
+    "lng": 127.209188,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.cheoincc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "X-0e8ef7",
@@ -3309,6 +4193,18 @@
     "partnerType": "제휴"
   },
   {
+    "id": "X-715e9e",
+    "name": "청주그랜드컨트리클럽",
+    "address": "충청북도 청원군 오창읍 화산리 163-2",
+    "lat": 36.74921,
+    "lng": 127.38054,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+  },
+  {
     "id": "A-106",
     "name": "청평마이다스골프클럽",
     "address": "경기도 가평군 설악면 다락재로 73-111",
@@ -3332,6 +4228,19 @@
     "homepage": "https://www.ladena.co.kr/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/25070292"
+  },
+  {
+    "id": "X-a93a8b",
+    "name": "충성대 컨트리클럽",
+    "address": "경상북도 영천시 고경면 도암리 산43",
+    "lat": 36.02473,
+    "lng": 129.00401,
+    "holes": null,
+    "phone": "054-330-0600",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1484414614"
   },
   {
     "id": "C-207",
@@ -3444,6 +4353,31 @@
     "homepage": "https://www.creasvalley.com/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/676711731"
+  },
+  {
+    "id": "A-402-86b015",
+    "name": "크리스탈밸리 컨트리클럽",
+    "address": "경기 가평군 상면 대보간선로 602 111",
+    "lat": 37.79185,
+    "lng": 127.3893444,
+    "holes": null,
+    "phone": "031-589-5000",
+    "homepage": "https://www.crystalvalley.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/10815328"
+  },
+  {
+    "id": "C-CC-d63c60",
+    "name": "크리스탈카운티 컨트리클럽",
+    "address": "충북 진천군 문백면 평산리 531번지",
+    "lat": 36.8160978,
+    "lng": 127.466903,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.crystalcounty.co.kr/",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "A-205",
@@ -3632,6 +4566,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1493127856"
   },
   {
+    "id": "X-0fc987",
+    "name": "트리니티CC",
+    "address": "경기 여주시 가남읍 양귀리(산) 115-2",
+    "lat": 37.2087,
+    "lng": 127.57717,
+    "holes": null,
+    "phone": "031-887-7900",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25772471"
+  },
+  {
     "id": "T-CC",
     "name": "티클라우드 컨트리클럽",
     "address": "경기 동두천시 하봉암동 산33-1",
@@ -3666,6 +4613,18 @@
     "homepage": "https://www.palmyhillscc.co.kr/",
     "plkPartner": false,
     "kakaoPlaceUrl": "https://place.map.kakao.com/8572021"
+  },
+  {
+    "id": "X-930921",
+    "name": "파인리즈CC",
+    "address": "강원특별자치도 고성군 토성면 잼버리동로 267",
+    "lat": 38.2476444,
+    "lng": 128.5419861,
+    "holes": null,
+    "phone": "1577-6399",
+    "homepage": "https://www.pineridge.co.kr/",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/24050819"
   },
   {
     "id": "C-103",
@@ -3768,6 +4727,19 @@
     "partnerType": "제휴"
   },
   {
+    "id": "X-1895bd",
+    "name": "평창 휘닉스CC",
+    "address": "강원도 평창군 봉평면 태기로 174",
+    "lat": 37.58157,
+    "lng": 128.3274,
+    "holes": 18,
+    "phone": "1577-0755",
+    "homepage": "https://phoenixhnr.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25021677"
+  },
+  {
     "id": "F-214",
     "name": "포라이즌 컨트리클럽(구.승주)",
     "address": "전라남도 순천시 별량면 오실길 333",
@@ -3806,6 +4778,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1484343292"
   },
   {
+    "id": "포웰",
+    "name": "포웰CC 안성",
+    "address": "경기 안성시 양성면 약산길 67-6",
+    "lat": 37.1169886,
+    "lng": 127.2687251,
+    "holes": null,
+    "phone": "031-612-6000",
+    "homepage": "http://as.4wellcc.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1007570287"
+  },
+  {
     "id": "A-414",
     "name": "포천푸른솔 골프클럽",
     "address": "경기 포천시 가산면 금우로 276",
@@ -3817,6 +4802,31 @@
     "plkPartner": true,
     "partnerType": "이용협약",
     "kakaoPlaceUrl": "https://place.map.kakao.com/2129728011"
+  },
+  {
+    "id": "X-f1f7b9",
+    "name": "포천힐스 컨트리클럽",
+    "address": "경기도 포천 군내면 삼성북리 34-1",
+    "lat": 37.8821185,
+    "lng": 127.2370994,
+    "holes": 18,
+    "phone": "031-538-7000",
+    "homepage": "https://www.fortunehills.co.kr/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/10023479"
+  },
+  {
+    "id": "X-7d707b",
+    "name": "포항CC",
+    "address": "경북 포항시 북구 송라면 상송리 산 48",
+    "lat": 36.22416,
+    "lng": 129.342,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.pohangcc.com/",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "P-CC",
@@ -3868,6 +4878,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/7939479"
   },
   {
+    "id": "X-cb56c0",
+    "name": "플라자CC 제주",
+    "address": "제주특별자치도 제주시 회천동 3-19",
+    "lat": 33.447225,
+    "lng": 126.6356527,
+    "holes": null,
+    "phone": "064-727-9000",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/26040171"
+  },
+  {
     "id": "A-309",
     "name": "플라자용인",
     "address": "경기도 용인시 처인구 남사면 봉무로 153번길 79",
@@ -3893,7 +4916,20 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/17153775"
   },
   {
-    "id": "A-402",
+    "id": "X-ae826b",
+    "name": "하이원컨트리클럽",
+    "address": "강원도 정선군 고한읍 고한7길 399",
+    "lat": 37.1707888,
+    "lng": 128.8450083,
+    "holes": null,
+    "phone": "1588-7789",
+    "homepage": "http://www.high1.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/8583874"
+  },
+  {
+    "id": "A-402-6de687",
     "name": "한림광릉컨트리클럽",
     "address": "경기도 남양주시 진접읍 팔야로 280",
     "lat": 37.75512,
@@ -3904,6 +4940,19 @@
     "plkPartner": true,
     "partnerType": "이용협약",
     "kakaoPlaceUrl": "https://place.map.kakao.com/8184907"
+  },
+  {
+    "id": "X-06b092",
+    "name": "한림안성 컨트리클럽",
+    "address": "경기도 안성시 양성면 산정리 산6-2",
+    "lat": 37.10628,
+    "lng": 127.19522,
+    "holes": null,
+    "phone": "1666-1619",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/528053732"
   },
   {
     "id": "A-319",
@@ -3966,6 +5015,19 @@
     "homepage": "https://www.hanwoncc.co.kr/",
     "plkPartner": true,
     "partnerType": "제휴"
+  },
+  {
+    "id": "X-33184d",
+    "name": "한탄강컨트리클럽",
+    "address": "강원 철원군 갈말읍 순담길 59",
+    "lat": 38.17136569633167,
+    "lng": 127.29358272381313,
+    "holes": null,
+    "phone": "033-452-5700",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/16625859"
   },
   {
     "id": "F-206",
@@ -4067,6 +5129,18 @@
     "plkPartner": true,
     "partnerType": "제휴",
     "kakaoPlaceUrl": "https://place.map.kakao.com/21510303"
+  },
+  {
+    "id": "H-CC-dde062",
+    "name": "현대더링스 컨트리클럽(로얄링스)",
+    "address": "충청남도 태안군 태안읍 기업도시6길 43 로얄링스cc",
+    "lat": 36.72057,
+    "lng": 126.33794,
+    "holes": 18,
+    "phone": "",
+    "homepage": "http://www.thelinkscc.co.kr/",
+    "plkPartner": false,
+    "status": "협의중"
   },
   {
     "id": "H-CC-24e697",

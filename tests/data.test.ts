@@ -50,17 +50,29 @@ test('operations master CSV is detected and mapped as-is', () => {
   assert.equal(parseCourseFile(`${HEADER}\nP1,A,주소,,,,Y,`).format, 'template');
 });
 
-test('operations master: unused, closed, undisclosed, overseas and blank rows are skipped with reasons', () => {
+test('operations master: closed, undisclosed, overseas and blank rows are skipped; unused rows become 협의중', () => {
   const { rows, skipped } = parseCourseFile(ops(
     'A-1,미사용CC,KR,한강이남,경기 여주시,,,,,0,제휴,N,100% 오픈,0',
     'A-2,휴장CC,KR,한강이남,경기 여주시,,,,,0,휴장,Y,100% 오픈,0',
-    'A-3,비공개CC,KR,한강이남,경기 여주시,,,,,0,비제휴,Y,불가,0',
+    'A-3,비공개CC,KR,한강이남,경기 여주시,,,,,0,비제휴,N,불가,0',
     'A-4,중국CC,KR,중국권,중국,,,,,0,비제휴,Y,100% 오픈,0',
     '0,0,KR,경상도,부산,,,,,0,비제휴,Y,100% 오픈,0',
+    ',1,KR,경상도,부산,,,,,0,비제휴,N,,0',
     'A-6,정상CC,KR,한강이남,경기 여주시,,,,,0,비제휴,Y,100% 오픈,0',
   ));
-  assert.deepEqual(rows.map((course) => course.name), ['정상CC']);
-  assert.deepEqual(skipped.map((course) => course.reason), ['미사용', '휴장', '공개 불가', '해외', '입력 오류(골프장명 없음)']);
+  assert.deepEqual(rows.map((course) => [course.name, course.status, course.partnerType]), [['미사용CC', '협의중', null], ['정상CC', null, null]]);
+  assert.deepEqual(skipped.map((course) => course.reason), ['휴장', '공개 불가', '해외', '입력 오류(골프장명 없음)', '입력 오류(골프장명 없음)']);
+});
+
+test('operations master: 협의중 rows duplicating an active course are dropped; blank addresses pass through', () => {
+  const { rows, skipped } = parseCourseFile(ops(
+    'N-CC,남서울컨트리클럽 ,KR,한강이남,경기 성남시 분당구,,,,,0,비제휴,N,100% 오픈,0',
+    'A-1,남서울CC,KR,한강이남,경기 성남시 분당구,,,,,0,비제휴,Y,100% 오픈,0',
+    'X-1,제주 나인브릿지CC,KR,제주도,,,,,,0,비제휴,Y,100% 오픈,0',
+  ));
+  assert.deepEqual(rows.map((course) => course.name), ['남서울CC', '제주 나인브릿지CC']);
+  assert.equal(rows[1].address, '');
+  assert.deepEqual(skipped.map((course) => course.reason), ['중복(운영 중 행 있음)']);
 });
 
 test('operations master: duplicate or blank codes get stable unique IDs', () => {

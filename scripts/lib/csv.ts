@@ -15,6 +15,7 @@ export interface PlkCourseRow {
   partnerNote: string;
   lat: number | null;
   lng: number | null;
+  status?: '협의중' | null;
 }
 
 export interface SkippedRow { plkCode: string; name: string; address: string; reason: string }
@@ -84,11 +85,11 @@ function koreanPoint(latText: string, lngText: string): { lat: number; lng: numb
   return latText && lngText && lat >= 33 && lat <= 39 && lng >= 124 && lng <= 132 ? { lat, lng } : null;
 }
 
+// 사용여부 N은 제외하지 않고 '협의중'으로 표시한다(지도에서 흐리게 노출).
 function exclusionReason(row: Record<string, string>, name: string): string {
-  if (!name || name === '0') return '입력 오류(골프장명 없음)';
-  if (row['사용여부'] !== 'Y') return '미사용';
-  if (row['제휴구분'] === '휴장') return '휴장';
+  if (!name || /^\d+$/.test(name)) return '입력 오류(골프장명 없음)';
   if (row['골프장공개형태'] === '불가') return '공개 불가';
+  if (row['제휴구분'] === '휴장') return '휴장';
   if (row['국가코드'] !== 'KR' || row['지역'] === '중국권') return '해외';
   return '';
 }
@@ -106,12 +107,20 @@ export function parseOperationsCourses(text: string): { rows: PlkCourseRow[]; sk
     const code = row['골프장코드'] === '0' ? '' : row['골프장코드'];
     const name = row['골프장명'].replace(/\s+/g, ' ').trim();
     const address = row['도로명주소'] || row['전체주소'].replace(/^\d{5,6}\s+/, '');
-    const reason = exclusionReason(row, name) || (address ? '' : '입력 오류(주소 없음)');
+    // 주소가 비어 있으면 빌드 단계에서 카카오 장소 검색으로 채운다.
+    const reason = exclusionReason(row, name);
     if (reason) { skipped.push({ plkCode: code, name, address, reason }); continue; }
     const holes = Number(row['홀수']);
     const point = koreanPoint(row['위도'], row['경도']);
-    const partnerType = (['제휴', '이용협약'] as const).find((type) => type === row['제휴구분']) ?? null;
-    kept.push({ code, row: { plkCode: code, name, address, phone: '', homepage: row['홈페이지'], holes: Number.isInteger(holes) && holes > 0 ? holes : null, partnerType, partnerNote: '', lat: point?.lat ?? null, lng: point?.lng ?? null } });
+    const status = row['사용여부'] === 'Y' ? null : '협의중' as const;
+    const partnerType = status ? null : (['제휴', '이용협약'] as const).find((type) => type === row['제휴구분']) ?? null;
+    kept.push({ code, row: { plkCode: code, name, address, phone: '', homepage: row['홈페이지'], holes: Number.isInteger(holes) && holes > 0 ? holes : null, partnerType, partnerNote: '', lat: point?.lat ?? null, lng: point?.lng ?? null, status } });
+  }
+  // 운영 중인 행과 같은 골프장의 협의중 행(예전 행)은 뺀다.
+  const activeNames = new Set(kept.filter(({ row }) => !row.status).map(({ row }) => normalizeName(row.name)));
+  for (let index = kept.length - 1; index >= 0; index--) {
+    const { code, row } = kept[index];
+    if (row.status && activeNames.has(normalizeName(row.name))) { skipped.push({ plkCode: code, name: row.name, address: row.address, reason: '중복(운영 중 행 있음)' }); kept.splice(index, 1); }
   }
   const codeCounts = new Map<string, number>();
   for (const { code } of kept) if (code) codeCounts.set(code, (codeCounts.get(code) ?? 0) + 1);

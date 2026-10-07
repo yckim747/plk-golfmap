@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { X, MapPin, Phone, Globe, ArrowUpRight, Gift, Map, Navigation } from 'lucide-react';
+import { X, MapPin, Phone, Globe, ArrowUpRight, Gift, Map, Navigation, Clock } from 'lucide-react';
 import type { GolfCourse } from '@/lib/types';
 import { regionOf } from '@/lib/region';
 import { markerKind } from './GolfCourseMarker';
-const KIND_LABEL = { partner: 'PLK 제휴', agreement: 'PLK 이용협약', regular: '일반 골프장' } as const;
+const KIND_LABEL = { partner: 'PLK 제휴', agreement: 'PLK 이용협약', regular: '일반 골프장', pending: '협의중' } as const;
 export default function GolfCourseSheet({ course, onClose }: { course: GolfCourse | null; onClose: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => { if (course) dialog.current?.showModal(); else dialog.current?.close(); }, [course]);
@@ -14,7 +14,8 @@ export default function GolfCourseSheet({ course, onClose }: { course: GolfCours
     <div className="sheet-top"><div className="tags"><span className={`tag ${kind}`}>{KIND_LABEL[kind]}</span></div><button className="icon-button" onClick={onClose} aria-label="골프장 상세 닫기"><X size={18}/></button></div>
     <h2 id="course-title">{course.name}</h2>
     <p className="sheet-address"><MapPin size={15}/>{course.address}</p>
-    <dl className="info-grid"><div><dt>권역</dt><dd>{regionOf(course.address)}</dd></div><div><dt>홀</dt><dd>{course.holes ? `${course.holes}홀` : '–'}</dd></div><div><dt>구분</dt><dd>{course.partnerType ?? '일반'}</dd></div></dl>
+    <dl className="info-grid"><div><dt>권역</dt><dd>{regionOf(course.address)}</dd></div><div><dt>홀</dt><dd>{course.holes ? `${course.holes}홀` : '–'}</dd></div><div><dt>구분</dt><dd>{course.status ?? course.partnerType ?? '일반'}</dd></div></dl>
+    {kind === 'pending' && <p className="pending-note"><Clock size={16}/>PLK와 협의 중인 골프장입니다. 이용 조건은 추후 안내됩니다.</p>}
     {course.partnerNote && <p className="partner-note"><Gift size={16}/>{course.partnerNote}</p>}
     <a className="primary-button" href={`https://map.kakao.com/link/to/${encodeURIComponent(course.name)},${course.lat},${course.lng}`} target="_blank" rel="noopener noreferrer"><Navigation size={17}/>길찾기</a>
     <div className="action-grid">
