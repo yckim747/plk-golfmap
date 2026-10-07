@@ -1,6 +1,6 @@
 'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronRight, Flag, List, Map as MapIcon, RefreshCw, SearchX } from 'lucide-react';
+import { ChevronRight, FlagTriangleRight, List, Map as MapIcon, RefreshCw, SearchX } from 'lucide-react';
 import AppHeader from './AppHeader';
 import KakaoMap from './KakaoMap';
 import GolfCourseSearch from './GolfCourseSearch';
@@ -60,7 +60,7 @@ export default function GolfMapApp() {
             : error ? <div className="list-status" role="alert"><p>{error}</p><button onClick={() => setAttempt((value) => value + 1)}><RefreshCw size={15}/>다시 시도</button></div>
             : filtered.length === 0 ? <div className="list-status"><SearchX size={28}/><p>조건에 맞는 골프장이 없어요.</p><button onClick={reset}>필터 초기화</button></div>
             : filtered.map((course) => { const type = markerKind(course); return <button key={course.id} className={`course-card ${type}${selected?.id === course.id ? ' selected' : ''}`} onClick={() => select(course)}>
-                <span className={`course-icon ${type}`}>{type === 'regular' || type === 'pending' ? <Flag size={17}/> : 'P'}</span>
+                <span className={`course-icon ${type}`}><FlagTriangleRight size={18} strokeWidth={2.2}/></span>
                 <span className="course-summary"><strong>{course.name}</strong><small>{regionOf(course.address)} · {course.address}</small></span>
                 {course.status || course.partnerType ? <span className={`tag ${type}`}>{course.status ?? course.partnerType}</span> : <ChevronRight size={16} className="chevron"/>}
               </button>; })}
