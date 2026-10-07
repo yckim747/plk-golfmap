@@ -1,0 +1,10 @@
+import Link from 'next/link';
+import { ArrowUpRight, Map, CloudSun, Sparkles, Activity, Flag, ChevronRight } from 'lucide-react';
+import AppHeader from '@/components/AppHeader';
+import GolfMapApp from '@/components/GolfMapApp';
+const upcoming = [{ name: '골프 날씨', description: '라운드에 딱 맞는 날씨', Icon: CloudSun }, { name: 'AI 골프장 검색', description: '나에게 맞는 코스 발견', Icon: Sparkles }, { name: '스윙 분석', description: '더 나은 스윙의 시작', Icon: Activity }];
+export default function Home() {
+  // 웹 배포(게시판·배너 링크)에서는 첫 화면을 곧바로 골프장 지도로 연다.
+  if (process.env.NEXT_PUBLIC_WEB_ENTRY === 'map') return <GolfMapApp/>;
+  return<main className="home-shell"><AppHeader/><section className="home-intro"><span className="eyebrow">A LITTLE MORE GOLF</span><h1>골프의 즐거움,<br/>더 넓게 연결하다<span>.</span></h1><p>라운드 밖에서도 이어지는 골프 라이프.<br/>필요한 순간, 가볍게 열어보세요.</p></section><Link href="/golf-map" className="hero-card"><div className="hero-top"><span className="live-tag"><span/>지금 이용 가능</span><ArrowUpRight size={26}/></div><div className="course-art" aria-hidden="true"><div className="fairway fairway-one"/><div className="fairway fairway-two"/><div className="sand"/><div className="green"/><div className="flag"><Flag size={44} strokeWidth={1.5}/></div><span className="art-pin"><Map size={22}/></span><span className="art-path"/></div><div className="hero-copy"><span className="eyebrow">PLK GOLF MAP</span><h2>다음 라운드,<br/>어디로 떠날까요?</h2><p>지도에서 찾는 골프장과 PLK 제휴 코스</p><span className="hero-cta">골프장 지도 열기 <ChevronRight size={18}/></span></div></Link><section className="services"><div className="section-title"><h2>더 많은 골프, 곧 만나요</h2><span>MINI APPS</span></div>{upcoming.map(({ name, description, Icon }) => <article className="service-row" key={name}><div className="service-icon"><Icon size={24}/></div><div><h3>{name}</h3><p>{description}</p></div><span className="soon">Coming Soon</span></article>)}</section><footer className="home-footer"><span className="footer-dot"/>작은 앱으로, 더 큰 골프 라이프.<small>PLK MINI APP PLATFORM · PoC</small></footer></main>;
+}

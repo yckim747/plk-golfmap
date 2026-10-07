@@ -1,0 +1,54 @@
+# 테스트 배포: main 브랜치에 push하면 https://<계정>.github.io/<저장소>/ 로 자동 배포된다.
+# 사전 설정 (저장소 Settings):
+#   - Pages → Build and deployment → Source: GitHub Actions
+#   - Secrets and variables → Actions → Variables
+#       KAKAO_JS_KEY   카카오 JavaScript 키 (필수)
+#       BACK_URL       지도 화면 ← 버튼이 이동할 주소 (선택, 예: PLK 홈페이지)
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BASE_PATH: /${{ github.event.repository.name }}
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
+      NEXT_PUBLIC_BACK_URL: ${{ vars.BACK_URL }}
+      NEXT_PUBLIC_WEB_ENTRY: map
+      NEXT_PUBLIC_KAKAO_MAP_APP_KEY: ${{ vars.KAKAO_JS_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test
+      - run: npm run build:web
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

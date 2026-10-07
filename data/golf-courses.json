@@ -1,0 +1,62 @@
+[
+  {
+    "id": "PLK-T001",
+    "name": "남서울컨트리클럽",
+    "address": "경기도 성남시 분당구 대장동",
+    "lat": 37.381738804103755,
+    "lng": 127.08264013045908,
+    "holes": null,
+    "phone": "031-709-6000",
+    "homepage": "",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/25045488"
+  },
+  {
+    "id": "PLK-T002",
+    "name": "레이크사이드컨트리클럽",
+    "address": "경기도 용인시 처인구 모현읍",
+    "lat": 37.319443055912714,
+    "lng": 127.17914446733798,
+    "holes": null,
+    "phone": "031-334-2111",
+    "homepage": "",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/9769457"
+  },
+  {
+    "id": "PLK-T003",
+    "name": "오크밸리컨트리클럽",
+    "address": "강원특별자치도 원주시 지정면",
+    "lat": 37.43809127437956,
+    "lng": 127.81375894448216,
+    "holes": null,
+    "phone": "1588-7676",
+    "homepage": "",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/169258613"
+  },
+  {
+    "id": "PLK-T004",
+    "name": "핀크스골프클럽",
+    "address": "제주특별자치도 서귀포시 안덕면",
+    "lat": 33.31532779732929,
+    "lng": 126.38862809091401,
+    "holes": null,
+    "phone": "064-792-8000",
+    "homepage": "",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/12501790"
+  },
+  {
+    "id": "PLK-T005",
+    "name": "베어즈베스트청라",
+    "address": "인천광역시 서구 청라동",
+    "lat": 37.5447271810818,
+    "lng": 126.63467843871203,
+    "holes": null,
+    "phone": "032-560-2000",
+    "homepage": "",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/27389031"
+  }
+]

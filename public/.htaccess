@@ -1,0 +1,29 @@
+# PLK 골프장 지도 - Apache 설정 (빌드 시 out/에 함께 복사됨)
+# 서버에서 AllowOverride가 꺼져 있으면 이 내용을 vhost 설정의 <Directory .../golfmap>에 넣어 주세요.
+
+DirectoryIndex index.html
+Options -Indexes
+
+# 하위 경로를 바꾸면(BASE_PATH) 이 경로도 함께 바꿉니다.
+ErrorDocument 404 /golfmap/404.html
+
+<IfModule mod_mime.c>
+  AddType application/json .json
+  AddType image/png .png
+</IfModule>
+
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # 파일명에 해시가 붙은 JS/CSS는 오래 캐시
+  <If "%{REQUEST_URI} =~ m#/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # 페이지와 골프장 데이터는 매번 새로 확인 (재업로드 즉시 반영)
+  <FilesMatch "\.(html|json)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
