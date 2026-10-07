@@ -184,12 +184,13 @@ test('merge: unmatched courses fall back to the address point or are dropped', (
   assert.equal(mergeCourse(row, undefined, none, [], null).status, 'no_coords');
 });
 
-test('merge: source coordinates win over Kakao, Kakao still fills phone and link; partner type is kept', () => {
+test('merge: a confirmed Kakao place wins over master coordinates (pins line up with the Kakao basemap); partner type is kept', () => {
   const sourced = { ...row, lat: 37.4, lng: 127.4, partnerType: '이용협약' as const };
   const kakao = place('1', '레이크사이드컨트리클럽', '경기 용인시 처인구 모현읍', 37.32, 127.25);
   const confirmed = mergeCourse(sourced, undefined, matchPlace(sourced, [kakao], null), [kakao], null);
   assert.equal(confirmed.status, 'confirmed');
-  assert.deepEqual([confirmed.course?.lat, confirmed.course?.lng], [37.4, 127.4]);
+  assert.deepEqual([confirmed.course?.lat, confirmed.course?.lng], [37.32, 127.25]);
+  assert.match(confirmed.note, /카카오 위치 사용/);
   assert.equal(confirmed.course?.phone, '031-000-0000');
   assert.equal(confirmed.course?.plkPartner, true);
   assert.equal(confirmed.course?.partnerType, '이용협약');

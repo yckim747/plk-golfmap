@@ -3,9 +3,9 @@
 // 경로를 생략하면 data/source/에서 템플릿이 아닌 가장 최근 CSV(운영팀 골프장 마스터 원본 등)를 사용한다.
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { decodeCsv, OPERATIONS_COLUMNS, parseCourseFile, parseOverrides, toCsv, type SkippedRow } from './lib/csv';
+import { decodeCsv, OPERATIONS_COLUMNS, parseCourseFile, parseOverrides, toCsv, type OverrideRow, type SkippedRow } from './lib/csv';
 import { writeNationalWorkbook, type CourseMeta } from './lib/excel';
-import { findExisting, GOLF_HINT, nearestWithin, type ClusteredPlace, type ExistingCourse, type NationalCandidate } from './lib/national';
+import { bestNameSimilarity, findExisting, GOLF_HINT, nearestWithin, type ClusteredPlace, type ExistingCourse, type NationalCandidate } from './lib/national';
 import { KakaoLocalClient } from './lib/kakao';
 import { distanceKm, isGolfCourse, matchPlace, nameSimilarity, normalizeName, type KakaoPlace } from './lib/match';
 import { mergeCourse, validateCourses } from './lib/merge';
@@ -53,11 +53,15 @@ async function main() {
   const counts: Record<string, number> = {};
   const skippedCounts: Record<string, number> = {};
   const coordNotes = new Map<string, string>();
+  // 검수용: 골프장별 위치 근거, 마스터 원본 좌표
+  const coordSources = new Map<string, string>();
+  const masterPoints = new Map<string, { lat: number; lng: number }>();
 
   try {
     for (const [index, sourceRow] of rows.entries()) {
       let row = sourceRow;
       let sourcePoint = row.lat != null && row.lng != null ? { lat: row.lat, lng: row.lng } : null;
+      if (sourcePoint) masterPoints.set(row.plkCode, sourcePoint);
       // 주소가 비어 있으면 이름으로 카카오 골프장을 찾아 그 주소를 쓴다(이름이 거의 같고 1위가 뚜렷할 때만).
       if (!row.address) {
         const found = pickByName(row.name, await kakao.searchPlaces(row.name, sourcePoint));
@@ -85,7 +89,10 @@ async function main() {
         skippedCounts['협의중: 위치 확인 불가'] = (skippedCounts['협의중: 위치 확인 불가'] ?? 0) + 1;
         continue;
       }
-      if (result.course) courses.push(result.course);
+      if (result.course) {
+        courses.push(result.course);
+        coordSources.set(result.course.id, { confirmed: '카카오 장소', override: '보정 CSV', source_coords: '마스터 좌표', address_fallback: '주소 좌표' }[result.status as string] ?? '');
+      }
       counts[result.status] = (counts[result.status] ?? 0) + 1;
       const describe = (place: KakaoPlace) => `${place.id}:${place.place_name}:${place.address_name}`;
       report.push({
@@ -110,7 +117,8 @@ async function main() {
   const meta = new Map<string, CourseMeta>(courses.map((course) => [course.id, { source: 'PLK 마스터', licenseNo: '', businessStatus: '', note: coordNotes.get(course.id) ?? '' }]));
   // PLK 마스터에서 공개 불가·휴장으로 뺀 골프장은 전국 보완에서도 다시 넣지 않는다.
   const blocked = skipped.filter((row) => row.reason === '공개 불가' || row.reason === '휴장');
-  const national = supplementNational(courses, overrides, report, meta, blocked);
+  const duplicates: DuplicateRecord[] = [];
+  const national = supplementNational(courses, overrides, report, meta, blocked, coordSources, duplicates);
 
   mkdirSync(path.dirname(reportFile), { recursive: true });
   writeFileSync(reportFile, toCsv(report, ['plk_code', 'name', 'address', 'status', 'match_status', 'score', 'place_id', 'place_name', 'place_address', 'candidates', 'note']));
@@ -119,7 +127,8 @@ async function main() {
   writeFileSync(outputFile, JSON.stringify(courses, null, 2) + '\n');
   const masterColumns = format === 'operations' ? decodeCsv(readFileSync(inputFile)).split(/\r?\n/, 1)[0].split(',').map((column) => column.trim()) : [...OPERATIONS_COLUMNS];
   const workbookFile = path.join(root, `data/reports/전국골프장_${new Date().toISOString().slice(2, 10).replaceAll('-', '')}.xlsx`);
-  await writeNationalWorkbook(workbookFile, courses, meta, masterColumns, national);
+  const unlocatedPublic = existsSync(path.join(sourceDir, 'public-golf.json')) ? JSON.parse(readFileSync(path.join(sourceDir, 'public-golf.json'), 'utf8')).unlocated ?? [] : [];
+  await writeNationalWorkbook(workbookFile, courses, meta, masterColumns, national, { coordSources, masterPoints, unlocatedPublic, duplicates });
 
   const reasons: Record<string, number> = { ...skippedCounts };
   for (const row of skipped) reasons[row.reason] = (reasons[row.reason] ?? 0) + 1;
@@ -130,13 +139,13 @@ async function main() {
   원본에서 제외: ${Object.entries(reasons).map(([reason, count]) => `${reason} ${count}`).join(', ') || '없음'}
   카카오 API 호출 ${kakao.apiCalls}건 (나머지는 캐시)
   매칭 리포트: ${path.relative(root, reportFile)} — source_coords/address_fallback/no_coords 건은 data/source/overrides.csv로 보정할 수 있습니다.
-  전국 보완: 공공데이터 신규 ${national.addedPublic}곳, 카카오 신규 ${national.addedKakao}곳 (후보 ${national.candidates}곳 중 기존과 같은 골프장 ${national.matched}곳, 공개 불가·휴장 차단 ${national.blocked}곳, 검토 필요 ${national.reviewNeeded}곳)
+  전국 보완: 공공데이터 신규 ${national.addedPublic}곳, 카카오 신규 ${national.addedKakao}곳 (후보 ${national.candidates}곳 중 기존과 같은 골프장 ${national.matched}곳, 공개 불가·휴장 차단 ${national.blocked}곳, 이름만 다른 동일 골프장 ${national.mergedByProximity}곳, 같은 자리 중복 정리 ${national.duplicates}곳, 검토 필요 ${national.reviewNeeded}곳)
   엑셀: ${path.relative(root, workbookFile)}`);
 }
 
 // 전국 골프장 보완: 공공데이터(인허가) → 카카오 순으로, 지금 목록에 없는 골프장을 '협의중'으로 추가한다.
 // data/source/public-golf.json, kakao-golf.json은 `npm run data:fetch`가 만든다(없으면 건너뜀).
-function supplementNational(courses: GolfCourse[], overrides: Map<string, { exclude: boolean }>, report: Record<string, string | number>[], meta: Map<string, CourseMeta>, blocked: SkippedRow[]) {
+function supplementNational(courses: GolfCourse[], overrides: Map<string, OverrideRow>, report: Record<string, string | number>[], meta: Map<string, CourseMeta>, blocked: SkippedRow[], coordSources: Map<string, string>, duplicates: DuplicateRecord[]) {
   const load = <T,>(file: string, key: string): T[] => { const full = path.join(sourceDir, file); return existsSync(full) ? JSON.parse(readFileSync(full, 'utf8'))[key] : []; };
   const publicItems = load<NationalCandidate>('public-golf.json', 'items');
   const kakaoPlaces = load<ClusteredPlace>('kakao-golf.json', 'places');
@@ -149,25 +158,54 @@ function supplementNational(courses: GolfCourse[], overrides: Map<string, { excl
     ...courses.map((course) => ({ id: course.id, name: course.name, lat: course.lat, lng: course.lng, placeIds: placeIdOf(course.kakaoPlaceUrl) })),
     ...blocked.map((row) => ({ id: `blocked:${row.name}`, name: row.name, lat: row.lat ?? null, lng: row.lng ?? null, placeIds: [], blocked: true })),
   ];
-  const stats = { candidates: candidates.length, matched: 0, blocked: 0, addedPublic: 0, addedKakao: 0, reviewNeeded: 0, excludedByOverride: 0 };
+  const stats = { candidates: candidates.length, matched: 0, mergedByProximity: 0, duplicates: 0, blocked: 0, addedPublic: 0, addedKakao: 0, reviewNeeded: 0, excludedByOverride: 0 };
   for (const candidate of candidates) {
     const hit = findExisting(candidate, existing);
     if (hit?.blocked) { stats.blocked += 1; report.push({ plk_code: `${candidate.source}:${candidate.key}`, name: candidate.name, address: candidate.address, status: 'skipped_national', note: `PLK 마스터 ${hit.name}(공개 불가·휴장)과 같은 골프장` }); continue; }
     if (hit) {
       stats.matched += 1;
-      // 공공데이터로 추가된 골프장에 같은 골프장의 카카오 정보(전화·카카오맵 링크)를 채운다.
       const course = courses.find((item) => item.id === hit.id)!;
-      if (candidate.source === '카카오' && meta.get(hit.id)?.source === '공공데이터') {
+      // 위치 보강: 카카오 장소가 없는 골프장은 같은 골프장으로 판정된 카카오 장소(없으면 공공데이터 인허가) 좌표로 옮긴다.
+      // 지도 바탕이 카카오맵이라 카카오 좌표가 가장 우선이다. 5km 넘게 떨어진 후보는 오판 가능성이 있어 옮기지 않는다.
+      const manual = overrides.get(hit.id)?.lat != null;
+      const current = coordSources.get(hit.id) ?? '';
+      // 이름이 거의 같은 카카오 장소는 15km까지 옮긴다(마스터 좌표가 크게 어긋난 경우, 예: 유성CC 5km).
+      const km = distanceKm(course, candidate);
+      const sameName = bestNameSimilarity(course.name, candidate.name) >= 0.9;
+      const canMove = !manual && !course.kakaoPlaceUrl && (km <= 5 || (candidate.source === '카카오' && sameName && km <= 15));
+      if (canMove && (candidate.source === '카카오' || (candidate.source === '공공데이터' && current !== '공공데이터 인허가'))) {
+        course.lat = candidate.lat;
+        course.lng = candidate.lng;
+        coordSources.set(hit.id, candidate.source === '카카오' ? '카카오 장소' : '공공데이터 인허가');
+      }
+      // 같은 골프장의 카카오 정보(전화·카카오맵 링크)를 채운다. 위치를 옮기지 못한 경우엔 링크도 붙이지 않는다(핀과 링크 불일치 방지).
+      if (candidate.source === '카카오' && (canMove || course.kakaoPlaceUrl || manual)) {
         if (!course.phone) course.phone = candidate.phone;
         if (!course.kakaoPlaceUrl && candidate.placeUrl) course.kakaoPlaceUrl = candidate.placeUrl;
+        hit.placeIds.push(...candidate.placeIds);
+      }
+      if (candidate.source === '카카오' && meta.get(hit.id)?.source === '공공데이터') {
         // 인허가 명칭이 법인명이면("디케이레저") 지도에서 알아보기 쉬운 카카오 이름으로 바꾼다.
         if (!GOLF_HINT.test(course.name) && GOLF_HINT.test(candidate.name)) {
           meta.get(hit.id)!.note = [`인허가 명칭: ${course.name}`, meta.get(hit.id)!.note].filter(Boolean).join(' / ');
           course.name = candidate.name;
         }
-        hit.placeIds.push(...candidate.placeIds);
       }
       continue;
+    }
+    // 인허가 명칭과 브랜드명이 다른 골프장(예: 인천국제공항스카이칠십이 = 클럽72, 강원랜드골프클럽 = 하이원CC):
+    // 카카오에 비슷한 이름의 장소가 없고 1km 안에 기존 골프장이 있으면 같은 골프장으로 보고 인허가 명칭만 비고에 남긴다.
+    if (candidate.source === '공공데이터') {
+      const near = nearestWithin(candidate, existing, 1);
+      const onKakao = kakaoPlaces.some((place) => bestNameSimilarity(candidate.name, place.place_name) >= 0.6 && distanceKm(candidate, { lat: Number(place.y), lng: Number(place.x) }) <= 3);
+      if (near && !onKakao) {
+        stats.matched += 1;
+        stats.mergedByProximity += 1;
+        const info = meta.get(near.course.id);
+        if (info) info.note = [info.note, `인허가 명칭: ${candidate.name}(${near.km.toFixed(1)}km, 동일 골프장 처리)`].filter(Boolean).join(' / ');
+        report.push({ plk_code: `공공데이터:${candidate.key}`, name: candidate.name, address: candidate.address, status: 'merged_nearby', note: `${near.course.name}과 같은 골프장으로 처리(${near.km.toFixed(1)}km)` });
+        continue;
+      }
     }
     // 골프장 단서가 없는 이름(운영 법인명 등)은 1.5km 안에 기존 골프장이 있으면 그 골프장의 다른 등록으로 본다.
     if (!GOLF_HINT.test(candidate.name) && nearestWithin(candidate, existing, 1.5)) { stats.matched += 1; continue; }
@@ -182,11 +220,47 @@ function supplementNational(courses: GolfCourse[], overrides: Map<string, { excl
     if (candidate.placeUrl) course.kakaoPlaceUrl = candidate.placeUrl;
     courses.push(course);
     existing.push({ id, name: candidate.name, lat: candidate.lat, lng: candidate.lng, placeIds: [...candidate.placeIds] });
+    coordSources.set(id, candidate.source === '카카오' ? '카카오 장소' : '공공데이터 인허가');
     meta.set(id, { source: candidate.source, licenseNo: candidate.source === '공공데이터' ? candidate.key : '', businessStatus: candidate.businessStatus, note });
     report.push({ plk_code: id, name: candidate.name, address: candidate.address, status: candidate.source === '공공데이터' ? 'added_public' : 'added_kakao', note });
     if (candidate.source === '공공데이터') stats.addedPublic += 1; else stats.addedKakao += 1;
   }
+  stats.duplicates = removeSameSpotDuplicates(courses, meta, report, coordSources, duplicates);
   return stats;
 }
 
 main().catch((error: Error) => { console.error(`\n오류: ${error.message}`); process.exitCode = 1; });
+
+// 같은 자리 중복 정리: 카카오 장소가 없는 골프장 옆 500m 안에 카카오에 연결된 골프장이 있으면 옛 이름·다른 이름의 중복이다.
+// - 협의중이면 지도에서 빼고 남는 골프장 비고에 다른 명칭을 남긴다(예: 글로렌스CC ↔ 글렌로스골프클럽).
+// - 운영 중인 마스터 골프장이고 옆이 전국 수집 추가분이면, 마스터 쪽이 카카오 정보를 넘겨받고 추가분을 뺀다(예: 클럽디 보은).
+// - 둘 다 운영 중인 마스터 골프장이면 같은 단지의 다른 코스일 수 있어 그대로 둔다(예: 라비에벨 듄스/올드).
+export interface DuplicateRecord { removedId: string; removedName: string; keptId: string; keptName: string; km: number; action: string }
+function removeSameSpotDuplicates(courses: GolfCourse[], meta: Map<string, CourseMeta>, report: Record<string, string | number>[], coordSources: Map<string, string>, duplicates: DuplicateRecord[]): number {
+  const removed = new Set<string>();
+  const note = (id: string, text: string) => { const info = meta.get(id); if (info) info.note = [info.note, text].filter(Boolean).join(' / '); };
+  for (const course of courses.filter((item) => !item.kakaoPlaceUrl)) {
+    if (removed.has(course.id)) continue;
+    const near = courses
+      .filter((other) => other.id !== course.id && other.kakaoPlaceUrl && !removed.has(other.id))
+      .map((other) => ({ other, km: distanceKm(course, other) }))
+      .sort((a, b) => a.km - b.km)[0];
+    if (!near || near.km > 0.5) continue;
+    const { other, km } = near;
+    if (course.status === '협의중') {
+      removed.add(course.id);
+      note(other.id, `다른 명칭: ${course.name}`);
+      duplicates.push({ removedId: course.id, removedName: course.name, keptId: other.id, keptName: other.name, km, action: '협의중 중복 제외' });
+    } else if (meta.get(other.id)?.source !== 'PLK 마스터') {
+      course.lat = other.lat; course.lng = other.lng; course.kakaoPlaceUrl = other.kakaoPlaceUrl;
+      if (!course.phone) course.phone = other.phone;
+      coordSources.set(course.id, '카카오 장소');
+      removed.add(other.id);
+      note(course.id, `다른 명칭: ${other.name}`);
+      duplicates.push({ removedId: other.id, removedName: other.name, keptId: course.id, keptName: course.name, km, action: '마스터 골프장으로 통합' });
+    }
+  }
+  for (const record of duplicates) report.push({ plk_code: record.removedId, name: record.removedName, address: '', status: 'removed_duplicate', note: `${record.keptName}과 같은 자리(${record.km.toFixed(2)}km) → ${record.action}` });
+  for (let index = courses.length - 1; index >= 0; index--) if (removed.has(courses[index].id)) courses.splice(index, 1);
+  return removed.size;
+}

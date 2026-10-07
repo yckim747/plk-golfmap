@@ -14,7 +14,10 @@ const sourceDir = path.join(root, 'data/source');
 const cacheFile = path.join(root, 'data/cache/kakao-local.json');
 type Rect = [number, number, number, number];
 
-async function sweepKakao(kakao: KakaoLocalClient): Promise<KakaoPlace[]> {
+// 이름에 "골프장"이 없는 골프장("OO컨트리클럽", "OO CC")도 찾도록 여러 검색어로 전수 검색한다.
+const KAKAO_KEYWORDS = ['골프장', '컨트리클럽', '골프클럽', 'CC', 'GC'];
+
+async function sweepKakao(kakao: KakaoLocalClient, keyword: string): Promise<KakaoPlace[]> {
   const found: KakaoPlace[] = [];
   const [x1, y1, x2, y2] = KOREA_BOUNDS;
   const step = 0.5;
@@ -24,7 +27,7 @@ async function sweepKakao(kakao: KakaoLocalClient): Promise<KakaoPlace[]> {
   while (queue.length) {
     const rect = queue.shift()!;
     tiles += 1;
-    const first = await kakao.searchRect('골프장', rect, 1);
+    const first = await kakao.searchRect(keyword, rect, 1);
     // 45건(3페이지)보다 많으면 4등분해서 다시 검색한다.
     if (first.total > 45 && rect[2] - rect[0] > 0.01) {
       const [a, b, c, d] = rect;
@@ -35,11 +38,11 @@ async function sweepKakao(kakao: KakaoLocalClient): Promise<KakaoPlace[]> {
     }
     found.push(...first.places);
     for (let page = 2, isEnd = first.isEnd; !isEnd && page <= 3; page += 1) {
-      const next = await kakao.searchRect('골프장', rect, page);
+      const next = await kakao.searchRect(keyword, rect, page);
       found.push(...next.places);
       isEnd = next.isEnd;
     }
-    if (tiles % 100 === 0) console.log(`  카카오 격자 ${tiles}개 검색, 남은 격자 ${queue.length}`);
+    if (tiles % 200 === 0) console.log(`  카카오 '${keyword}' 격자 ${tiles}개 검색, 남은 격자 ${queue.length}`);
   }
   return found;
 }
@@ -51,7 +54,15 @@ async function main() {
   mkdirSync(sourceDir, { recursive: true });
   const kakao = new KakaoLocalClient(kakaoKey, cacheFile);
   try {
-    const raw = await sweepKakao(kakao);
+    const raw: KakaoPlace[] = [];
+    const perKeyword: string[] = [];
+    for (const keyword of KAKAO_KEYWORDS) {
+      const found = await sweepKakao(kakao, keyword);
+      const before = new Set(raw.filter(isNationalCourse).map((place) => place.id)).size;
+      raw.push(...found);
+      perKeyword.push(`${keyword} +${new Set(raw.filter(isNationalCourse).map((place) => place.id)).size - before}`);
+    }
+    console.log(`카카오 검색어별 새 골프장: ${perKeyword.join(', ')}`);
     const unique = [...new Map(raw.map((place) => [place.id, place])).values()];
     const courses = clusterPlaces(unique.filter(isNationalCourse));
     writeFileSync(path.join(sourceDir, 'kakao-golf.json'), JSON.stringify({ fetchedAt: new Date().toISOString(), places: courses }, null, 1));
@@ -66,6 +77,7 @@ async function main() {
   for (const record of records) status[record.SALS_STTS_NM] = (status[record.SALS_STTS_NM] ?? 0) + 1;
   const items: NationalCandidate[] = [];
   let noCoords = 0;
+  const unlocated: { name: string; address: string; status: string }[] = [];
   for (const record of records.filter((item) => /^(영업|휴업)/.test(item.SALS_STTS_NM) && !/^(미사용|테스트)$|연습장/.test(item.BPLC_NM.trim()))) {
     const name = record.BPLC_NM.trim();
     const road = cleanAddress(record.ROAD_NM_ADDR);
@@ -84,11 +96,11 @@ async function main() {
         if (found) { point = { lat: Number(found.y), lng: Number(found.x) }; break; }
       }
     }
-    if (!point) { noCoords += 1; console.log(`  좌표 확인 불가: ${name} (${road || lot})`); continue; }
+    if (!point) { noCoords += 1; unlocated.push({ name, address: road || lot, status: record.SALS_STTS_NM }); console.log(`  좌표 확인 불가: ${name} (${road || lot})`); continue; }
     items.push({ source: '공공데이터', key: `${record.OPN_ATMY_GRP_CD}-${record.MNG_NO}`, name, address: road || lot, lat: point.lat, lng: point.lng, phone: record.TELNO.trim(), businessStatus: record.SALS_STTS_NM, placeUrl: '' });
   }
   kakao.saveCache();
-  writeFileSync(path.join(sourceDir, 'public-golf.json'), JSON.stringify({ fetchedAt: new Date().toISOString(), total: records.length, status, items }, null, 1));
+  writeFileSync(path.join(sourceDir, 'public-golf.json'), JSON.stringify({ fetchedAt: new Date().toISOString(), total: records.length, status, items, unlocated }, null, 1));
   console.log(`공공데이터: 전체 ${records.length}건 (${Object.entries(status).map(([name, count]) => `${name} ${count}`).join(', ')}) → 영업·휴업 ${items.length}곳${noCoords ? `, 좌표 없음 ${noCoords}` : ''}`);
 }
 

@@ -1,6 +1,6 @@
 import type { GolfCourse } from '../../lib/types';
 import type { OverrideRow, PlkCourseRow } from './csv';
-import type { KakaoPlace, MatchResult } from './match';
+import { distanceKm, type KakaoPlace, type MatchResult } from './match';
 
 export type ReportStatus = 'confirmed' | 'override' | 'source_coords' | 'address_fallback' | 'excluded' | 'no_coords';
 export interface MergeResult { course: GolfCourse | null; status: ReportStatus; place: KakaoPlace | null; note: string }
@@ -25,9 +25,12 @@ export function mergeCourse(row: PlkCourseRow, override: OverrideRow | undefined
     place = match.best.place;
     status = 'confirmed';
   }
-  // 좌표 우선순위: 보정 CSV > 원본 위·경도 > 카카오 확정 장소 > 주소 지오코딩
+  // 좌표 우선순위: 보정 CSV > 카카오 확정 장소 > 원본 위·경도 > 주소 지오코딩
+  // 지도 바탕이 카카오맵이라, 카카오 장소 좌표를 써야 지도 위 골프장 표기와 핀이 맞는다.
   const sourcePoint = row.lat != null && row.lng != null ? { lat: row.lat, lng: row.lng } : null;
-  let point = sourcePoint ?? (place ? { lat: Number(place.y), lng: Number(place.x) } : addressPoint);
+  const placePoint = place ? { lat: Number(place.y), lng: Number(place.x) } : null;
+  let point = placePoint ?? sourcePoint ?? addressPoint;
+  if (placePoint && sourcePoint && distanceKm(placePoint, sourcePoint) > 0.3) notes.push(`마스터 좌표와 ${distanceKm(placePoint, sourcePoint).toFixed(1)}km 차이 → 카카오 위치 사용`);
   if (override?.lat != null && override.lng != null) { point = { lat: override.lat, lng: override.lng }; status = 'override'; }
   if (!point) return { course: null, status: 'no_coords', place, note: [...notes, '좌표를 찾지 못해 제외'].join(' / ') };
   if (status === 'address_fallback' && sourcePoint) status = 'source_coords';
