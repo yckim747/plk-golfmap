@@ -3,9 +3,10 @@ import { useEffect, useRef } from 'react';
 import { X, MapPin, Phone, Globe, ArrowUpRight, Gift, Map, Navigation, Clock } from 'lucide-react';
 import type { GolfCourse } from '@/lib/types';
 import { regionOf } from '@/lib/region';
+import { formatDistance } from '@/lib/geo';
 import { markerKind } from './GolfCourseMarker';
 const KIND_LABEL = { partner: 'PLK 제휴', agreement: 'PLK 이용협약', regular: '일반 골프장', pending: '협의중' } as const;
-export default function GolfCourseSheet({ course, onClose }: { course: GolfCourse | null; onClose: () => void }) {
+export default function GolfCourseSheet({ course, onClose, distance }: { course: GolfCourse | null; onClose: () => void; distance?: number }) {
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => { if (course) dialog.current?.showModal(); else dialog.current?.close(); }, [course]);
   const kind = course ? markerKind(course) : 'regular';
@@ -13,7 +14,7 @@ export default function GolfCourseSheet({ course, onClose }: { course: GolfCours
     <div className="sheet-handle"/>
     <div className="sheet-top"><div className="tags"><span className={`tag ${kind}`}>{KIND_LABEL[kind]}</span></div><button className="icon-button" onClick={onClose} aria-label="골프장 상세 닫기"><X size={18}/></button></div>
     <h2 id="course-title">{course.name}</h2>
-    <p className="sheet-address"><MapPin size={15}/>{course.address}</p>
+    <p className="sheet-address"><MapPin size={15}/><span>{course.address}{distance !== undefined && <b className="distance"> · 내 위치에서 {formatDistance(distance)}</b>}</span></p>
     <dl className="info-grid"><div><dt>권역</dt><dd>{regionOf(course.address)}</dd></div><div><dt>홀</dt><dd>{course.holes ? `${course.holes}홀` : '–'}</dd></div><div><dt>구분</dt><dd>{course.status ?? course.partnerType ?? '일반'}</dd></div></dl>
     {kind === 'pending' && <p className="pending-note"><Clock size={16}/>PLK와 협의 중인 골프장입니다. 이용 조건은 추후 안내됩니다.</p>}
     {course.partnerNote && <p className="partner-note"><Gift size={16}/>{course.partnerNote}</p>}

@@ -56,13 +56,8 @@ export function sameDistrict(plkAddress: string, placeAddress: string): boolean 
   return tokens.length > 0 && tokens.every((token) => placeAddress.split(/\s+/).includes(token));
 }
 
-export function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
-  const rad = Math.PI / 180;
-  const dLat = (b.lat - a.lat) * rad;
-  const dLng = (b.lng - a.lng) * rad;
-  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2;
-  return 12742 * Math.asin(Math.sqrt(h));
-}
+import { distanceKm } from '../../lib/geo';
+export { distanceKm };
 
 export function isGolfCourse(place: KakaoPlace): boolean {
   return place.category_name.includes('골프장');
