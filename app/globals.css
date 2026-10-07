@@ -111,6 +111,10 @@ a{text-decoration:none}
 .map-legend span{display:flex;align-items:center;gap:6px}
 .map-label{position:relative;margin-bottom:50px;padding:6px 10px;border-radius:8px;background:var(--ink);color:#fff;font:600 12.5px/1.2 var(--font);white-space:nowrap;box-shadow:var(--shadow-md)}
 .map-label::after{content:'';position:absolute;left:50%;bottom:-5px;width:10px;height:10px;background:var(--ink);transform:translateX(-50%) rotate(45deg);border-radius:2px}
+.pin-label{max-width:150px;margin-top:1px;padding:3px 7px;border:1px solid rgba(11,18,32,.08);border-radius:6px;background:rgba(255,255,255,.94);color:var(--ink);font:600 11.5px/1.3 var(--font);letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 1px 3px rgba(11,18,32,.14);cursor:pointer}
+.pin-label.partner{color:var(--brand-ink)}
+.pin-label.agreement{color:var(--accent-ink)}
+.pin-label:hover{background:#fff;border-color:var(--line-strong)}
 .map-placeholder{position:absolute;inset:0;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 1px 1px,#d5dbe3 1px,transparent 0) 0 0/22px 22px,#eef1f4}
 .map-message{max-width:360px;padding:28px;border:1px solid var(--line);border-radius:20px;background:#fff;text-align:center;box-shadow:var(--shadow-lg)}
 .map-message>svg{margin:0 auto;color:var(--brand)}
