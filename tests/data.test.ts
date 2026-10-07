@@ -6,6 +6,7 @@ import { matchPlace, nameSimilarity, normalizeName, type KakaoPlace } from '../s
 import { mergeCourse, normalizeHomepage, validateCourses } from '../scripts/lib/merge';
 import type { GolfCourse } from '../lib/types';
 import { clusterPlaces, findExisting, isNationalCourse, nameVariants, tmToWgs84, toMasterRow } from '../scripts/lib/national';
+import { cleanAddress, cleanLotAddress } from '../scripts/lib/address';
 
 const HEADER = 'plk_code,name,address,phone,homepage,holes,partner,partner_note';
 
@@ -262,4 +263,14 @@ test('national: new courses are written in the operations master column layout',
   const row = toMasterRow(columns, { name: '오산체력단련장', address: '경기 오산시 양산동 100', lat: 37.1, lng: 127.0, homepage: '', holes: null });
   assert.deepEqual(Object.keys(row), columns);
   assert.deepEqual([row['골프장코드'], row['시도'], row['시군'], row['제휴구분'], row['사용여부'], row['주중그린피_원']], ['', '경기', '오산시', '비제휴', 'N', '']);
+});
+
+test('national: public licensing names and addresses are normalized for matching and geocoding', () => {
+  assert.ok(nameVariants('광릉레져개발(주)  광릉CC').includes('광릉CC'));
+  assert.ok(nameVariants('(주)밀양컨트리클럽').includes('밀양컨트리클럽'));
+  assert.ok(nameVariants('오크밸리대중골프장').includes('오크밸리골프장'));
+  assert.equal(cleanAddress('충청북도 음성군 소이면 후삼로158번길 101-0, 0동 (클럽하우스)'), '충청북도 음성군 소이면 후삼로158번길 101');
+  assert.equal(cleanLotAddress('경상북도 칠곡군 북삼읍 보손리 34번지 2호'), '경상북도 칠곡군 북삼읍 보손리 34-2');
+  assert.equal(cleanLotAddress('충청남도 예산군 삽교읍 목리 1420번지 0호'), '충청남도 예산군 삽교읍 목리 1420');
+  assert.equal(cleanLotAddress('강원특별자치도 원주시 지정면 월송리 산 171'), '강원특별자치도 원주시 지정면 월송리 산 171');
 });

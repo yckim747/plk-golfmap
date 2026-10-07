@@ -27,7 +27,14 @@ export function isNationalCourse(place: KakaoPlace): boolean {
 // 이름 비교 후보: 원래 이름, 괄호를 뺀 이름, 괄호 안 이름("H1(에이치원클럽)" → 에이치원클럽, "(구.웅포)" → 웅포)
 export function nameVariants(name: string): string[] {
   const inner = [...name.matchAll(/[(（]([^)）]*)[)）]/g)].map((match) => match[1].replace(/^\s*구\s*[.,]?\s*/, '').trim()).filter(Boolean);
-  return [...new Set([name, name.replace(/\s*[(（][^)）]*[)）]\s*/g, ' ').trim(), ...inner])];
+  // 법인 표기("(주)밀양컨트리클럽", "광릉레져개발(주) 광릉CC")는 떼고 비교한다.
+  const corporate = /\((주|재|사|유)\)|㈜|주식회사/g;
+  const plain = name.replace(corporate, ' ').replace(/\s*[(（][^)）]*[)）]\s*/g, ' ').replace(/\s+/g, ' ').trim();
+  // 인허가 명칭의 구분어("오크밸리대중골프장", "휘닉스파크골프장(회원제)")를 뺀 이름도 비교한다.
+  const withoutKind = plain.replace(/대중형?|회원제|비회원제|퍼블릭/g, '').trim();
+  // 여러 단어로 된 이름은 골프장 단서가 있는 단어도 따로 비교한다("광릉레져개발 광릉CC" → "광릉CC").
+  const words = plain.split(' ').filter((word) => plain.includes(' ') && GOLF_HINT.test(word) && word.length >= 3);
+  return [...new Set([name, plain, withoutKind, ...words, ...inner.map((value) => value.replace(corporate, '').trim())].filter((value) => value && !/^(주|재|사|유)$/.test(value)))];
 }
 export function bestNameSimilarity(a: string, b: string): number {
   let best = 0;
@@ -83,7 +90,8 @@ export function findExisting(candidate: { name: string; placeIds: string[] } & P
       if (course.lat == null || course.lng == null) return similarity >= 0.9;
       const point = { lat: course.lat, lng: course.lng };
       const km = distanceKm(candidate, point);
-      return isSameCourse(candidate, { name: course.name, ...point }) || km <= 0.3 || (similarity >= 0.9 && km <= 15);
+      // 차단 골프장(공개 불가·휴장)은 더 넓게 막는다: 이름 0.8 이상이면 15km 이내 같은 골프장("설해원" ↔ "설해원 더 레전드 코스").
+      return isSameCourse(candidate, { name: course.name, ...point }) || km <= 0.3 || (similarity >= (course.blocked ? 0.8 : 0.9) && km <= 15);
     })
     ?? null;
 }
@@ -97,6 +105,14 @@ export function nearestWithin(point: Point, existing: ExistingCourse[], km = 3):
     if (distance <= km && (!best || distance < best.km)) best = { course, km: distance };
   }
   return best;
+}
+
+// 이름으로 찾은 카카오 골프장 중 이름이 거의 같고(0.85) 1위가 뚜렷한 곳. 1km 안의 다른 등록명은 같은 골프장으로 본다.
+export function pickPlaceByName(name: string, places: KakaoPlace[], minScore = 0.85): KakaoPlace | null {
+  const [best, ...rest] = places.map((place) => ({ place, score: bestNameSimilarity(name, place.place_name) })).sort((a, b) => b.score - a.score);
+  if (!best || best.score < minScore) return null;
+  const rival = rest.find(({ place }) => distanceKm(pointOf(best.place), pointOf(place)) > 1);
+  return !rival || best.score - rival.score >= 0.1 ? best.place : null;
 }
 
 // 공공데이터 좌표: 보정계수 없는 Bessel 중부원점TM(EPSG:5174) → WGS84
