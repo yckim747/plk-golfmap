@@ -1,8 +1,8 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Map as MapIcon, LoaderCircle, LocateFixed, Plus, Minus, Maximize2 } from 'lucide-react';
+import { Map as MapIcon, LoaderCircle, LocateFixed, Plus, Minus, Maximize2, Ruler } from 'lucide-react';
 import type { GolfCourse } from '@/lib/types';
-import type { MyLocation } from '@/lib/geo';
+import { distanceKm, formatDistance, type MyLocation } from '@/lib/geo';
 import { markerImageUrl, markerKind } from './GolfCourseMarker';
 let sdkPromise: Promise<void> | null = null;
 export function loadSdk(key: string): Promise<void> {
@@ -37,6 +37,16 @@ export default function KakaoMap({ courses, selected, onSelect, myLocation, loca
   const label = useRef<kakao.maps.CustomOverlay | null>(null);
   const selectedId = useRef<string | null>(null);
   const layoutLabels = useRef<(() => void) | null>(null);
+  // 거리 재기: 측정 모드에서는 핀·이름표 클릭이 상세 화면 대신 측정 점이 된다(마커를 다시 만들지 않도록 ref로 분기).
+  const [measuring, setMeasuring] = useState(false);
+  const [measureStep, setMeasureStep] = useState<'start' | 'end' | 'done'>('start');
+  const measuringRef = useRef(false);
+  measuringRef.current = measuring;
+  const addMeasurePoint = useRef<((position: kakao.maps.LatLng) => void) | null>(null);
+  const pick = useCallback((course: GolfCourse) => {
+    if (measuringRef.current) addMeasurePoint.current?.(new kakao.maps.LatLng(course.lat, course.lng));
+    else onSelect(course);
+  }, [onSelect]);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error' | 'missing'>('loading');
   const [error, setError] = useState('');
   const [attempt, setAttempt] = useState(0);
@@ -68,7 +78,7 @@ export default function KakaoMap({ courses, selected, onSelect, myLocation, loca
     const markers = courses.map((course) => {
       const kind = markerKind(course);
       const marker = new kakao.maps.Marker({ position: new kakao.maps.LatLng(course.lat, course.lng), title: course.name, zIndex: MARKER_Z[kind], image: new kakao.maps.MarkerImage(markerImageUrl(kind), new kakao.maps.Size(36, 44), { offset: new kakao.maps.Point(18, 42) }) });
-      const click = () => onSelect(course);
+      const click = () => pick(course);
       kakao.maps.event.addListener(marker, 'click', click);
       listeners.push({ marker, click });
       return marker;
@@ -76,7 +86,7 @@ export default function KakaoMap({ courses, selected, onSelect, myLocation, loca
     clusterer.current.clear(); clusterer.current.addMarkers(markers);
     fitAll();
     return () => { listeners.forEach(({ marker, click }) => kakao.maps.event.removeListener(marker, 'click', click)); clusterer.current?.clear(); };
-  }, [courses, onSelect, status, fitAll]);
+  }, [courses, pick, status, fitAll]);
   // 클러스터가 풀린 확대 수준에서는 핀 아래에 골프장 이름을 표시한다.
   // 이름표끼리 겹치면 제휴 → 이용협약 → 일반 → 협의중 순으로 우선 표시하고 나머지는 숨긴다(더 확대하면 나타남).
   useEffect(() => {
@@ -88,7 +98,7 @@ export default function KakaoMap({ courses, selected, onSelect, myLocation, loca
       content.className = `pin-label ${markerKind(course)}`;
       content.textContent = text;
       content.title = course.name;
-      content.addEventListener('click', () => onSelect(course));
+      content.addEventListener('click', () => pick(course));
       const position = new kakao.maps.LatLng(course.lat, course.lng);
       return { course, position, width: Math.min(labelWidth(text), LABEL_MAX_WIDTH), overlay: new kakao.maps.CustomOverlay({ position, content, yAnchor: 0, zIndex: 1, clickable: true }), shown: false };
     });
@@ -117,7 +127,7 @@ export default function KakaoMap({ courses, selected, onSelect, myLocation, loca
     kakao.maps.event.addListener(current, 'idle', layout);
     layout();
     return () => { kakao.maps.event.removeListener(current, 'idle', layout); entries.forEach((entry) => entry.overlay.setMap(null)); layoutLabels.current = null; };
-  }, [courses, onSelect, status]);
+  }, [courses, pick, status]);
   useEffect(() => {
     selectedId.current = selected?.id ?? null;
     layoutLabels.current?.();
@@ -165,10 +175,86 @@ export default function KakaoMap({ courses, selected, onSelect, myLocation, loca
     map.current.panTo(position);
     return () => { overlay.setMap(null); circle.setMap(null); };
   }, [myLocation, status]);
+  // 거리 재기(두 점): 시작점 클릭 → (PC는 마우스를 따라 점선·실시간 거리) → 끝점 클릭 → 실선과 거리 라벨 고정.
+  // 한 번 더 클릭하면 새 측정, 버튼을 다시 누르거나 Esc로 종료. 거리는 목록·상세와 같은 lib/geo 계산을 쓴다.
+  useEffect(() => {
+    if (status !== 'ready' || !map.current || !measuring) return;
+    const current = map.current;
+    const line = new kakao.maps.Polyline({ path: [], strokeWeight: 3, strokeColor: '#079455', strokeOpacity: 0.95, strokeStyle: 'solid' });
+    const preview = new kakao.maps.Polyline({ path: [], strokeWeight: 3, strokeColor: '#079455', strokeOpacity: 0.7, strokeStyle: 'shortdash' });
+    const dots: kakao.maps.CustomOverlay[] = [];
+    const labelElement = document.createElement('div');
+    labelElement.className = 'measure-label';
+    const labelText = document.createElement('span');
+    const clearButton = document.createElement('button');
+    clearButton.type = 'button';
+    clearButton.textContent = '✕';
+    clearButton.setAttribute('aria-label', '측정 지우기');
+    labelElement.append(labelText, clearButton);
+    const distanceLabel = new kakao.maps.CustomOverlay({ position: current.getCenter(), content: labelElement, yAnchor: 1, zIndex: 8, clickable: true });
+    let start: kakao.maps.LatLng | null = null;
+    let finished = false;
+    const toPoint = (position: kakao.maps.LatLng) => ({ lat: position.getLat(), lng: position.getLng() });
+    const addDot = (position: kakao.maps.LatLng) => {
+      const element = document.createElement('div');
+      element.className = 'measure-dot';
+      const dot = new kakao.maps.CustomOverlay({ position, content: element, zIndex: 8 });
+      dot.setMap(current);
+      dots.push(dot);
+    };
+    const showLabel = (position: kakao.maps.LatLng, final: boolean) => {
+      labelText.textContent = formatDistance(distanceKm(toPoint(start!), toPoint(position)));
+      labelElement.classList.toggle('final', final);
+      distanceLabel.setPosition(position);
+      distanceLabel.setMap(current);
+    };
+    const reset = () => {
+      line.setMap(null); preview.setMap(null); distanceLabel.setMap(null);
+      dots.splice(0).forEach((dot) => dot.setMap(null));
+      start = null; finished = false;
+      setMeasureStep('start');
+    };
+    const add = (position: kakao.maps.LatLng) => {
+      if (!start || finished) { reset(); start = position; addDot(position); setMeasureStep('end'); return; }
+      preview.setMap(null);
+      line.setPath([start, position]);
+      line.setMap(current);
+      addDot(position);
+      showLabel(position, true);
+      finished = true;
+      setMeasureStep('done');
+    };
+    const onClick = (event: kakao.maps.event.MouseEvent) => add(event.latLng);
+    const onMove = (event: kakao.maps.event.MouseEvent) => {
+      if (!start || finished) return;
+      preview.setPath([start, event.latLng]);
+      preview.setMap(current);
+      showLabel(event.latLng, false);
+    };
+    clearButton.addEventListener('click', (event) => { event.stopPropagation(); reset(); });
+    addMeasurePoint.current = add;
+    kakao.maps.event.addListener(current, 'click', onClick);
+    kakao.maps.event.addListener(current, 'mousemove', onMove);
+    setMeasureStep('start');
+    return () => {
+      kakao.maps.event.removeListener(current, 'click', onClick);
+      kakao.maps.event.removeListener(current, 'mousemove', onMove);
+      reset();
+      addMeasurePoint.current = null;
+    };
+  }, [measuring, status]);
+  useEffect(() => {
+    if (!measuring) return;
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setMeasuring(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [measuring]);
+  const MEASURE_HINTS = { start: '시작점을 클릭하세요', end: '끝점을 클릭하세요', done: '다시 클릭하면 새로 잽니다 · Esc로 종료' } as const;
   // 지도를 터치하면(캡처 단계라 카카오 지도보다 먼저) 상위에 알려 검색 키보드를 내린다. 지도 조작은 그대로 이어진다.
-  return <div className="map-stage" onPointerDownCapture={onInteract}>
+  return <div className={`map-stage${measuring ? ' measuring' : ''}`} onPointerDownCapture={onInteract}>
+    {measuring && <div className="measure-hint" role="status"><Ruler size={14}/>{MEASURE_HINTS[measureStep]}<button onClick={() => setMeasuring(false)}>종료</button></div>}
     <div ref={container} className="kakao-canvas" aria-label="대한민국 골프장 지도"/>
-    {status === 'ready' && <div className="map-controls"><div className="control-group"><button onClick={() => zoom(-1)} aria-label="확대"><Plus size={18}/></button><button onClick={() => zoom(1)} aria-label="축소"><Minus size={18}/></button></div><div className="control-group"><button onClick={fitAll} aria-label="전체 골프장 보기" title="전체 보기"><Maximize2 size={16}/></button></div><div className="control-group"><button className={locating ? "locating" : ""} onClick={onLocate} aria-label="내 위치 보기" title="내 위치">{locating ? <LoaderCircle className="spin" size={18}/> : <LocateFixed size={18}/>}</button></div></div>}
+    {status === 'ready' && <div className="map-controls"><div className="control-group"><button onClick={() => zoom(-1)} aria-label="확대"><Plus size={18}/></button><button onClick={() => zoom(1)} aria-label="축소"><Minus size={18}/></button></div><div className="control-group"><button onClick={fitAll} aria-label="전체 골프장 보기" title="전체 보기"><Maximize2 size={16}/></button></div><div className="control-group"><button className={locating ? "locating" : ""} onClick={onLocate} aria-label="내 위치 보기" title="내 위치">{locating ? <LoaderCircle className="spin" size={18}/> : <LocateFixed size={18}/>}</button></div><div className="control-group"><button className={measuring ? 'active' : ''} onClick={() => setMeasuring((value) => !value)} aria-pressed={measuring} aria-label={measuring ? '거리 재기 끝내기' : '직선 거리 재기'} title="거리 재기"><Ruler size={17}/></button></div></div>}
     {status !== 'ready' && <div className="map-placeholder"><div className="map-message">{status === 'loading' ? <LoaderCircle className="spin" size={28}/> : <MapIcon size={28}/>}<h2>{status === 'missing' ? '지도를 연결할 준비가 되었어요' : status === 'loading' ? '지도를 불러오는 중' : '지도 연결을 확인해 주세요'}</h2><p>{status === 'missing' ? '.env.local에 Kakao JavaScript 키를 넣으면 실제 지도가 표시됩니다. 목록에서 검색과 상세 화면은 바로 이용할 수 있어요.' : status === 'error' ? error : '잠시만 기다려 주세요.'}</p>{status === 'error' && <button className="primary-button" onClick={() => setAttempt((value) => value + 1)}>다시 연결하기</button>}</div></div>}
     <div className="map-legend" aria-hidden="true"><span><i className="dot partner"/>제휴</span><span><i className="dot agreement"/>이용협약</span><span><i className="dot regular"/>일반</span><span><i className="dot pending"/>협의중</span></div>
   </div>;
