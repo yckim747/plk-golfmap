@@ -882,7 +882,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/17091531"
   },
   {
-    "id": "C-206",
+    "id": "N-CC-2bb6d7",
+    "name": "남촌골프클럽",
+    "address": "경기 광주시 곤지암읍 부항길 135-38",
+    "lat": 37.3481148471919,
+    "lng": 127.415396762332,
+    "holes": null,
+    "phone": "031-769-0333",
+    "homepage": "http://www.namchoncc.co.kr/",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/8208862"
+  },
+  {
+    "id": "C-206-f2c0bc",
     "name": "남춘천컨트리클럽",
     "address": "강원 춘천시 신동면 오봉길 78",
     "lat": 37.78559261960424,
@@ -1422,6 +1434,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/10371634"
   },
   {
+    "id": "R-CC",
+    "name": "렉스필드컨트리클럽",
+    "address": "경기 여주시 산북면 광여로 1115",
+    "lat": 37.40179762267834,
+    "lng": 127.42174090614165,
+    "holes": null,
+    "phone": "031-880-8700",
+    "homepage": "http://www.rexfield.com/",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/16684340"
+  },
+  {
     "id": "C-211",
     "name": "로드힐스 골프&리조트",
     "address": "강원특별자치도 춘천시 동산면 종자리로 136",
@@ -1699,6 +1723,19 @@
     "plkPartner": false,
     "status": "협의중",
     "kakaoPlaceUrl": "https://place.map.kakao.com/8189122"
+  },
+  {
+    "id": "X-328c25",
+    "name": "밀양 에스파크",
+    "address": "경남 밀양시 단장면 미촌리 940-111",
+    "lat": 35.49967841054717,
+    "lng": 128.8312318026315,
+    "holes": 18,
+    "phone": "055-353-5513",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/2030317262"
   },
   {
     "id": "X-aee40f",
@@ -2294,6 +2331,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1973195772"
   },
   {
+    "id": "B-205-26ae9a",
+    "name": "설해원컨트리클럽",
+    "address": "강원도 양양군 손양면 공항로 230",
+    "lat": 38.05351753519729,
+    "lng": 128.66223509558932,
+    "holes": null,
+    "phone": "033-670-7700",
+    "homepage": "https://www.seolhaeone.com/",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/816955367"
+  },
+  {
     "id": "C-109",
     "name": "성문안컨트리클럽",
     "address": "강원 원주시 지정면 오크밸리1길 66 66",
@@ -2610,7 +2659,7 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/10533273"
   },
   {
-    "id": "B-117",
+    "id": "B-117-07027e",
     "name": "스타컨트리클럽",
     "address": "충북 충주시 앙성면 상대촌1길 198",
     "lat": 37.082929499156215,
@@ -2636,7 +2685,7 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1480365364"
   },
   {
-    "id": "B-205",
+    "id": "B-205-7c30f1",
     "name": "스톤비치컨트리클럽",
     "address": "충남 태안군 근흥면 갈음이길 77",
     "lat": 36.68774457239597,
@@ -2940,17 +2989,42 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/7991742"
   },
   {
+    "id": "B-117-e5ecd5",
+    "name": "안양컨트리클럽",
+    "address": "경기 군포시 군포로 364",
+    "lat": 37.33929601288034,
+    "lng": 126.93992525306241,
+    "holes": null,
+    "phone": "031-460-3301",
+    "homepage": "https://www.benestgolf.com/",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1612561598"
+  },
+  {
+    "id": "X-eefea7",
+    "name": "알펜시아700",
+    "address": "강원특별자치도 평창군 대관령면 스포츠파크길 234",
+    "lat": 37.66205022983353,
+    "lng": 128.69074808370857,
+    "holes": null,
+    "phone": "033-339-0000",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/18193117"
+  },
+  {
     "id": "C-105",
     "name": "알펜시아컨트리클럽",
     "address": "강원도 평창군 대관령면 솔봉로 325",
-    "lat": 37.65483046648458,
-    "lng": 128.6644093419753,
+    "lat": 37.6541474258379,
+    "lng": 128.6528153230529,
     "holes": null,
-    "phone": "033-339-0000",
+    "phone": "",
     "homepage": "https://www.onetheclub.com/alpensiacc/main",
     "plkPartner": true,
-    "partnerType": "이용협약",
-    "kakaoPlaceUrl": "https://place.map.kakao.com/26394565"
+    "partnerType": "이용협약"
   },
   {
     "id": "X-8feff7",
@@ -4022,6 +4096,18 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/10773280"
   },
   {
+    "id": "A-323",
+    "name": "지산 컨트리클럽",
+    "address": "경기 용인시 처인구 원삼면 맹리 산 29-8번지",
+    "lat": 37.216064622139434,
+    "lng": 127.3365539692508,
+    "holes": null,
+    "phone": "031-330-1412",
+    "homepage": "http://www.jisangolf.com/",
+    "plkPartner": false,
+    "kakaoPlaceUrl": "https://place.map.kakao.com/17151845"
+  },
+  {
     "id": "B-104-c9cf1f",
     "name": "진양밸리",
     "address": "충북 음성군 삼성면 금일로 1195",
@@ -4397,6 +4483,19 @@
     "plkPartner": true,
     "partnerType": "이용협약",
     "kakaoPlaceUrl": "https://place.map.kakao.com/17103179"
+  },
+  {
+    "id": "C-206-015abf",
+    "name": "킹즈락CC",
+    "address": "충북 제천시 내토로 7길 136",
+    "lat": 37.1383625028832,
+    "lng": 128.178411152119,
+    "holes": 27,
+    "phone": "043-640-9000",
+    "homepage": "https://kingsrockcc.com/Defaul",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/1836452265"
   },
   {
     "id": "X-663b5b",
@@ -4826,6 +4925,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/27303300"
   },
   {
+    "id": "X-e51b27",
+    "name": "핀크스골프클럽",
+    "address": "제주특별자치도 서귀포시 안덕면 산록남로 863",
+    "lat": 33.31532779732929,
+    "lng": 126.38862809091401,
+    "holes": null,
+    "phone": "064-792-8000",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/12501790"
+  },
+  {
     "id": "P-GC",
     "name": "필로스컨트리클럽",
     "address": "경기 포천시 일동면 운악청계로 1507",
@@ -5134,13 +5246,12 @@
     "id": "H-CC-a5b1d2",
     "name": "힐데스하임 컨트리클럽",
     "address": "충북 제천시 천남동 282-1번",
-    "lat": 37.1383625028832,
-    "lng": 128.178411152119,
+    "lat": 37.1374467,
+    "lng": 128.180232,
     "holes": null,
-    "phone": "043-640-9000",
+    "phone": "",
     "homepage": "http://www.hildesheimcc.kr/",
-    "plkPartner": false,
-    "kakaoPlaceUrl": "https://place.map.kakao.com/1836452265"
+    "plkPartner": false
   },
   {
     "id": "C-214",
@@ -5419,6 +5530,19 @@
     "plkPartner": false,
     "status": "협의중",
     "kakaoPlaceUrl": "https://place.map.kakao.com/1128341865"
+  },
+  {
+    "id": "KR-6480000-302012017000002",
+    "name": "밀양컨트리클럽",
+    "address": "경상남도 밀양시 부북면 사포산단1길 157",
+    "lat": 35.4600173636596,
+    "lng": 128.732301414516,
+    "holes": null,
+    "phone": "055-350-3300",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/27288686"
   },
   {
     "id": "KR-6530000-302012017000001",

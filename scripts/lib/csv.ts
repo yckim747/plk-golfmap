@@ -16,6 +16,7 @@ export interface PlkCourseRow {
   lat: number | null;
   lng: number | null;
   status?: '협의중' | null;
+  undisclosed?: boolean; // 운영팀 마스터 공개형태 '불가' → 제휴 정보 없이 일반으로 표시
 }
 
 export interface SkippedRow { plkCode: string; name: string; address: string; reason: string; lat?: number; lng?: number }
@@ -88,7 +89,8 @@ function koreanPoint(latText: string, lngText: string): { lat: number; lng: numb
 // 사용여부 N은 제외하지 않고 '협의중'으로 표시한다(지도에서 흐리게 노출).
 function exclusionReason(row: Record<string, string>, name: string): string {
   if (!name || /^\d+$/.test(name)) return '입력 오류(골프장명 없음)';
-  if (row['골프장공개형태'] === '불가') return '공개 불가';
+  // 골프장이 아닌 등록(예: PLK 라운지)
+  if (/라운지|사무실|본사|지점$/.test(name)) return '골프장 아님';
   if (row['제휴구분'] === '휴장') return '휴장';
   if (row['국가코드'] !== 'KR' || row['지역'] === '중국권') return '해외';
   return '';
@@ -113,8 +115,10 @@ export function parseOperationsCourses(text: string): { rows: PlkCourseRow[]; sk
     const holes = Number(row['홀수']);
     const point = koreanPoint(row['위도'], row['경도']);
     const status = row['사용여부'] === 'Y' ? null : '협의중' as const;
-    const partnerType = status ? null : (['제휴', '이용협약'] as const).find((type) => type === row['제휴구분']) ?? null;
-    kept.push({ code, row: { plkCode: code, name, address, phone: '', homepage: row['홈페이지'], holes: Number.isInteger(holes) && holes > 0 ? holes : null, partnerType, partnerNote: '', lat: point?.lat ?? null, lng: point?.lng ?? null, status } });
+    // 공개형태 '불가'는 지도에는 표시하되 PLK 제휴·이용협약 정보는 드러내지 않는다(일반 골프장으로 표시).
+    const undisclosed = row['골프장공개형태'] === '불가';
+    const partnerType = status || undisclosed ? null : (['제휴', '이용협약'] as const).find((type) => type === row['제휴구분']) ?? null;
+    kept.push({ code, row: { plkCode: code, name, address, phone: '', homepage: row['홈페이지'], holes: Number.isInteger(holes) && holes > 0 ? holes : null, partnerType, partnerNote: '', lat: point?.lat ?? null, lng: point?.lng ?? null, status, ...(undisclosed ? { undisclosed: true } : {}) } });
   }
   // 운영 중인 행과 같은 골프장의 협의중 행(예전 행)은 뺀다.
   const activeNames = new Set(kept.filter(({ row }) => !row.status).map(({ row }) => normalizeName(row.name)));

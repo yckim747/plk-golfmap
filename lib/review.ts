@@ -1,8 +1,9 @@
 // 검수 목록(data/review.json): `npm run data:build`가 만들고, 관리 화면에서 하나씩 확인·보류·지도 반영한다.
 import type { GolfCourse } from './types';
 
-export type ReviewType = 'moved' | 'unlinked' | 'nearby' | 'merged' | 'duplicate' | 'unlocated';
+export type ReviewType = 'undisclosed' | 'moved' | 'unlinked' | 'nearby' | 'merged' | 'duplicate' | 'unlocated';
 export const REVIEW_LABELS: Record<ReviewType, string> = {
+  undisclosed: '공개 불가 → 일반으로 표시',
   moved: '위치 수정됨(마스터 좌표 오차)',
   unlinked: '카카오 장소 미연결',
   nearby: '신규 · 3km 안 기존 골프장',

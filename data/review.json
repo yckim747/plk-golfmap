@@ -1,6 +1,69 @@
 {
- "generatedAt": "2026-10-07T22:47:58.177Z",
+ "generatedAt": "2026-10-08T00:53:34.969Z",
  "items": [
+  {
+   "key": "undisclosed:N-CC-2bb6d7",
+   "type": "undisclosed",
+   "courseId": "N-CC-2bb6d7",
+   "title": "남촌골프클럽",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
+  {
+   "key": "undisclosed:R-CC",
+   "type": "undisclosed",
+   "courseId": "R-CC",
+   "title": "렉스필드컨트리클럽",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
+  {
+   "key": "undisclosed:X-328c25",
+   "type": "undisclosed",
+   "courseId": "X-328c25",
+   "title": "밀양 에스파크",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
+  {
+   "key": "undisclosed:B-205-26ae9a",
+   "type": "undisclosed",
+   "courseId": "B-205-26ae9a",
+   "title": "설해원컨트리클럽",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
+  {
+   "key": "undisclosed:B-117-e5ecd5",
+   "type": "undisclosed",
+   "courseId": "B-117-e5ecd5",
+   "title": "안양컨트리클럽",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
+  {
+   "key": "undisclosed:X-eefea7",
+   "type": "undisclosed",
+   "courseId": "X-eefea7",
+   "title": "알펜시아700",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
+  {
+   "key": "undisclosed:A-323",
+   "type": "undisclosed",
+   "courseId": "A-323",
+   "title": "지산 컨트리클럽",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
+  {
+   "key": "undisclosed:C-206-015abf",
+   "type": "undisclosed",
+   "courseId": "C-206-015abf",
+   "title": "킹즈락CC",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
+  {
+   "key": "undisclosed:X-e51b27",
+   "type": "undisclosed",
+   "courseId": "X-e51b27",
+   "title": "핀크스골프클럽",
+   "detail": "운영팀 마스터 공개형태 \"불가\" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 \"지도에서 제외\"하세요."
+  },
   {
    "key": "moved:A-104",
    "type": "moved",
@@ -254,9 +317,16 @@
    "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
   },
   {
-   "key": "moved:C-206",
+   "key": "moved:N-CC-2bb6d7",
    "type": "moved",
-   "courseId": "C-206",
+   "courseId": "N-CC-2bb6d7",
+   "title": "남촌골프클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:C-206-f2c0bc",
+   "type": "moved",
+   "courseId": "C-206-f2c0bc",
    "title": "남춘천컨트리클럽",
    "detail": "마스터 좌표에서 1.1km 옮김 (근거: 카카오 장소)"
   },
@@ -408,6 +478,13 @@
    "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
   },
   {
+   "key": "moved:R-CC",
+   "type": "moved",
+   "courseId": "R-CC",
+   "title": "렉스필드컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
    "key": "moved:C-211",
    "type": "moved",
    "courseId": "C-211",
@@ -483,6 +560,13 @@
    "courseId": "X-3acc48",
    "title": "문경GC",
    "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "moved:X-328c25",
+   "type": "moved",
+   "courseId": "X-328c25",
+   "title": "밀양 에스파크",
+   "detail": "마스터 좌표에서 0.3km 옮김 (근거: 카카오 장소)"
   },
   {
    "key": "moved:B-208-6b5127",
@@ -730,6 +814,13 @@
    "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
   },
   {
+   "key": "moved:B-205-26ae9a",
+   "type": "moved",
+   "courseId": "B-205-26ae9a",
+   "title": "설해원컨트리클럽",
+   "detail": "마스터 좌표에서 6.0km 옮김 (근거: 카카오 장소)"
+  },
+  {
    "key": "moved:B-103",
    "type": "moved",
    "courseId": "B-103",
@@ -800,9 +891,9 @@
    "detail": "마스터 좌표에서 1.1km 옮김 (근거: 카카오 장소)"
   },
   {
-   "key": "moved:B-205",
+   "key": "moved:B-205-7c30f1",
    "type": "moved",
-   "courseId": "B-205",
+   "courseId": "B-205-7c30f1",
    "title": "스톤비치컨트리클럽",
    "detail": "마스터 좌표에서 0.5km 옮김 (근거: 카카오 장소)"
   },
@@ -895,7 +986,14 @@
    "type": "moved",
    "courseId": "C-105",
    "title": "알펜시아컨트리클럽",
-   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+   "detail": "마스터 좌표에서 0.5km 옮김 (근거: 공공데이터 인허가)"
+  },
+  {
+   "key": "unlinked:C-105",
+   "type": "unlinked",
+   "courseId": "C-105",
+   "title": "알펜시아컨트리클럽",
+   "detail": "위치 근거: 공공데이터 인허가 · 카카오맵 링크·전화 없음"
   },
   {
    "key": "moved:X-8feff7",
@@ -1290,6 +1388,13 @@
    "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
   },
   {
+   "key": "moved:A-323",
+   "type": "moved",
+   "courseId": "A-323",
+   "title": "지산 컨트리클럽",
+   "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
+  },
+  {
    "key": "moved:B-104-c9cf1f",
    "type": "moved",
    "courseId": "B-104-c9cf1f",
@@ -1591,6 +1696,13 @@
    "detail": "마스터 좌표에서 0.4km 옮김 (근거: 카카오 장소)"
   },
   {
+   "key": "moved:X-e51b27",
+   "type": "moved",
+   "courseId": "X-e51b27",
+   "title": "핀크스골프클럽",
+   "detail": "마스터 좌표에서 0.7km 옮김 (근거: 카카오 장소)"
+  },
+  {
    "key": "moved:P-GC",
    "type": "moved",
    "courseId": "P-GC",
@@ -1694,6 +1806,13 @@
    "courseId": "X-7724a0",
    "title": "히든밸리 골프클럽",
    "detail": "마스터 좌표에서 0.9km 옮김 (근거: 카카오 장소)"
+  },
+  {
+   "key": "unlinked:H-CC-a5b1d2",
+   "type": "unlinked",
+   "courseId": "H-CC-a5b1d2",
+   "title": "힐데스하임 컨트리클럽",
+   "detail": "위치 근거: 마스터 좌표 · 카카오맵 링크·전화 없음"
   },
   {
    "key": "unlinked:KR-6440000-302012025000001",
@@ -2224,7 +2343,7 @@
   {
    "key": "merged:KR-4620000-CDFH2302012006000001",
    "type": "merged",
-   "courseId": "B-205",
+   "courseId": "B-205-7c30f1",
    "title": "태안비치컨트리클럽",
    "detail": "스톤비치컨트리클럽과 같은 골프장으로 통합 (0.8km)",
    "candidate": {
@@ -2414,7 +2533,7 @@
   {
    "key": "duplicate:S-CC-6eaf05",
    "type": "duplicate",
-   "courseId": "B-117",
+   "courseId": "B-117-07027e",
    "title": "상떼힐 컨트리클럽",
    "detail": "스타컨트리클럽과 같은 자리 395m → 협의중 중복 제외",
    "candidate": {
