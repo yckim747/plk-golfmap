@@ -4288,6 +4288,19 @@
     "kakaoPlaceUrl": "https://place.map.kakao.com/1094120603"
   },
   {
+    "id": "D-111",
+    "name": "칼레이트",
+    "address": "경북 군위군 소보면 산법리 산 46-3",
+    "lat": 36.21457769788671,
+    "lng": 128.52658345441233,
+    "holes": null,
+    "phone": "054-380-0900",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중",
+    "kakaoPlaceUrl": "https://place.map.kakao.com/757997198"
+  },
+  {
     "id": "A-310",
     "name": "캐슬렉스서울골프클럽",
     "address": "경기도 하남시 감이로 317",

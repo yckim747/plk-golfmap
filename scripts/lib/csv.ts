@@ -91,7 +91,6 @@ function exclusionReason(row: Record<string, string>, name: string): string {
   if (!name || /^\d+$/.test(name)) return '입력 오류(골프장명 없음)';
   // 골프장이 아닌 등록(예: PLK 라운지)
   if (/라운지|사무실|본사|지점$/.test(name)) return '골프장 아님';
-  if (row['제휴구분'] === '휴장') return '휴장';
   if (row['국가코드'] !== 'KR' || row['지역'] === '중국권') return '해외';
   return '';
 }
@@ -114,9 +113,10 @@ export function parseOperationsCourses(text: string): { rows: PlkCourseRow[]; sk
     if (reason) { const at = koreanPoint(row['위도'], row['경도']); skipped.push({ plkCode: code, name, address, reason, lat: at?.lat, lng: at?.lng }); continue; }
     const holes = Number(row['홀수']);
     const point = koreanPoint(row['위도'], row['경도']);
-    // 사용여부 N, 공개형태 '불가'는 '협의중'으로 표시한다(공개 불가는 PLK 제휴·이용협약 정보를 드러내지 않는다).
+    // 컨셉: 대한민국 모든 골프장을 표시하고 일반·제휴·이용협약·협의중으로 구분한다.
+    // 협의중 = PLK 제휴 정보가 없거나 노출할 수 없는 골프장: 사용여부 N, 공개형태 '불가', 제휴구분 '휴장'.
     const undisclosed = row['골프장공개형태'] === '불가';
-    const status = row['사용여부'] === 'Y' && !undisclosed ? null : '협의중' as const;
+    const status = row['사용여부'] === 'Y' && !undisclosed && row['제휴구분'] !== '휴장' ? null : '협의중' as const;
     const partnerType = status ? null : (['제휴', '이용협약'] as const).find((type) => type === row['제휴구분']) ?? null;
     kept.push({ code, row: { plkCode: code, name, address, phone: '', homepage: row['홈페이지'], holes: Number.isInteger(holes) && holes > 0 ? holes : null, partnerType, partnerNote: '', lat: point?.lat ?? null, lng: point?.lng ?? null, status, ...(undisclosed ? { undisclosed: true } : {}) } });
   }

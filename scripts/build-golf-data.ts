@@ -116,8 +116,9 @@ async function main() {
   }
 
   const meta = new Map<string, CourseMeta>(courses.map((course) => [course.id, { source: 'PLK 마스터', licenseNo: '', businessStatus: '', note: coordNotes.get(course.id) ?? '' }]));
-  // PLK 마스터에서 휴장으로 뺀 골프장은 전국 보완에서도 다시 넣지 않는다.
-  const blocked = skipped.filter((row) => row.reason === '휴장');
+  // 모든 골프장을 표시하는 것이 원칙이라 지금은 전국 보완에서 막는 골프장이 없다.
+  // (특정 골프장을 지도에서 빼려면 관리 화면에서 '지도에서 제외'한다. 차단이 다시 필요하면 skipped에서 골라 넣는다.)
+  const blocked: SkippedRow[] = [];
   const duplicates: DuplicateRecord[] = [];
   const merged: MergedRecord[] = [];
   const national = supplementNational(courses, overrides, report, meta, blocked, coordSources, duplicates, merged);

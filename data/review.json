@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-08T00:57:18.324Z",
+ "generatedAt": "2026-10-08T01:00:36.586Z",
  "items": [
   {
    "key": "undisclosed:N-CC-2bb6d7",
@@ -1458,6 +1458,13 @@
    "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
   },
   {
+   "key": "moved:D-111",
+   "type": "moved",
+   "courseId": "D-111",
+   "title": "칼레이트",
+   "detail": "마스터 좌표에서 0.6km 옮김 (근거: 카카오 장소)"
+  },
+  {
    "key": "moved:A-310",
    "type": "moved",
    "courseId": "A-310",
@@ -1815,6 +1822,13 @@
    "detail": "위치 근거: 마스터 좌표 · 카카오맵 링크·전화 없음"
   },
   {
+   "key": "nearby:KR-6270000-302012026000001",
+   "type": "nearby",
+   "courseId": "KR-6270000-302012026000001",
+   "title": "수서컨트리클럽",
+   "detail": "공공데이터 신규 · 3km 안 기존 골프장: 칼레이트 (2.8km)"
+  },
+  {
    "key": "unlinked:KR-6440000-302012025000001",
    "type": "unlinked",
    "courseId": "KR-6440000-302012025000001",
@@ -2149,6 +2163,25 @@
    "courseId": "KK-229961815",
    "title": "힐스카이CC 경주지점",
    "detail": "카카오 신규 · 3km 안 기존 골프장: 루나엑스CC (0.5km)"
+  },
+  {
+   "key": "merged:KR-6270000-302012024000001",
+   "type": "merged",
+   "courseId": "D-111",
+   "title": "산타크로스골프장",
+   "detail": "칼레이트과 같은 골프장으로 통합 (0.5km)",
+   "candidate": {
+    "id": "KR-6270000-302012024000001",
+    "name": "산타크로스골프장",
+    "address": "대구광역시 군위군 소보면 서금로 342",
+    "lat": 36.21105515464099,
+    "lng": 128.5226836466573,
+    "holes": null,
+    "phone": "",
+    "homepage": "",
+    "plkPartner": false,
+    "status": "협의중"
+   }
   },
   {
    "key": "merged:KR-4050000-CDFH2302012012000001",

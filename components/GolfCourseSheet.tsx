@@ -20,7 +20,7 @@ export default function GolfCourseSheet({ course, onClose, distance, favorite, o
     <h2 id="course-title">{course.name}</h2>
     <p className="sheet-address"><MapPin size={15}/><span>{course.address}{distance !== undefined && <b className="distance"> · 내 위치에서 {formatDistance(distance)}</b>}</span></p>
     <dl className="info-grid"><div><dt>권역</dt><dd>{regionOf(course.address)}</dd></div><div><dt>홀</dt><dd>{course.holes ? `${course.holes}홀` : '–'}</dd></div><div><dt>구분</dt><dd>{course.status ?? course.partnerType ?? '일반'}</dd></div></dl>
-    {kind === 'pending' && <p className="pending-note"><Clock size={16}/>PLK와 협의 중인 골프장입니다. 이용 조건은 추후 안내됩니다.</p>}
+    {kind === 'pending' && <p className="pending-note"><Clock size={16}/>PLK 제휴 정보가 아직 없거나 공개되지 않은 골프장입니다. 이용 조건은 골프장에 직접 확인해 주세요.</p>}
     {course.partnerNote && <p className="partner-note"><Gift size={16}/>{course.partnerNote}</p>}
     <a className="primary-button" href={`https://map.kakao.com/link/to/${encodeURIComponent(course.name)},${course.lat},${course.lng}`} target="_blank" rel="noopener noreferrer"><Navigation size={17}/>길찾기</a>
     <div className="action-grid">

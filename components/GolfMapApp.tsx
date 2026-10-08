@@ -149,7 +149,7 @@ export default function GolfMapApp() {
     <div className="workspace" data-view={view}>
       <aside className="panel">
         <div className="panel-top">
-          <div className="panel-title"><h1>전국 골프장 지도</h1><p>PLK 제휴·이용협약 골프장을 한눈에 찾아보세요.</p></div>
+          <div className="panel-title"><h1>전국 골프장 지도</h1><p>대한민국 모든 골프장과 PLK 제휴 현황을 한눈에 찾아보세요.</p></div>
           <GolfCourseSearch value={query} onChange={setQuery} onSubmit={applySearch} inputRef={searchInput} voice={voice}/>
           <GolfCourseFilter kind={effectiveKind} onKind={setKind} counts={loading ? null : counts} region={effectiveRegion} onRegion={setRegion} favorite={{ active: favOnly, count: favorites.size, onToggle: () => setFavOnly((value) => !value) }}/>
         </div>
@@ -173,7 +173,13 @@ export default function GolfMapApp() {
                 </button>
                 <button className={`fav-toggle${favorite ? ' active' : ''}`} aria-pressed={favorite} aria-label={favorite ? `${course.name} 관심 해제` : `${course.name} 관심 골프장에 추가`} onClick={() => onToggleFavorite(course)}><Star size={16}/></button>
               </div>; })}
-          {!loading && !error && <p className="list-footnote">정보 출처: PLK · 카카오맵 · 공공데이터포털</p>}
+          {!loading && !error && <div className="kind-guide">
+            <p><i className="dot partner"/><b>제휴</b> PLK 제휴 골프장</p>
+            <p><i className="dot agreement"/><b>이용협약</b> PLK 이용협약 골프장</p>
+            <p><i className="dot regular"/><b>일반</b> PLK 제휴가 없는 골프장</p>
+            <p><i className="dot pending"/><b>협의중</b> PLK 제휴 정보가 없거나 공개되지 않은 골프장</p>
+            <small>정보 출처: PLK · 카카오맵 · 공공데이터포털(전국 골프장 인허가)</small>
+          </div>}
         </section>
       </aside>
       <KakaoMap courses={filtered} selected={selected} onSelect={select} myLocation={myLocation} locating={locating} onLocate={locate} onInteract={dismissKeyboard} onBoundsChange={setBounds}/>
