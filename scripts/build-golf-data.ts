@@ -133,9 +133,9 @@ async function main() {
   await writeNationalWorkbook(workbookFile, courses, meta, masterColumns, national, { coordSources, masterPoints, unlocatedPublic, duplicates });
   // 관리 화면(/admin)의 검수 목록. 지도에서 빠진 골프장은 다시 넣을 수 있도록 골프장 정보를 함께 저장한다.
   const reviewItems: ReviewItem[] = [];
-  // 마스터 공개형태 '불가': 지도에는 일반 골프장으로 표시. 노출하면 안 되는 곳은 관리 화면에서 '지도에서 제외'한다.
+  // 마스터 공개형태 '불가': 지도에는 협의중으로 표시. 노출하면 안 되는 곳은 관리 화면에서 '지도에서 제외'한다.
   const undisclosedIds = new Set(rows.filter((row) => row.undisclosed).map((row) => row.plkCode));
-  for (const course of courses.filter((item) => undisclosedIds.has(item.id))) reviewItems.push({ key: `undisclosed:${course.id}`, type: 'undisclosed', courseId: course.id, title: course.name, detail: '운영팀 마스터 공개형태 "불가" → PLK 제휴 정보 없이 일반 골프장으로 표시 중. 노출하면 안 되면 "지도에서 제외"하세요.' });
+  for (const course of courses.filter((item) => undisclosedIds.has(item.id))) reviewItems.push({ key: `undisclosed:${course.id}`, type: 'undisclosed', courseId: course.id, title: course.name, detail: '운영팀 마스터 공개형태 "불가" → 협의중으로 표시 중(PLK 제휴 정보는 숨김). 노출하면 안 되면 "지도에서 제외"하세요.' });
   for (const course of courses) {
     const master = masterPoints.get(course.id);
     const moved = master ? distanceKm(master, course) : 0;

@@ -16,7 +16,7 @@ export interface PlkCourseRow {
   lat: number | null;
   lng: number | null;
   status?: '협의중' | null;
-  undisclosed?: boolean; // 운영팀 마스터 공개형태 '불가' → 제휴 정보 없이 일반으로 표시
+  undisclosed?: boolean; // 운영팀 마스터 공개형태 '불가' → 협의중으로 표시(제휴 정보 숨김)
 }
 
 export interface SkippedRow { plkCode: string; name: string; address: string; reason: string; lat?: number; lng?: number }
@@ -114,10 +114,10 @@ export function parseOperationsCourses(text: string): { rows: PlkCourseRow[]; sk
     if (reason) { const at = koreanPoint(row['위도'], row['경도']); skipped.push({ plkCode: code, name, address, reason, lat: at?.lat, lng: at?.lng }); continue; }
     const holes = Number(row['홀수']);
     const point = koreanPoint(row['위도'], row['경도']);
-    const status = row['사용여부'] === 'Y' ? null : '협의중' as const;
-    // 공개형태 '불가'는 지도에는 표시하되 PLK 제휴·이용협약 정보는 드러내지 않는다(일반 골프장으로 표시).
+    // 사용여부 N, 공개형태 '불가'는 '협의중'으로 표시한다(공개 불가는 PLK 제휴·이용협약 정보를 드러내지 않는다).
     const undisclosed = row['골프장공개형태'] === '불가';
-    const partnerType = status || undisclosed ? null : (['제휴', '이용협약'] as const).find((type) => type === row['제휴구분']) ?? null;
+    const status = row['사용여부'] === 'Y' && !undisclosed ? null : '협의중' as const;
+    const partnerType = status ? null : (['제휴', '이용협약'] as const).find((type) => type === row['제휴구분']) ?? null;
     kept.push({ code, row: { plkCode: code, name, address, phone: '', homepage: row['홈페이지'], holes: Number.isInteger(holes) && holes > 0 ? holes : null, partnerType, partnerNote: '', lat: point?.lat ?? null, lng: point?.lng ?? null, status, ...(undisclosed ? { undisclosed: true } : {}) } });
   }
   // 운영 중인 행과 같은 골프장의 협의중 행(예전 행)은 뺀다.

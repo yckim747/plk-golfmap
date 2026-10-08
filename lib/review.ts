@@ -3,7 +3,7 @@ import type { GolfCourse } from './types';
 
 export type ReviewType = 'undisclosed' | 'moved' | 'unlinked' | 'nearby' | 'merged' | 'duplicate' | 'unlocated';
 export const REVIEW_LABELS: Record<ReviewType, string> = {
-  undisclosed: '공개 불가 → 일반으로 표시',
+  undisclosed: '공개 불가 → 협의중으로 표시',
   moved: '위치 수정됨(마스터 좌표 오차)',
   unlinked: '카카오 장소 미연결',
   nearby: '신규 · 3km 안 기존 골프장',
