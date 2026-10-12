@@ -7,7 +7,7 @@ PHP 레거시와 독립된 Next.js / React / TypeScript / Tailwind CSS 앱입니
 Node.js 20.9 이상(권장 22/24 LTS)이 필요합니다.
 
 ```powershell
-cd D:\plk-mini\mark_g1
+cd D:\plk-mini\plk-golfmap
 npm install
 Copy-Item .env.example .env.local
 # .env.local에 아래 JavaScript 키 입력
